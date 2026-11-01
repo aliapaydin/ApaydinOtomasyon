@@ -32,7 +32,7 @@ Public Const URUN_SURUM As String = "2.0"
 Public Const GELISTIRICI As String = "Ali Apaydın"
 Public Const GELISTIRICI_EPOSTA As String = "apaydin.a@gmail.com"
 Public Const GELISTIRICI_TELEFON As String = "0553 605 35 00"
-Public Const GELISTIRICI_GITHUB As String = "github.com/sifirgecikme"
+Public Const GELISTIRICI_GITHUB As String = "github.com/aliapaydin"
 
 Public Const ANA_MENU As String = "frm_CicerAnaMenu"
 Public Const GIRIS_FORMU As String = "frm_Giris"

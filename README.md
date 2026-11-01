@@ -122,6 +122,6 @@ kaynak/
 **Ali Apaydın**
 
 - E-posta: [apaydin.a@gmail.com](mailto:apaydin.a@gmail.com)
-- GitHub: [github.com/sifirgecikme](https://github.com/sifirgecikme)
+- GitHub: [github.com/aliapaydin](https://github.com/aliapaydin)
 
 © 2026 Ali Apaydın. Tüm hakları saklıdır.
