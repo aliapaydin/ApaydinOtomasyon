@@ -1,0 +1,8 @@
+﻿# Access kilit ve geçici dosyaları
+*.laccdb
+*.ldb
+~$*
+# Program çıktıları
+Raporlar/
+Yedek/
+_test/

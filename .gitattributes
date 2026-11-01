@@ -1,0 +1,7 @@
+﻿* text=auto
+*.bas text eol=crlf
+*.sql text eol=crlf
+*.txt text eol=crlf
+*.accdb binary
+*.png binary
+*.ico binary

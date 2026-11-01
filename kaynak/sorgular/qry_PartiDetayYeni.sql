@@ -1,0 +1,3 @@
+SELECT p.PartiNo, p.PartiKodu AS [Parti No], Format(p.Tarih,"dd.mm.yyyy") AS Tarih, p.MusteriID, m.AdSoyad AS Müşteri, p.Cinsi, p.Ozellik AS Özellik, p.ZeytinMiktari_Kg AS [Zeytin Kg], p.CikanYag_Kg AS [Çıkan Yağ], p.AtikMiktari_Kg AS [Posa Kg], p.OdemeTipi AS [Ödeme Tipi], Format(p.SimSikimUcreti,"#,##0.00") AS [Sıkım Ücreti], p.HakYagiOrani_Yuzde AS [Hak %], Format(p.TLTutari,"#,##0.00") AS [TL Tutarı], p.HakYagi_Kg AS [Hakyağı Kg], p.MusteriKalanYag_Kg AS [Müşteriye Kalan], Format(p.TeslimTarihi,"dd.mm.yyyy") AS Teslim, p.BidonDetay AS Bidonlar
+FROM tbl_Parti AS p LEFT JOIN tbl_Musteri AS m ON p.MusteriID=m.MusteriID
+ORDER BY p.Tarih DESC , p.PartiKodu DESC;

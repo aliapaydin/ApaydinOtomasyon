@@ -1,0 +1,4 @@
+SELECT s.StokHareketID, Format(s.Tarih,"dd.mm.yyyy") AS Tarih, s.UrunID, u.UrunAdi AS Ürün, s.MusteriID, m.AdSoyad AS Müşteri, p.PartiKodu AS Parti, s.HareketTuru AS Hareket, s.Aciklama AS Açıklama, Nz(s.Giris,0) AS Giren, Nz(s.Cikis,0) AS Çıkan, Nz(u.AcilisStok,0) + Nz(DSum("Nz(Giris,0)-Nz(Cikis,0)","tbl_StokHareket","Nz(IptalMi,False)=False AND UrunID=" & s.UrunID & " AND (Tarih<" & Str(CDbl(s.Tarih)) & " OR (Tarih=" & Str(CDbl(s.Tarih)) & " AND StokHareketID<=" & s.StokHareketID & "))"),0) AS Kalan, Switch(Nz(s.KaynakTipi,"")="PARTI","Parti",Nz(s.KaynakTipi,"")="KASA","Kasa",Nz(s.KaynakTipi,"")="ALIMSATIM","Alım/Satım",True,"Manuel") AS Kaynak, s.Tarih AS TarihHam
+FROM ((tbl_StokHareket AS s INNER JOIN tbl_Urun AS u ON s.UrunID=u.UrunID) LEFT JOIN tbl_Musteri AS m ON s.MusteriID=m.MusteriID) LEFT JOIN tbl_Parti AS p ON s.PartiNo=p.PartiNo
+WHERE Nz(s.IptalMi,False)=False
+ORDER BY s.Tarih, s.StokHareketID;

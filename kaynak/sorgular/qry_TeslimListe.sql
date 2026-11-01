@@ -1,0 +1,3 @@
+SELECT p.PartiNo, p.PartiKodu AS Parti, Format(p.Tarih,"dd.mm.yyyy") AS [Parti Tarihi], m.AdSoyad AS Müşteri, p.OdemeTipi AS Ödeme, Format(Nz(p.CikanYag_Kg,0),"#,##0.00") AS [Çıkan Yağ], Format(IIf(p.OdemeTipi Like "H*",Nz(p.MusteriKalanYag_Kg,0),Nz(p.CikanYag_Kg,0)),"#,##0.00") AS [Net Yağ], Format(p.TeslimTarihi,"dd.mm.yyyy") AS [Teslim Tarihi], p.TeslimAlan AS [Teslim Alan], Format(p.TeslimYag_Kg,"#,##0.00") AS [Teslim Edilen], IIf(p.TeslimTarihi Is Null,"Bekliyor","Teslim Edildi") AS Durum, p.TeslimTarihi AS TeslimTarihiHam
+FROM tbl_Parti AS p LEFT JOIN tbl_Musteri AS m ON p.MusteriID=m.MusteriID
+ORDER BY p.Tarih DESC , p.PartiKodu DESC;

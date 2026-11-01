@@ -1,0 +1,4 @@
+SELECT k.KasaHareketID, Format(k.Tarih,"dd.mm.yyyy") AS Tarih, k.MusteriID, m.AdSoyad AS Müşteri, p.PartiKodu AS Parti, k.HareketTuru AS Hareket, k.OdemeYontemi AS Yöntem, k.Aciklama AS Açıklama, Format(Nz(k.Tahsilat,0),"#,##0.00") AS Tahsilat, Format(Nz(k.Odeme,0),"#,##0.00") AS Ödeme, Format(Nz(DSum("Nz(AcilisBakiyesi,0)","tbl_Kasa"),0) + Nz(DSum("Nz(Tahsilat,0)-Nz(Odeme,0)","tbl_KasaHareket","Nz(IptalMi,False)=False AND (Tarih<" & Str(CDbl(k.Tarih)) & " OR (Tarih=" & Str(CDbl(k.Tarih)) & " AND KasaHareketID<=" & k.KasaHareketID & "))"),0),"#,##0.00") AS Bakiye, Switch(Nz(k.KaynakTipi,"")="PARTI","Parti",Nz(k.KaynakTipi,"")="KASA","Kasa",Nz(k.KaynakTipi,"")="ALIMSATIM","Alım/Satım",True,"Manuel") AS Kaynak, k.Tarih AS TarihHam
+FROM (tbl_KasaHareket AS k LEFT JOIN tbl_Musteri AS m ON k.MusteriID=m.MusteriID) LEFT JOIN tbl_Parti AS p ON k.PartiNo=p.PartiNo
+WHERE Nz(k.IptalMi,False)=False
+ORDER BY k.Tarih, k.KasaHareketID;

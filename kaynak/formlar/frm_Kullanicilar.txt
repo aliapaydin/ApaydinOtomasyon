@@ -1,0 +1,1286 @@
+Version =21
+VersionRequired =20
+PublishOption =1
+Checksum =-223981090
+Begin Form
+    RecordSelectors = NotDefault
+    AutoCenter = NotDefault
+    NavigationButtons = NotDefault
+    DividingLines = NotDefault
+    AllowDesignChanges = NotDefault
+    DefaultView =0
+    ScrollBars =0
+    TabularCharSet =162
+    PictureAlignment =2
+    DatasheetGridlinesBehavior =3
+    GridX =24
+    GridY =24
+    Width =11500
+    DatasheetFontHeight =11
+    ItemSuffix =28
+    DatasheetGridlinesColor =15132391
+    RecSrcDt = Begin
+        0x63aee463f49ee640
+    End
+    GUID = Begin
+        0xd41cb9c4129d844ba7bda3ff1daa259d
+    End
+    NameMap = Begin
+        0x0acc0e5500000000e5e685e290ab5346bc3e2a710b8d558700000000d0bae463 ,
+        0xf49ee64000000000000000007100720079005f004b0075006c006c0061006e00 ,
+        0x6900630069004c00690073007400650000000000000000000000000000000000 ,
+        0x0000000000000c000000050000000000000000000000000000000000
+    End
+    Caption ="Kullanıcılar"
+    DatasheetFontName ="Calibri"
+    OnLoad ="=KullaniciTemizle()"
+    FilterOnLoad =0
+    ShowPageMargins =0
+    DisplayOnSharePointSite =1
+    DatasheetAlternateBackColor =15921906
+    DatasheetGridlinesColor12 =0
+    FitToScreen =1
+    DatasheetBackThemeColorIndex =1
+    BorderThemeColorIndex =3
+    ThemeFontIndex =1
+    ForeThemeColorIndex =0
+    AlternateBackThemeColorIndex =1
+    AlternateBackShade =95.0
+    NoSaveCTIWhenDisabled =1
+    Begin
+        Begin Label
+            BackStyle =0
+            TextFontCharSet =162
+            FontSize =11
+            BorderColor =8355711
+            ForeColor =6710886
+            FontName ="Calibri"
+            GridlineColor =10921638
+            ThemeFontIndex =1
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =0
+            BorderTint =50.0
+            ForeThemeColorIndex =0
+            ForeTint =60.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin Rectangle
+            SpecialEffect =3
+            BackStyle =0
+            BorderLineStyle =0
+            BorderColor =10921638
+            GridlineColor =10921638
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin Image
+            BackStyle =0
+            OldBorderStyle =0
+            BorderLineStyle =0
+            SizeMode =3
+            PictureAlignment =2
+            BorderColor =10921638
+            GridlineColor =10921638
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin CommandButton
+            TextFontCharSet =162
+            FontSize =11
+            FontWeight =400
+            ForeColor =4210752
+            FontName ="Calibri"
+            GridlineColor =10921638
+            ForeThemeColorIndex =0
+            ForeTint =75.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+            UseTheme =1
+            Shape =1
+            Gradient =12
+            BackColor =14461583
+            BackThemeColorIndex =4
+            BackTint =60.0
+            BorderLineStyle =0
+            BorderColor =14461583
+            BorderThemeColorIndex =4
+            BorderTint =60.0
+            ThemeFontIndex =1
+            HoverColor =15189940
+            HoverThemeColorIndex =4
+            HoverTint =40.0
+            PressedColor =9917743
+            PressedThemeColorIndex =4
+            PressedShade =75.0
+            HoverForeColor =4210752
+            HoverForeThemeColorIndex =0
+            HoverForeTint =75.0
+            PressedForeColor =4210752
+            PressedForeThemeColorIndex =0
+            PressedForeTint =75.0
+        End
+        Begin CheckBox
+            BorderLineStyle =0
+            LabelX =230
+            LabelY =-30
+            BorderColor =10921638
+            GridlineColor =10921638
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin TextBox
+            AddColon = NotDefault
+            FELineBreak = NotDefault
+            TextFontCharSet =162
+            BorderLineStyle =0
+            LabelX =-1800
+            FontSize =11
+            BorderColor =10921638
+            ForeColor =4210752
+            FontName ="Calibri"
+            AsianLineBreak =1
+            GridlineColor =10921638
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            ThemeFontIndex =1
+            ForeThemeColorIndex =0
+            ForeTint =75.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin ListBox
+            TextFontCharSet =162
+            BorderLineStyle =0
+            LabelX =-1800
+            FontSize =11
+            ForeColor =4210752
+            BorderColor =10921638
+            FontName ="Calibri"
+            GridlineColor =10921638
+            AllowValueListEdits =1
+            InheritValueList =1
+            ThemeFontIndex =1
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            ForeThemeColorIndex =0
+            ForeTint =75.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin ComboBox
+            AddColon = NotDefault
+            TextFontCharSet =162
+            BorderLineStyle =0
+            LabelX =-1800
+            FontSize =11
+            BorderColor =10921638
+            ForeColor =3484194
+            FontName ="Calibri"
+            GridlineColor =10921638
+            AllowValueListEdits =1
+            InheritValueList =1
+            ThemeFontIndex =1
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            ForeThemeColorIndex =2
+            ForeShade =50.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin Section
+            Height =8200
+            BackColor =14939127
+            Name ="Detail"
+            GUID = Begin
+                0xb8fd0a7001e12a4696335badf2a79c1d
+            End
+            AutoHeight =1
+            AlternateBackColor =15921906
+            AlternateBackThemeColorIndex =1
+            AlternateBackShade =95.0
+            Begin
+                Begin Label
+                    BackStyle =1
+                    OverlapFlags =85
+                    TextAlign =1
+                    Width =11500
+                    Height =640
+                    FontSize =15
+                    FontWeight =700
+                    LeftMargin =950
+                    TopMargin =140
+                    BackColor =2050619
+                    ForeColor =16777215
+                    Name ="Etiket0"
+                    Caption ="KULLANICILAR"
+                    FontName ="Segoe UI"
+                    Tag ="tema"
+                    GUID = Begin
+                        0xaa50ea30422bc94eb0bca556309c2287
+                    End
+                    LayoutCachedWidth =11500
+                    LayoutCachedHeight =640
+                    ThemeFontIndex =-1
+                    BackThemeColorIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Image
+                    Left =160
+                    Top =45
+                    Width =560
+                    Height =560
+                    Name ="imgLogo"
+                    Tag ="tema"
+                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\apaydin_logo_kucuk.png"
+                    GUID = Begin
+                        0x011dbcd5d063ae419f265026c23453ce
+                    End
+                    ImageData = Begin
+                        0x89504e470d0a1a0a0000000d49484452000000a0000000a008060000008bcf67 ,
+                        0x2d000000017352474200aece1ce90000000467414d410000b18f0bfc61050000 ,
+                        0x00097048597300000ec300000ec301c76fa8640000267549444154785eed9d79 ,
+                        0x7454559ec7fdb3cffc333d33a7db0505b59b5551466513456cb7d1419b561b95 ,
+                        0x4d6cc056229b080408bb02cabeef2440088b20447612084b0001098425849040 ,
+                        0x030eead8366ddbcb4ccf4cdf399f47dff0f27bf7be5755a94aaa92bae77c8e98 ,
+                        0xaa7af5eabdefbbf7fe96fbbb37dd946cc9966cc9966cc9966cc9163fed4ac1ec ,
+                        0xe74a3f1b31b8645fffedc5b96fee81b2fdef9d3db5a9fdb5204af70d28d39f39 ,
+                        0x97f776ee85a363d22e9d98fc8afc8e644bb69b2ee40f7fa5644f9f2cc4726af3 ,
+                        0x2fbe2ddcf8f45f0e2f6fa862c5894f1eff2b223db7abc7a1e25dbd3695ec1bd0 ,
+                        0x5b9e53b2d5e0569a9ff61c822bdafaeaa5a3590ffc4d0aa43a389ad9549ddadc ,
+                        0xe11b04c90321cf39d912b85d3c3eea87e7f7f45f7c7647a7f3051fb7f91f79f3 ,
+                        0xe3111e0c1e101e94ab0786d793bf29d912a0951e4ced8fe8e2a597ab0c8e18f7 ,
+                        0xf79b297f63b2c5592b3b34ea11e65655d1d39dfcf4df55d1f68e1590ef89364e ,
+                        0xcfb8b3eb99e4301d67ad347fe084c2ec7ffb5edeb04828dcf89423a64b4746ab ,
+                        0x2f0a67a86f2f6d517ffadd29f5d73f7f11367ff9aed8f9fc97454bd4e5cfc7ab ,
+                        0xb33bba38c295df1909c7d7b7fb6fa616f25a245b15366ec0898d4ffd59de9c50 ,
+                        0x2958db4a95e4bded08e4bbab7b3c028a257ff8eaa0fafadc725596ff9e3abefe ,
+                        0x31cfb985cae76b5afcdfb93dbd3730d795d727d962d0b45111c9307b74655355 ,
+                        0x9cdbc3e9d91080144575f2c76f3e771e041e081e0c79ee4120c4a29c37b6278d ,
+                        0x9618369e742eb4bcf8417053e96de44d8f8423473705f2c7df5ff07c2e5c18ba ,
+                        0x4bf7f5559faf7ad0f37bfc609e884f33d92346b195e50feb19ee507b7a4b0775 ,
+                        0xf5f43c671e266fae8ddffdb6d811d0a75b16aa451963d580611d55affecfa936 ,
+                        0xcfd52b27657087401eef50bffcfdaff56aebfc8de3addb38db39fe57574f7abe ,
+                        0xdbc67f7d7fc17978e8b9e56ff4e3d8ea16ff7b7e6fdf31f25a265b188de104ab ,
+                        0x4f5e5c1bf416180f0c67f2469a4008886ddca4b7d54bdd5ba9675ebec7110bff ,
+                        0x8f60f20fae57274eecf07c2e1c4acf1f7044c7f13e9cdecf39fef39dfed561c4 ,
+                        0xf81e8e282fffe6a8e77326308678a8c299339edefcf3af8af7f46d2eaf6db205 ,
+                        0x34e679a1faf0983331afa3b790374db27b4f969a367790d3332102c486084315 ,
+                        0x41b440fcdb776638a244fcc0bff95b284338f3452c76792d4c1069399bd32337 ,
+                        0x2fbdde0fe4754e36d1f0e585ea52a127e04604098f5e8c9b4b0f3764745795b5 ,
+                        0x76aad333c9f755273c00f486f48a9c270f063db07c9fe49bd2d521bb7670dd5c ,
+                        0xd837a8abbce6c9f6f7863f2f945e8f1e0fe1c99b216f28c31e3d0bf3386e2e73 ,
+                        0x3cf9be78841e905e993928bd343d7651519ee77d6e305a421122bd21c69cbcf6 ,
+                        0xb5ba2975f10725bbdf3c222f9609e6787e8605378a5e0ee121c0aa1e5aa30d43 ,
+                        0x353df6ebbd9f74e68f41bde2e582492159cea7b7bc7c35e9b2b9e9a69b2e174c ,
+                        0x6f1eca908b55ebe72c66a2cf0de24631cf93afd704f88df48a41bf11632514ab ,
+                        0x195fea9523e36aef907cf1d0b03141432e4f33969fbcc81a6e04432ce2e306c9 ,
+                        0xd76b22ee5e9ea15abeaef9edc50d811633cef9d2fd036bdf907c3e7f7096bc18 ,
+                        0x129e62db70cbd04a6fc08da8acab2451e11a60acf000dae688186884fbe4b595 ,
+                        0x9cdbd5eb8cbc4735b6e1a99717c00d4f256e15793181097ac6ca898e1b25683e ,
+                        0x545be00164589eb368b8d5d0c2991d34372cded9ed528d8fa014ef7cbd58fe70 ,
+                        0x370c19d7aee4782ea0bcd0a1f8ca6a1b410f26f1ef204b99ccecafcab26e96f7 ,
+                        0x2de11b4f168995f207bbb10db9880d3f1e434dbcf9efe20dac663d3531f586a1 ,
+                        0x0cc9843d6b9485cc8fe1c9923fd4cdc543c33c170b109cf6e3c9d792d8c13863 ,
+                        0xb4b0cd8ff1a3ca7be006a7354101792f13aed1f305898f644d798180b094df04 ,
+                        0x3b893f18297807f023cad780280af36d793f34b86912be272cdafeda15f9c3dc ,
+                        0x98221a7ac8252c651a4692840ed792488a6d482682e2679c24f470ec6770f0e4 ,
+                        0xf104ca0bc2454a0eb9d1470fc9a6c8100e7ebf245846b084b38efd5c2d3c7126 ,
+                        0x4b570f19c9213736707d6d531a52d8fc9cd61890f21ec76df37332d3f325c557 ,
+                        0x7d6025dba2468122dcd935fe9dd564b4c81377437848fe7044671b1e92441fa6 ,
+                        0x39b86a4cf1648663bf3921d51be43d8f9b86d9ee17db35191c3a89c034414e12 ,
+                        0x3b304e304c4cb16446283feb382eebd93049f5cb6a31b95ae8f992e2ab5ef034 ,
+                        0xe0ee927f67a492f750c37a93b27def36901aa8d6569cdbbd409ea8c6e46466b8 ,
+                        0x65d84d8aef3a5f7e755095fd66bbfaecf89c722e5ddee520df1b4d744f680adf ,
+                        0xf939ab4f663ffb8dd440b535bf791fe135f9c3b4c1919cf37da17e7fad48add9 ,
+                        0xd653cd5dfdb42f191b5e565bf6a63ac2fce23ff67a8e531910a1cd3aa6f390f7 ,
+                        0x54c33a64a9852a6f7ef33e2c2a19dba5c74b5abb37c8fb6c8223b00f173eaea6 ,
+                        0x643ce1119e8d25eb3ba8dc836355f1f9f5ea2fdf5ff41c375c6cf785d831c9c0 ,
+                        0xf2de6aaa7d3e689bf799dc2d7e4f5a6de548e1c272010e1cd7d261ecacb66ac6 ,
+                        0xf2273da2f363d3ee775561d10af5bbdf9ef07c47a8d84626dc3336cb98f9e099 ,
+                        0xcd2f564fa484fa75f28434a67c3ebd0452febd3643efb5fcd34ee5429a96f184 ,
+                        0x1a35e31135606c0b3578422b35615e3b356be5531ec1f98118e919e5778502c9 ,
+                        0x0b8850a6bb11b592f75853b4fdb502a98d98b7b243a3eeb30dbda6799f5e002e ,
+                        0xff9e84e1ef4405116a262df9994a9bf2b0ea37ba851a36e961a79794eff18379 ,
+                        0xe3c163d3d59efd99ce02ad5053d9485e207e2cffee371facf29271147f942701 ,
+                        0xc414e5bc8f1f8ec52b9faa2437f8cfaf8faaac2daf7b440473b29e521317b453 ,
+                        0xa91fb676c43862ea2361cd17e941dffba0956adfb971c86541b08ca5a39af9a0 ,
+                        0x2da1f5f88627be971a8959a3568b3c018d7436233ac417ead3579bf9fe0f258e ,
+                        0xa52b0554414c994faaf7e73e16f17cf1931d831ccb5b7eb704a3c4149d225222 ,
+                        0xefb9e66c6ef765522b516f389c6d858228ec287f4872de173eccdf183ea57824 ,
+                        0x91ce17177cfcef8e3b27c87a663e88d128ff6e1b8a8fae7ae0ff62eea06655bd ,
+                        0xfc62e7cb5736f5acdbd56136f9039204436fb8efe8248f786c44325f64c80ff2 ,
+                        0x2932179409ad4cb16ce95b45db3ac62e6181decf569f8f8a05ee934c0ebdd101 ,
+                        0x032568587613c97c115790fc5e0df791f5c772eec82a3ba9014df1cece4f48ed ,
+                        0x44a5d97a3f9e06592008ab0be40f4a121e5f7df9b95ab6aebf1af0c17d6afc82 ,
+                        0x47d4ec55c143ac269cf92222b70dc9c48a8919cbbfdb0ab3139695daa974f3eb ,
+                        0xfd646673d2eaad3c5a7829a39a54a0dfb8a66af4ac566afa8a9f7944e44728f3 ,
+                        0xc5edfb4778ce4363ca21b419241440c24d273554a966733a6396cb9325d7cc14 ,
+                        0xdc4e12cc6fbf3965149ee4cd618d55efe1f7abb173da78c41684df7cb1e074ba ,
+                        0xe79cc0d6a9d86ad044bd17b459beb2f7c377840f49fe804486a10987eec6dcbe ,
+                        0xe5f0ff64b0c8f75686bc83f3d57be39b7bc4e6e6ed118d55977e0d55a79486ea ,
+                        0xcde18d9dbff5197d8f1a36e52167889e99e93fdf73e39e2f3244f3ff1826f2bc ,
+                        0x342683a44a7a415bb68b69eec75352d362bdb845b86172c802221888b13231d8 ,
+                        0x2fae1c529316bce4119b9bde231babee031ba9577b37503d8734f2bcaed99433 ,
+                        0xc1b16c39279b63db0f1e2e797e1a0c110c922aef056dbd9f8cf7d6c4de0f4e17 ,
+                        0xaf766eceb8d96dd59089ad9dc9bdbc71c0443edc5e71ebee29aaffb8661e21b9 ,
+                        0x4170080f012244f9ba2667df4ccff1713aeb3c43c4654bfd22bb86cc1cdc3ff2 ,
+                        0x186ec2ed052bbd9a8e189f3c30d496de0fb889386fb9511f2dbe9eb5e2e76743 ,
+                        0x8884d6e471dc606404f57a0cb19dde69e00cb90cbdf2750dc37651f156cf77c4 ,
+                        0x025b2f68b3882bbd9b932dd3994a9c154ee0ef0b8be409d714dc4e618662e64d ,
+                        0x4ce44dc3b28661d0e4da402c7e733dc4d66d4043f55aef06aad750bbf0001123 ,
+                        0x66f91db1c41427b665cbb0a6586a2aac6673bdc8fdd34c275593a01794e1315c ,
+                        0x19f48653d2ed2e113ec310a88fc31c4d8a48c3f0fac6c046eab59406ea8d41f6 ,
+                        0x799e8663c9f3ac0a6c9d8d2d3a12b131527a60509a3c18b0e99efb8b31d1290b ,
+                        0x264fa8a6c1fa0c29301cbb833e68e5f8d8e46b6e189697ac49f18848d32bb591 ,
+                        0xd3e3bdfe6e43d57b84f7753763663ea34a4abd6babab1293ab8d6898d40a445c ,
+                        0x14dd564e4d66bc50af8fda74f2246b223a835942940121e2f095afc1f0a90f79 ,
+                        0x8404bf1ede5875eed3d0817fcbd7dd60ac60b4fce90fd5efe03745476cc60859 ,
+                        0xf3525b818d82345831f260241d48e383ad0464acb026a3d77148188a1992097f ,
+                        0x05898f5ece99e7a534707a3ff9ba64764637c75d23cfa5bac008e1becb558db6 ,
+                        0x7cc1d2fcb4e7a4c67c9b2df2c1067aee2facad192f2c089202049cb924006877 ,
+                        0xcd9839ad3d627ae3bdeb6e15fe2b5f934c5bf25a9559b8e1624ab5c338959a01 ,
+                        0x6a05498df936f691900701595ac37412b5059b080177cd80b1157b3e2c5ae679 ,
+                        0xf47c41f3bcf1739e8f5be1694c9d0fc6a9d40ce04b961af36da6f51eac8c727f ,
+                        0x19dd30db4a499f506d0207af149f66e0f8fb1d31bd9dd64475eedbc0f1e9e9f0 ,
+                        0x990d8477ac708de77be2157c82326bdae6130cb9cea0cdf92c875fd344b43642 ,
+                        0xa4443baa35d396ffec7aaf87759b42f8cc2e3c62b9a366b455c74faef31c3bde ,
+                        0x3119a0b661b8646fca64a93563b3e5fd49ebb7360fbf125c3484b3a400f1edd9 ,
+                        0xc26743273fa8262cbc91e3b76ec7db81a1b078c3340cdbace190b3a56d359de5 ,
+                        0x3ebca6eeb736434242e6a7371200c84e19fce1038ed8064eb8dff9f7e0890faa ,
+                        0x77c73da8a62cbde1bcfe60ee63aaefc8e6ead5b7ee516ff46fa956af8fbfdd3c ,
+                        0x6dd8a661a685ec051fb7f9abd49aa7113c36b95f28b3e1fe02848700e509d556 ,
+                        0x2efe66af9a9fd9cb194ec7ce69ed990fbad1ee1a222908cfbd23bb865dd71365 ,
+                        0x743125ab5a3364f6bdeb9fae5f7a30b5bffc10c8f91f359c29242e4fa6b68153 ,
+                        0x78c3b6319ee175c8470ff8e6e6e1aee9f86613476c4fbf7c8ffab78ef7794408 ,
+                        0x89b0ac8139207341f7dfc894921a720498db234b6aae42b3cdff64e2694d8ffd ,
+                        0x8642e1998d6ae8476d3ce2035c2e9ddf69e8a4cf4bf1c1d08f1e760486f0464e ,
+                        0x4c51a33feaab5ee862ee0de33dc3c8141b66ba26350467b6bc582c3557a15107 ,
+                        0x587e0864f201e3bef482d7264cbd9e864402426bdad7376862333539bd5d0501 ,
+                        0xb6efd2c01157cffe2f38e2833ea9af7ac40789906369d283691e5898fdf435a9 ,
+                        0xb90aedf49697aec90f117e731fb8b6241f9860cd865f1e1f4e66c7d12c2cdf55 ,
+                        0x1b873971642ce51153db948b2b65f02fcb053870e4eb1ef169e2dd2831252798 ,
+                        0xcabab1785d6aae4233a55fc985477c115f284fa2a6c3906bcbe3a3b7c3d96c0a ,
+                        0xaf4d9cd7a13c8180b4ae21ef3f5f2eac577ab62b1760f7779ef5084f13effba6 ,
+                        0x600fc873c46e905a82b2dc1ee6cd10d92551be194af22a56b5b2554faaa9209e ,
+                        0xb59bd23cc2d210e920ca61723633479409a30ca95a588fb6bf5b757eeb49f5ab ,
+                        0xbeed55bb177eea119e26deafb749133687f4857d83ccbbb4b37dbb7c33c8aa07 ,
+                        0x26b5d754bebb76ce490890c2d2b03c92f8ae29c446fa94299ecbf4450a2c8878 ,
+                        0x1f714ceb816c59d225fbfbcd94da73dac5436933e59b81320cee039bc6fb9a08 ,
+                        0x3d17c99f52589a1e83afafd9b02516e41f5eea3926d444019aec02f627965a02 ,
+                        0x6b664cc9de3e79f2cd208b0ec55b048408847bb517abbf58601d4a19321b3896 ,
+                        0x6d2e162073b95b7fafb1a1f14b97770fc1a12287b77884f374ff3f79a3524b60 ,
+                        0xddf6ab24aff749f96670179c24e482975e7e7975a233524c754f22592a89f8ac ,
+                        0xc6c6c8c6d78d8d815e63434365831385deadb034386da5c0824884290f3da0b4 ,
+                        0xd64d5b7f9ddad4deec8ab1553d751f301e4370f476886dccccb64ea909a20c26 ,
+                        0x21062d95043ff139c6464a43a3b101bd521baadea92d54a7b77eaa7ed9a3aec3 ,
+                        0xa8891dd4d16315b35c98be488105216f6c3c620ac99932a4ed02cce9fe857cb3 ,
+                        0xf401c6a300e9e1b4d0283541f11dd3e2f1a0c28cccf96cc32ec686bb1c86a4c7 ,
+                        0x7bf5d52bbdee2a179e247bcb940adf45e14729321b72721faf980468ca0db426 ,
+                        0x25a04cf9669984604abf89074865d24223d8cf02215b5d3c536146ac5d9bc141 ,
+                        0x65028c0ddbe2f05f0dacef88ac7b9fa66af4a45754efc1ad3d02846d3b67957f ,
+                        0x1fe12b29341bf11e8ad398d2f32c02fc1fa93da725b200e59249e683f484b60a ,
+                        0x06f486ba12147e3e9bab056383ca043663a3dfd8fbd5eb7d9a38029b38e30d35 ,
+                        0x63611f874e6f5d17a59b5e039aa93f7d77236d09df99149b9b44ca880193004d ,
+                        0xcee82399f7fe4d6acf69273e79fcaff2cd8453dc078ce72c68b946435730a0a6 ,
+                        0x8b14a0863d355665a77a8485e0109e9fb1c1709d9e35d81157b7779a948b0ffa ,
+                        0x0e7bcc2340904331fe338426c5476c550e67f18e293bda244090da731a5da37c ,
+                        0xa32c3c1ecffb7d904d6cda6f63e4b4364e190d937142d2a8141643ed7563c32e ,
+                        0x3e9649326cd3ab212ce67fd3e6a7940bb0e780073ce2837ec31ff59c37417c84 ,
+                        0x88ab859b889122133c130153555c5b41f3e3e9f5bc458b4c716029c078cf0364 ,
+                        0x6e27d76700c99f8e71e2aae542be1e09a46e616164d8221b1a1687f35dd7be2d ,
+                        0xae20ae611ffcdc11df47b37afa1a24ee61b826611220dbf44a4dc1a1f486774a ,
+                        0xfd257c0fa8d1f5fc243a1359572f604d865b588eb19162af443562cae3154a62 ,
+                        0x1415edf088eb57fd9af98a0fce9f4f0ca3225c4c02b495eb389cdee416a9bf1a ,
+                        0x2340b02d97d4b55cc6cdad38f432d7f33336e62defe10cb9eeefc8ddbdc023ae ,
+                        0x50d8bbdf5c0637d1310930ac39e0a94d2f7c27df982856b0096994681886fb8f ,
+                        0xbdbe66571b1b58bb5274ceeb23ee55c74e7cec3936987ac050e073f258358150 ,
+                        0xad601f0126ae1bc6040e67ac5c2940a0da3c4904d7d3a8bcc60673c3b4a92d55 ,
+                        0x69997dc77239070c153e278f150eff519aa3beffdd59cfdfab1b9300a9a42635 ,
+                        0x65f5039edddef56bf966590dc194f510cfd84488c01020110e29bc91335a962f ,
+                        0x289ab4e879b5373fd3735c8db6824385f7cb63844bd6c4966acba2973d7faf6e ,
+                        0x4c59526139a21335161c84498423a6b7a820bcbe63ee53a367b556b3573ee5cc ,
+                        0x13bbf669aada3e7f6705df1c17586601ad5833dc23323f9666562eabe5dad727 ,
+                        0xd49c777face60ebc59fdf9bb32cfebd5892914674acb2fdcf8cc77527b4e3bb7 ,
+                        0xab97714192fb80f8ac7092ca2f4f046459b5a9198fab494baf9752c332c63821 ,
+                        0xa1412f1832c16f67133f7d4c5c2aa1f682bcafb2c3efe16d63d496994dd49a09 ,
+                        0xf555f191f832664c35c2c3ca8639bf27e5907c339058e83ea8690554a2602b30 ,
+                        0x09d3973fa99e78f16e274dfecd773ba87ec33a1bd7eb12b970d74324c62bc566 ,
+                        0xc21d0b8e94e5ef375385eb5aa803cbee53d9739ff7bc5e9d987441328bd41395 ,
+                        0xd7a4f69c76e140ea62f966906b82c9e470f70289c6c1a34bd4cc4c6f54445729 ,
+                        0x78a9fbc3814b256582282e19771a964486e02201e363695a5d7565f7e3ea3739 ,
+                        0x8fa905836f738664f9beea8007928295eebfd9d6069fcded76446acf69978e8c ,
+                        0x3756459015f14dd64e2240d2c196dc69eacdd4a66ac0fbf75558ab8b6be68997 ,
+                        0x7ee2888bde4f0b9045e3527ca65e1048427d7f72c7c07cc048593ff3297570f9 ,
+                        0xfdea526e3b87dc05f7a89c953d3defab0e4cde116a494a2d01c54fa5f69cf69f ,
+                        0x45b31ac8374359fe7b150e6c2ac510cf203c367119f2e1c31e778baee3327842 ,
+                        0xeb7271b9974a0e48ebe2119f466ed8e2c62f233a122e9fddac3246dee9f47c9a ,
+                        0xb2ed8faa45436f57df7ef199e7fd558d29446b2bcf51b237a5bfd45e793315a6 ,
+                        0x941931a61550f10ac51e6d49a64004844dff7a0e6ae6eadd1aa8d4b13d1d0132 ,
+                        0x1c4be169e4058f2519a31babe31f3fa42eee6c5b01e682f48cf2fd558d690725 ,
+                        0x5b2282efaeeaa73e7df68ff203ecffe03eb0a91648bc4105033256a4e034c47b ,
+                        0x299fe16c8b30b2b16adfe5faf01b0e3dfa3ee3f9de58702a7f8e5a3bb1a1bab0 ,
+                        0xfd51231923ee747a48f9b9aac4542bc8e4843e92d9d49c0ba89b6d6b06b930c9 ,
+                        0x54132e5e08da7f8d351db23afd531deff2082c8817badceff9ee688391b16868 ,
+                        0x5d55bca9b52adbf6889153eb9bab45c3efaa56bfa069a5a4c90553b8e1c93f4a ,
+                        0xcd556867737ae4ca0fc1b797b65438b8c9e958dd90a9428d6529388db33542ff ,
+                        0x86ceaa36b996b77dd7bb3d020be2973d2b5a7db160ed9447d5818ca6aa746b1b ,
+                        0x5f72e73551dbd33b793e5f1598821374585243706af3cf2f48cd5568b6ad59c9 ,
+                        0xeb727f8129f3a1bab0d5e873a32b18b0985cbe06c3c777f4082c88b786b4f19c ,
+                        0x4b34f97ce744f5c9a486aa64f3c321b172ecddaaa46095e738b1c6942165ab8a ,
+                        0x5094f3c676a9b90a8d4ae6f243200d9168ce03c964667d06295485452bc25a50 ,
+                        0x1eb4eb24f33be6794e9e5f9af775601d2ff31729b020662d8a9d118265bb30f5 ,
+                        0x7655b4b1a53ab7a975489c5cd75c2d1a56afca13154cf33f5b164c715e4a4fa9 ,
+                        0x394fb3ed0fec9e0782c9f31d09ee9d2835a12c283f7c6c85750d2fb0f515d92e ,
+                        0x7eeb3a101fc7623e1b4ec90c931f309a2c1f77bffa6c5953559cdd322c762f68 ,
+                        0xa236ce7ece73bc5862d28169fe8787252fbdde0fa4de3cedec8e2ec6909c8c88 ,
+                        0x98941f093a51c0b4fd294234f588181a524c6e2893e6a4d68b6c173754bc721f ,
+                        0x339c5e502ebe892607b25355f69406eaecc61611b1e683fa8ee52c8f1b0b4c23 ,
+                        0xa12d02726af32fcc253964b3d589c6afe3fe2293f33112749200eb78e5ba0d60 ,
+                        0x8d07315cdecb7c8f5e4b8a49a3dd2ba622916ef4ba0e09192f526c12d386cdd1 ,
+                        0x82705bfa88bbd4a9f50faaa20dcd23e2e4c70faa8543efa892309d2928c1761e ,
+                        0x523b10581f5a375ba57c59a8d214ff8b04f6d3d562b38910d66efbb59abdacb3 ,
+                        0x474c1a937b45827bc66f272284c5845a8a4e431c5c0e37d10237cab2314dd5c1 ,
+                        0x8c7bd5e9f50f558abc058dd49ac98f78be23da98f202acf3bfa00af9ee66ca8e ,
+                        0x069919634a420c17f2f5dc9b41fb897076d6536ad8948a7bb0f9b957dc1011a1 ,
+                        0xf68bfc7e135876fc36bd6617b7134f7bac7a3ed8fb713f67e83db5eec1a8b076 ,
+                        0xfc4fd589bc699eef8916a6e4642a62996a435b93506d8d1a6ef220208b559a4c ,
+                        0xf048d005864211218c9ad9d21195aed96273af68f43a5ef9bdf1c2f54c97bbd4 ,
+                        0xf135cdd4c98f1f880a05ab9aa985a9b11b8a4dae386a494acd00c9ce5263bead ,
+                        0xecd0a847e44140ae11895654845e502e2a0f12e1c819ad1cf1f96df4cc904b22 ,
+                        0x82fcbe78237d542395bfa4892a5cf3af5125674e7db56e4674dc651253f4c314 ,
+                        0x7e83d20383d2a4c6021b3b5dcb03818c8a50aa83921df204c3c53d170c5584ec ,
+                        0xb52617976bf00fc6d326cf364eed9fa3568dfb893ab1ba594c583abc6ed463c5 ,
+                        0xa6f42bb6f23025a052f0406a2ba416eaa6d5d1ac9abf7dff088fc88244f8d192 ,
+                        0xb6aacfd81b22c437987770bee7d8f10886c7fc41b7abcf32ee550559f7c784bd ,
+                        0x8b1aa9a5a31a79bebb3298ea84dbd2afceedea71486a2ba44654c4640d33c964 ,
+                        0xb2e9fe72d37a8048c0e7e736484215e1d4658f3b22c44543268c3c6ebc82cf6f ,
+                        0xfdc49fa8632bef8b292b46df19b53524783f4cae28d3022460fb5fa9ad909b2d ,
+                        0x3b46162e8f963102b2d45aa8225c96dd29e1b63b9df3eecdea607a13f57966d3 ,
+                        0x98b27b5e7db56c6c74b2774cc687cdf97c7c7dbbff969a0aab3179940705e913 ,
+                        0xe469e0a98846788af8eeb879e61d2783444854c5560135deb870f213959e564f ,
+                        0x1d5d7e6f95306fe0cd95ce9eb6dd675bf269f1ae5ffb271f04359cd2a6aa5920 ,
+                        0x4373a6cd4a2281ed0d98cb4d58f8a84760a1889079a43c663cb22dbd8bcafef0 ,
+                        0x0e7564d93d1e8e65b554570aa63b14ac6ee3793d12d67e50571df8b4724b294c ,
+                        0xf7d8667c00de14a9a9b09b6d074df684759f88ede908172c570488752b37f90b ,
+                        0x55842438c8e3c613181fb307fc581d58d2481dce68e2e1c28134f575f12a07fe ,
+                        0x2d5f8f84bc79f5d5a261777bce25546cf7d7d6fb59975f86dbd8dbcb648c80dc ,
+                        0x43c4f4844402c9a5ecb591bd739c9abbca5bef2f1411eaf8713cc25048758343 ,
+                        0x4b1b1bf9f2cc0af5d5d9550efc5bbe1e2993dffa07cfb9848ae9defaf57e9532 ,
+                        0x3e642bceed5e20bf004cbd201671b4b615c0c5d3be7363f5d16273ade7201152 ,
+                        0x2b501e331e60fe877feee092461e8e64b6525f9dcdaa007f93ef8b04441fc93c ,
+                        0x90f8376137d9fbd9eaff45adf7d3adecd0a8fb42ed05a3e51744c4445988c552 ,
+                        0x2e63c60aefd60b4122647b54765292c7ae6e0af7cc5499a3ebaa038b1b7a38bc ,
+                        0xa2a5fab228ab02fc4dbe2f12103de297e71384c9ef872b8e056b520f10d5de4f ,
+                        0x375b2f48f8459e7065a323dad7e4ce44f955ff366af1fa0e1e910589902d1ce2 ,
+                        0xcd323eb869a45a35e63695bfb08191aba796a92fcf6439f06ff97aa42c1f5957 ,
+                        0x9d3e109e93de94f307b6b9dff14fdafd5e6a272acdaf17947e410444971d49ea ,
+                        0x921ec6dde2a327a447244b5ac68c431161bccd07f76f18a2568dbe59ed5f50df ,
+                        0x4869fe1875f5cc4a07fe2d5f8f94cc517738bdaf3c1f3f4c4106463ddbdcaf28 ,
+                        0xa7db00a99da8b5b33b3a17ca2f04ba62191d8934615526859212e55e81c790ca ,
+                        0x663352647e2224a9359e86e2c3dbdf5759a3eba8bdf37e6ae450462b75b96081 ,
+                        0xba52b8c4f9b77c3d523246d40d2b2262bb87b6a847cc7a3fdd9c5e70d50346bf ,
+                        0xa0cc980653c2a21ffc6099046a1aca8978b877470a458438a9e571aa0b86c165 ,
+                        0x23eaaa3d737f52a52c4abd3de4c404db2866cb7886e2ddef447fee271ba9d5f2 ,
+                        0x8b35d220215d872e5cfe081b722b53bfb517a6c29341223c7fe153cf71aa83af ,
+                        0x2fee53f306dda2f2e6dc5d65ec9a75979addff4721af9a33adfdc6ed62333cce ,
+                        0x6ceb78546a25668d15eef2044086e8209c5a32ee9d24e55a031ba655753611b2 ,
+                        0xafb0fc7c75316fd0ed6afbd43bd4ee59775609d913eba8cc0f9a7bcec38429de ,
+                        0x0b14aa92f71c8ead6ef1bf6736bf584fea24660d335b9e84462e620753f11a1b ,
+                        0xf49632d13108720971b98422c250b66dad0a72327ba955a37fa476cdac572564 ,
+                        0x8ebcd5997bcaf3909872fdc077e8ddf5c63ca99198379b4102326915cb961f15 ,
+                        0xce7c305c48e5320dc952842c80979fad0e48c3a7c864ce8cba3167c7b43bd4dc ,
+                        0x81b704a6e733ef63ca241dceac05b259bd851b9ffc566aa34a1a5dae2d518179 ,
+                        0x02f305f78f08773e1829f48632a71011b27121ff66ff10f999eae2d3791dd4da ,
+                        0x71b7aa9dd36e8f292b47d551f91b8778bedf0d9d041e0839efc3bb51b8f129cf ,
+                        0x3dd614efec1cfa6ab768b7737bdf32a66b81dc6509f027d113c65a8418282c74 ,
+                        0x92428483c7a67bde5f5dd023cd1f5c476d9d7c9bda31b54e4cd8fce1ad6a416a ,
+                        0xbdc0ea59b6e0816d99e5f57bdc79a3d44495376afeca13d398e683181a182532 ,
+                        0xa336162044e2c1a4686dccedebf47ef196b47aeee872b574d81d6afb94dba2ce ,
+                        0xd6c9b7aac5c3ea05ba5e4ca136f09bf79dcc7ef66ba9856a69e40cda163001b5 ,
+                        0x82e50f8be77d87ab83835b46a88cb43a6aeba45ba34afaf03bd4c97d5e61b9b1 ,
+                        0x59bc7ed10eac5edf4aa755dd483c3495f7057ec4b52b377699d4d8bcecb595fd ,
+                        0x9fbca7960cbf436dfaf066b5e5a35b2ac5a68937ab45a97554c12effbc48db52 ,
+                        0x0a52ec4d05863425fb06f4961aa8f676e1e818eb7c90854cd2490d3c7932c7ac ,
+                        0x36537468915a30a48e5a3df25fd4e6893747c4cab47f56f307d509cc7ab1898f ,
+                        0x2a687e460709caf2dec74db36d76033c513c59f207e31f345d88da0a5192b5d3 ,
+                        0x7ea6160ea9a356a6fd93ca1eff23b569c28f7dc91eff63e7bdf307dda236cd7f ,
+                        0x31d0ddc2836fbae658bcb6382f443dcf2fda4da98b3f38b3ed975fc913d7f064 ,
+                        0xc93a83a06bb15485619228d0837d32eb3935bdef3fa9c5436f53e943fe512d1b ,
+                        0xfa43a777848cd41f3a7f5b9c7a9b9ad1f79f9df7e25b94c79130ed31cdf9109f ,
+                        0xadb201503792a5baf29ec75dc32839bde525637123205c6712a14e648db58b26 ,
+                        0xd1c07d42060b295c39993dd58af71f72c85bd3c7f95ba8657979b831fc4cd62e ,
+                        0xf8b95b282e44228abcd771db78526c9556b5084dc3b10e03452ba53fc975886c ,
+                        0xf0709bfc7c413d1fc186a8ac6eabea76b9607a739e1cf98334cc0965b937c059 ,
+                        0x4d1a97e96225091f1e6a225032c2018c447e733e3c1b3149afafaac693630bd7 ,
+                        0x81cd3a661866b860be929c17460e733d461419db0546204622794fcac597d934 ,
+                        0xb2aa56f1d678826c3e42e787ae6c6a745603f3157ac3e4901c1e080ee1998c0d ,
+                        0xe0a1f7f3f3d518f1e9464fe8371c2342aa2bc90b057a48f64b4e4d72033c0a64 ,
+                        0x329b865c60fd8ea98a69f9bdc87ae06f354a7cba6145f91926c03a639385cc90 ,
+                        0x4c82aadf85adede80715ff9ec99380b1614b28758b2fa1e77c410debd8567f5a ,
+                        0xc3d0600add014331430b17d934afa98de8871343c3966f89b1e737df83bfbb5a ,
+                        0x12cfda0db75df713be7c555e00377e4332e86186284a6d3652f475f09b9e040d ,
+                        0xb9c0c894507ebe6834bf8c6a0dfe2999d8aae1c9278ecc56114cb64dc34e4d84 ,
+                        0x078e078f85fb7e23015399a021174e6deef04d42443862d14af6a64cf6b39081 ,
+                        0xdef072c124cfba630dc24380dc100469bb21890ebf939e4eff4ebf7533e4f1d9 ,
+                        0x56afb9a974fdbe9ad0d8c0c4b6cace0d7164b9d644de2077cf50538c158c0b04 ,
+                        0xc7ef62aee7f78031d723135d5e3b09f97c719952555d8d796128433210b3b40d ,
+                        0xcbc010c5dc086345dfb444f323d2bbd1db31bfc3b8e0c1f29b62303a50a9ca96 ,
+                        0x40eae664f6b3dfc45532693cb5e2ddbf9ec9b6eef2a249b8d05462f013a2ed46 ,
+                        0xca3a27f1020f098ef7701e1ce6794c4f42196ee1ec8eae9be5354f36d18af7f4 ,
+                        0x6d7e32bbfd17f2e2d9a04734253648f4508610315c08f5d153facda562094329 ,
+                        0xf16ea60b088e8784d0632853071e3cd6db0459b79ac2eca7af15ede8f90b79ad ,
+                        0x93cda795eeeb3ff8d8eae6d6e889a424ef6d635cd984bcf9c042298c19448908 ,
+                        0xa2e9dee1787c1fc747f8882d928700e1d1f38732d402757c8a76745922af6db2 ,
+                        0x85d8d8e0b87867b73c5b593813182bf81083866737088012223a53986190aa5c ,
+                        0xc0bf357a018f1fa43de9f72332ca8cf06fc4c6eb0831686875c3308b551b8a71 ,
+                        0xe1e6ccd6974f5669b98c9adc4ee7bcf9c8e9cd3fb7665adbc08fc8cdb3b97082 ,
+                        0xa017a4f7d248b19920b156bfdfcf620d825d08e8d543eded34c7373cf17d514e ,
+                        0xcf6ef21a265b145a715e4acfd39b5fba222f7a10dc446e26620c65be581dd063 ,
+                        0x13b5c0791caa51e106e15128405eb3648b413bb7abf77367b676bc206f42a810 ,
+                        0x6fe64673c34dc90f5501bd326968cce982e2b47ee05661977b798d92ad0a1ac1 ,
+                        0x73f6a29537255c983732c7c2b2bc7a7a9ee3f08e9630111ac7a3f7e5f84c0bfc ,
+                        0xb2904385783a2382bc26c9560d8d403aeb5583d2bd2201616a100f22b2413a99 ,
+                        0xfbfda1ba4942858c1536132fcd4f7b4e5e83648b93c6cd618b50bf04d8448258 ,
+                        0x79d1ceae67caf287257bbb446bcc8d18a2134d8c8eff6eebab974af6f79b297f ,
+                        0x53b2256823e9814db8b1a28f64de1b18eeab6a703315efeab5a946672427db8d ,
+                        0x7661dfa0ae453bbae45266ecf8bab67f92828825c7d6b6fe2facd733db5fcb2f ,
+                        0xd99bd21f87bb3cbf64ab850d8737c3363d11f348960f40e1c667be9322f2039f ,
+                        0x9cfe2c593e67737ae4125ac47d24bf33d9922da27620bd41a3432b1ab63b9c5e ,
+                        0xbf997c2dd9922dd912a0fd3f8daae952d4bf9d5c0000000049454e44ae426082
+                    End
+
+                    LayoutCachedLeft =160
+                    LayoutCachedTop =45
+                    LayoutCachedWidth =720
+                    LayoutCachedHeight =605
+                    TabIndex =16
+                End
+                Begin TextBox
+                    Enabled = NotDefault
+                    Locked = NotDefault
+                    TabStop = NotDefault
+                    OldBorderStyle =0
+                    OverlapFlags =215
+                    TextAlign =3
+                    BackStyle =0
+                    IMESentenceMode =3
+                    Left =5800
+                    Top =210
+                    Width =5400
+                    Height =300
+                    FontSize =9
+                    FontWeight =700
+                    ForeColor =2597577
+                    Name ="txtMarka"
+                    ControlSource ="=FirmaAdiBuyuk()"
+                    FontName ="Segoe UI"
+                    Tag ="tema"
+                    GUID = Begin
+                        0xa12fd99cc50c7c41afb0d5c27e2fc171
+                    End
+
+                    LayoutCachedLeft =5800
+                    LayoutCachedTop =210
+                    LayoutCachedWidth =11200
+                    LayoutCachedHeight =510
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Rectangle
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =87
+                    Top =640
+                    Width =11500
+                    Height =55
+                    BackColor =2597577
+                    Name ="rctCizgi"
+                    Tag ="tema"
+                    GUID = Begin
+                        0x8b5ea7f6ad360842885051c59394cddd
+                    End
+                    LayoutCachedTop =640
+                    LayoutCachedWidth =11500
+                    LayoutCachedHeight =695
+                    BackThemeColorIndex =-1
+                End
+                Begin TextBox
+                    Visible = NotDefault
+                    OverlapFlags =215
+                    IMESentenceMode =3
+                    Width =100
+                    Height =330
+                    FontSize =10
+                    TabIndex =1
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtKullaniciID"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0x168f3392e163fc4e8dbc9e05971f8ff6
+                    End
+
+                    LayoutCachedWidth =100
+                    LayoutCachedHeight =330
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =850
+                    Width =5000
+                    Height =320
+                    FontSize =10
+                    FontWeight =700
+                    ForeColor =2597577
+                    Name ="lblB1"
+                    Caption ="KULLANICI BİLGİLERİ"
+                    FontName ="Segoe UI"
+                    Tag ="tema"
+                    GUID = Begin
+                        0x7c2952f3e31ef84cb8d8669ee27dfbbd
+                    End
+                    LayoutCachedLeft =300
+                    LayoutCachedTop =850
+                    LayoutCachedWidth =5300
+                    LayoutCachedHeight =1170
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =1300
+                    Width =1600
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lbl1"
+                    Caption ="Kullanıcı Adı"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0xc7a7fc345124e449b344c57b8e6c0c2d
+                    End
+                    LayoutCachedLeft =300
+                    LayoutCachedTop =1300
+                    LayoutCachedWidth =1900
+                    LayoutCachedHeight =1600
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =2000
+                    Top =1250
+                    Width =3000
+                    Height =330
+                    FontSize =10
+                    TabIndex =2
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtKullaniciAdi"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0xe253b31ea20fc642a8dede203eefc270
+                    End
+
+                    LayoutCachedLeft =2000
+                    LayoutCachedTop =1250
+                    LayoutCachedWidth =5000
+                    LayoutCachedHeight =1580
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =1700
+                    Width =1600
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lbl2"
+                    Caption ="Ad Soyad"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0xd6465bc677454e4499eca8c88dd7d70f
+                    End
+                    LayoutCachedLeft =300
+                    LayoutCachedTop =1700
+                    LayoutCachedWidth =1900
+                    LayoutCachedHeight =2000
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =2000
+                    Top =1650
+                    Width =3000
+                    Height =330
+                    FontSize =10
+                    TabIndex =3
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtAdSoyad"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0xae0fef55ff7a584cbc4f7415def63c3a
+                    End
+
+                    LayoutCachedLeft =2000
+                    LayoutCachedTop =1650
+                    LayoutCachedWidth =5000
+                    LayoutCachedHeight =1980
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =2100
+                    Width =1600
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lbl3"
+                    Caption ="Profil Rengi"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0xb344551df79294438b8e0fa4d71f467d
+                    End
+                    LayoutCachedLeft =300
+                    LayoutCachedTop =2100
+                    LayoutCachedWidth =1900
+                    LayoutCachedHeight =2400
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin ComboBox
+                    LimitToList = NotDefault
+                    RowSourceTypeInt =1
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    ColumnCount =2
+                    Left =2000
+                    Top =2050
+                    Width =3000
+                    Height =330
+                    FontSize =10
+                    TabIndex =4
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    GUID = Begin
+                        0x32bbb4e6863d73499420d7812f211d30
+                    End
+                    Name ="cmbRenk"
+                    RowSourceType ="Value List"
+                    RowSource ="0;Zeytin Yeşili;1;Altın;2;Kiremit;3;Deniz Yeşili;4;Mürdüm;5;Gri Mavi"
+                    ColumnWidths ="0;2800"
+                    FontName ="Segoe UI"
+
+                    LayoutCachedLeft =2000
+                    LayoutCachedTop =2050
+                    LayoutCachedWidth =5000
+                    LayoutCachedHeight =2380
+                    ThemeFontIndex =-1
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =5600
+                    Top =1300
+                    Width =1600
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lbl4"
+                    Caption ="Şifre"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0x89ce99757c5c7a42b33f3e3c8d21272e
+                    End
+                    LayoutCachedLeft =5600
+                    LayoutCachedTop =1300
+                    LayoutCachedWidth =7200
+                    LayoutCachedHeight =1600
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =7300
+                    Top =1250
+                    Width =3000
+                    Height =330
+                    FontSize =10
+                    TabIndex =5
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtSifre"
+                    FontName ="Segoe UI"
+                    InputMask ="Password"
+                    GUID = Begin
+                        0x02ad4c081f219e4aae26009498c30047
+                    End
+
+                    LayoutCachedLeft =7300
+                    LayoutCachedTop =1250
+                    LayoutCachedWidth =10300
+                    LayoutCachedHeight =1580
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =5600
+                    Top =1700
+                    Width =1600
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lbl5"
+                    Caption ="Şifre (tekrar)"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0x4923b56d0000da47a80b67de25710327
+                    End
+                    LayoutCachedLeft =5600
+                    LayoutCachedTop =1700
+                    LayoutCachedWidth =7200
+                    LayoutCachedHeight =2000
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =7300
+                    Top =1650
+                    Width =3000
+                    Height =330
+                    FontSize =10
+                    TabIndex =6
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtSifre2"
+                    FontName ="Segoe UI"
+                    InputMask ="Password"
+                    GUID = Begin
+                        0x1b13ca28b3b1f74d96138ecfed534623
+                    End
+
+                    LayoutCachedLeft =7300
+                    LayoutCachedTop =1650
+                    LayoutCachedWidth =10300
+                    LayoutCachedHeight =1980
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin CheckBox
+                    OverlapFlags =85
+                    Left =7300
+                    Top =2120
+                    Height =260
+                    TabIndex =7
+                    Name ="chkYonetici"
+                    GUID = Begin
+                        0xdfcb8a4234feb844838ac6673da64f7f
+                    End
+
+                    LayoutCachedLeft =7300
+                    LayoutCachedTop =2120
+                    LayoutCachedWidth =7560
+                    LayoutCachedHeight =2380
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =7600
+                    Top =2080
+                    Width =3600
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblYon"
+                    Caption ="Yönetici (kullanıcı ekleyip silebilir)"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0xe16e7bd214dc2a40a206695400f9f127
+                    End
+                    LayoutCachedLeft =7600
+                    LayoutCachedTop =2080
+                    LayoutCachedWidth =11200
+                    LayoutCachedHeight =2380
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin CheckBox
+                    OverlapFlags =85
+                    Left =7300
+                    Top =2470
+                    Height =260
+                    TabIndex =8
+                    Name ="chkAktif"
+                    DefaultValue ="True"
+                    GUID = Begin
+                        0x688933396ac95d4591b89a99bd9f732f
+                    End
+
+                    LayoutCachedLeft =7300
+                    LayoutCachedTop =2470
+                    LayoutCachedWidth =7560
+                    LayoutCachedHeight =2730
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =7600
+                    Top =2430
+                    Width =3600
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblAkt"
+                    Caption ="Aktif (giriş ekranında görünür)"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0x114436cddc5898458c0db926731bf2f9
+                    End
+                    LayoutCachedLeft =7600
+                    LayoutCachedTop =2430
+                    LayoutCachedWidth =11200
+                    LayoutCachedHeight =2730
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =2550
+                    Width =5000
+                    Height =300
+                    FontSize =9
+                    ForeColor =6584440
+                    Name ="lblNot"
+                    Caption ="Güncellerken şifre kutusu boş bırakılırsa şifre değişmez."
+                    FontName ="Segoe UI"
+                    Tag ="tema"
+                    GUID = Begin
+                        0x2982e3a680b0ee46a2741cd15c264898
+                    End
+                    LayoutCachedLeft =300
+                    LayoutCachedTop =2550
+                    LayoutCachedWidth =5300
+                    LayoutCachedHeight =2850
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =300
+                    Top =3050
+                    Width =1300
+                    Height =420
+                    FontWeight =700
+                    TabIndex =9
+                    ForeColor =2050619
+                    Name ="btnYeni"
+                    Caption ="Yeni Kayıt"
+                    OnClick ="=KullaniciYeni()"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0x3917a247fb6f984fa3577e11c80a17bd
+                    End
+
+                    LayoutCachedLeft =300
+                    LayoutCachedTop =3050
+                    LayoutCachedWidth =1600
+                    LayoutCachedHeight =3470
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2597577
+                    BackThemeColorIndex =-1
+                    BorderColor =1673130
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =4110558
+                    HoverThemeColorIndex =-1
+                    PressedColor =1673130
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =2050619
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =2050619
+                    PressedForeThemeColorIndex =-1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =1700
+                    Top =3050
+                    Width =1300
+                    Height =420
+                    FontWeight =700
+                    TabIndex =10
+                    ForeColor =16777215
+                    Name ="btnKaydet"
+                    Caption ="Kaydet"
+                    OnClick ="=KullaniciKaydet()"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0x1c5f2362fd39a44c861006843b8755e7
+                    End
+
+                    LayoutCachedLeft =1700
+                    LayoutCachedTop =3050
+                    LayoutCachedWidth =3000
+                    LayoutCachedHeight =3470
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2785131
+                    BackThemeColorIndex =-1
+                    BorderColor =1990736
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =3446400
+                    HoverThemeColorIndex =-1
+                    PressedColor =1990736
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =3100
+                    Top =3050
+                    Width =1300
+                    Height =420
+                    FontWeight =700
+                    TabIndex =11
+                    ForeColor =16777215
+                    Name ="btnGuncelle"
+                    Caption ="Güncelle"
+                    OnClick ="=KullaniciGuncelle()"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0x68b4fdcef8f3934fb7e0352fbb98d509
+                    End
+
+                    LayoutCachedLeft =3100
+                    LayoutCachedTop =3050
+                    LayoutCachedWidth =4400
+                    LayoutCachedHeight =3470
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2785131
+                    BackThemeColorIndex =-1
+                    BorderColor =1990736
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =3446400
+                    HoverThemeColorIndex =-1
+                    PressedColor =1990736
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =4500
+                    Top =3050
+                    Width =1300
+                    Height =420
+                    FontWeight =700
+                    TabIndex =12
+                    ForeColor =16777215
+                    Name ="btnSil"
+                    Caption ="Sil"
+                    OnClick ="=KullaniciSil()"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0x6fd0a4ab69842c4083aa2714a5f9bcaf
+                    End
+
+                    LayoutCachedLeft =4500
+                    LayoutCachedTop =3050
+                    LayoutCachedWidth =5800
+                    LayoutCachedHeight =3470
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2637462
+                    BackThemeColorIndex =-1
+                    BorderColor =1978488
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =3691186
+                    HoverThemeColorIndex =-1
+                    PressedColor =1978488
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =5900
+                    Top =3050
+                    Width =1300
+                    Height =420
+                    FontWeight =700
+                    TabIndex =13
+                    ForeColor =16777215
+                    Name ="btnTemizle"
+                    Caption ="Temizle"
+                    OnClick ="=KullaniciTemizle()"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0xda431f15f8cc36498389a0810dc97eb3
+                    End
+
+                    LayoutCachedLeft =5900
+                    LayoutCachedTop =3050
+                    LayoutCachedWidth =7200
+                    LayoutCachedHeight =3470
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =6058096
+                    BackThemeColorIndex =-1
+                    BorderColor =4741722
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =7506056
+                    HoverThemeColorIndex =-1
+                    PressedColor =4741722
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =7300
+                    Top =3050
+                    Width =1300
+                    Height =420
+                    FontWeight =700
+                    TabIndex =14
+                    ForeColor =16777215
+                    Name ="btnKapat"
+                    Caption ="Kapat"
+                    OnClick ="=AktifFormuKapat()"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0x13d984fc6140f74a91867cb1a19e96a3
+                    End
+
+                    LayoutCachedLeft =7300
+                    LayoutCachedTop =3050
+                    LayoutCachedWidth =8600
+                    LayoutCachedHeight =3470
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =6058096
+                    BackThemeColorIndex =-1
+                    BorderColor =4741722
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =7506056
+                    HoverThemeColorIndex =-1
+                    PressedColor =4741722
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    WebImagePaddingLeft =3
+                    WebImagePaddingTop =3
+                    WebImagePaddingRight =2
+                    WebImagePaddingBottom =2
+                End
+                Begin ListBox
+                    ColumnHeads = NotDefault
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    ColumnCount =6
+                    Left =300
+                    Top =3700
+                    Width =10900
+                    Height =4200
+                    FontSize =9
+                    TabIndex =15
+                    ForeColor =1520430
+                    BorderColor =8435888
+                    Name ="lstKullanicilar"
+                    RowSourceType ="Table/Query"
+                    RowSource ="SELECT * FROM qry_KullaniciListe; "
+                    ColumnWidths ="0;2000;3000;1500;1000;2200"
+                    OnDblClick ="=KullaniciListedenSec()"
+                    FontName ="Segoe UI"
+                    GUID = Begin
+                        0xfa636f734d3a994eaf49d492ca183005
+                    End
+
+                    LayoutCachedLeft =300
+                    LayoutCachedTop =3700
+                    LayoutCachedWidth =11200
+                    LayoutCachedHeight =7900
+                    ThemeFontIndex =-1
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+            End
+        End
+    End
+End
