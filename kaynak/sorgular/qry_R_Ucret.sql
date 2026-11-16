@@ -1,3 +1,3 @@
-SELECT p.PartiNo, p.PartiKodu, p.Tarih, p.MusteriID, m.AdSoyad AS Musteri, CDbl(Nz(p.ZeytinMiktari_Kg,0)) AS Zeytin, CDbl(Nz(p.SimSikimUcreti,0)) AS BirimUcret, CDbl(Nz(p.TLTutari,0)) AS Ucret, IIf(Nz(p.PesinTahsilEdildi,False),"Tahsil Edilen","Tahsil Edilmeyen") AS Durum, p.TahsilatTarihi
-FROM tbl_Parti AS p LEFT JOIN tbl_Musteri AS m ON p.MusteriID=m.MusteriID
-WHERE p.OdemeTipi Like "S*";
+SELECT p.PartiNo, p.PartiKodu, p.SikimTarihi AS Tarih, p.MusteriID, m.AdSoyad AS Musteri, CDbl(Nz(p.CikanYag_Kg,0)) AS Yag, CDbl(Nz(p.TLTutari,0)-IIf(Nz(b.Kalan,0)>0,Nz(b.Kalan,0),0)) AS Tahsil, CDbl(Nz(p.TLTutari,0)) AS Ucret, IIf(Nz(b.Kalan,0)<=0.005,"Tahsil Edilen","Tahsil Edilmeyen") AS Durum, p.TahsilatTarihi, p.Sezon
+FROM (tbl_Parti AS p LEFT JOIN tbl_Musteri AS m ON p.MusteriID=m.MusteriID) LEFT JOIN qry_PartiBakiye AS b ON p.PartiNo=b.PartiNo
+WHERE p.OdemeTipi Like "S*" AND p.SikimTarihi Is Not Null AND Nz(p.TLTutari,0)>0;

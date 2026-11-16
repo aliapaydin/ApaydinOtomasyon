@@ -1,0 +1,463 @@
+Version =21
+VersionRequired =20
+PublishOption =1
+Begin Form
+    RecordSelectors = NotDefault
+    AutoCenter = NotDefault
+    NavigationButtons = NotDefault
+    DividingLines = NotDefault
+    AllowDesignChanges = NotDefault
+    PopUp = NotDefault
+    Modal = NotDefault
+    DefaultView =0
+    ScrollBars =0
+    BorderStyle =3
+    TabularCharSet =162
+    PictureAlignment =2
+    DatasheetGridlinesBehavior =3
+    GridY =10
+    Width =7200
+    DatasheetFontHeight =11
+    ItemSuffix =24
+    DatasheetGridlinesColor =15132391
+    Caption ="Yeni Müşteri"
+    DatasheetFontName ="Calibri"
+    OnLoad ="=HizliCariYukle()"
+    FilterOnLoad =0
+    ShowPageMargins =0
+    DisplayOnSharePointSite =1
+    DatasheetAlternateBackColor =15921906
+    DatasheetGridlinesColor12 =0
+    FitToScreen =1
+    DatasheetBackThemeColorIndex =1
+    BorderThemeColorIndex =3
+    ThemeFontIndex =1
+    ForeThemeColorIndex =0
+    AlternateBackThemeColorIndex =1
+    AlternateBackShade =95.0
+    NoSaveCTIWhenDisabled =1
+    Begin
+        Begin Label
+            BackStyle =0
+            TextFontCharSet =162
+            FontSize =11
+            BorderColor =8355711
+            ForeColor =6710886
+            FontName ="Calibri"
+            GridlineColor =10921638
+            ThemeFontIndex =1
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =0
+            BorderTint =50.0
+            ForeThemeColorIndex =0
+            ForeTint =60.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin Rectangle
+            SpecialEffect =3
+            BackStyle =0
+            BorderLineStyle =0
+            BorderColor =10921638
+            GridlineColor =10921638
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin Image
+            BackStyle =0
+            OldBorderStyle =0
+            BorderLineStyle =0
+            SizeMode =3
+            PictureAlignment =2
+            BorderColor =10921638
+            GridlineColor =10921638
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin CommandButton
+            TextFontCharSet =162
+            Width =1701
+            Height =283
+            FontSize =11
+            FontWeight =400
+            ForeColor =4210752
+            FontName ="Calibri"
+            GridlineColor =10921638
+            ForeThemeColorIndex =0
+            ForeTint =75.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+            UseTheme =1
+            Shape =1
+            Gradient =12
+            BackColor =14461583
+            BackThemeColorIndex =4
+            BackTint =60.0
+            BorderLineStyle =0
+            BorderColor =14461583
+            BorderThemeColorIndex =4
+            BorderTint =60.0
+            ThemeFontIndex =1
+            HoverColor =15189940
+            HoverThemeColorIndex =4
+            HoverTint =40.0
+            PressedColor =9917743
+            PressedThemeColorIndex =4
+            PressedShade =75.0
+            HoverForeColor =4210752
+            HoverForeThemeColorIndex =0
+            HoverForeTint =75.0
+            PressedForeColor =4210752
+            PressedForeThemeColorIndex =0
+            PressedForeTint =75.0
+        End
+        Begin CheckBox
+            BorderLineStyle =0
+            LabelX =230
+            LabelY =-30
+            BorderColor =10921638
+            GridlineColor =10921638
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin TextBox
+            AddColon = NotDefault
+            FELineBreak = NotDefault
+            TextFontCharSet =162
+            BorderLineStyle =0
+            Width =1701
+            LabelX =-1701
+            FontSize =11
+            BorderColor =10921638
+            ForeColor =4210752
+            FontName ="Calibri"
+            AsianLineBreak =1
+            GridlineColor =10921638
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            ThemeFontIndex =1
+            ForeThemeColorIndex =0
+            ForeTint =75.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin ListBox
+            TextFontCharSet =162
+            BorderLineStyle =0
+            Width =1701
+            Height =1417
+            LabelX =-1701
+            FontSize =11
+            ForeColor =4210752
+            BorderColor =10921638
+            FontName ="Calibri"
+            GridlineColor =10921638
+            AllowValueListEdits =1
+            InheritValueList =1
+            ThemeFontIndex =1
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            ForeThemeColorIndex =0
+            ForeTint =75.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin ComboBox
+            AddColon = NotDefault
+            TextFontCharSet =162
+            BorderLineStyle =0
+            Width =1701
+            LabelX =-1701
+            FontSize =11
+            BorderColor =10921638
+            ForeColor =3484194
+            FontName ="Calibri"
+            GridlineColor =10921638
+            AllowValueListEdits =1
+            InheritValueList =1
+            ThemeFontIndex =1
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            ForeThemeColorIndex =2
+            ForeShade =50.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin Section
+            Height =3900
+            BackColor =14939127
+            Name ="Ayrıntı"
+            AutoHeight =1
+            AlternateBackColor =15921906
+            AlternateBackThemeColorIndex =1
+            AlternateBackShade =95.0
+            Begin
+                Begin Label
+                    BackStyle =1
+                    OverlapFlags =93
+                    TextAlign =1
+                    Left =0
+                    Top =0
+                    Width =7200
+                    Height =560
+                    FontSize =13
+                    FontWeight =700
+                    LeftMargin =300
+                    TopMargin =110
+                    BackColor =2050619
+                    ForeColor =16777215
+                    Name ="lblBaslik"
+                    Caption ="YENİ MÜŞTERİ"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    BackThemeColorIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Rectangle
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    Left =0
+                    Top =560
+                    Width =7200
+                    Height =45
+                    BackColor =2597577
+                    Name ="rctCizgi"
+                    BackThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =830
+                    Width =1640
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblAdSoyad"
+                    Caption ="Ad Soyad"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =2000
+                    Top =800
+                    Width =4900
+                    Height =330
+                    FontSize =10
+                    FontWeight =700
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtAdSoyad"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =0
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =1240
+                    Width =1640
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblBabaAdi"
+                    Caption ="Baba Adı"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =2000
+                    Top =1210
+                    Width =2600
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtBabaAdi"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =1650
+                    Width =1640
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblTCKN"
+                    Caption ="TCKN / VKN"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =2000
+                    Top =1620
+                    Width =2600
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtTCKN"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =2
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =2060
+                    Width =1640
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblTelefon"
+                    Caption ="Telefon"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =2000
+                    Top =2030
+                    Width =2600
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtTelefon"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =3
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =2470
+                    Width =1640
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblAdres"
+                    Caption ="Adres"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =2000
+                    Top =2440
+                    Width =4900
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtAdres"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =4
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =3700
+                    Top =3000
+                    Width =1650
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnKaydet"
+                    Caption ="Kaydet"
+                    OnClick ="=HizliCariKaydet()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2785131
+                    BackThemeColorIndex =-1
+                    BorderColor =1990736
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =3446400
+                    HoverThemeColorIndex =-1
+                    PressedColor =1990736
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =5
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =5450
+                    Top =3000
+                    Width =1450
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnVazgec"
+                    Caption ="Vazgeç"
+                    OnClick ="=HizliCariVazgec()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =6058096
+                    BackThemeColorIndex =-1
+                    BorderColor =4741722
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =7506056
+                    HoverThemeColorIndex =-1
+                    PressedColor =4741722
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =6
+                End
+            End
+        End
+    End
+End

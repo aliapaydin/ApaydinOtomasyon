@@ -364,7 +364,7 @@ Begin Form
                     OverlapFlags =85
                     Left =300
                     Top =1750
-                    Width =1600
+                    Width =1780
                     Height =300
                     FontSize =10
                     ForeColor =1520430
@@ -374,10 +374,6 @@ Begin Form
                     GUID = Begin
                         0x1ecfd200a406bf46a2c186d3ea86e02a
                     End
-                    LayoutCachedLeft =300
-                    LayoutCachedTop =1750
-                    LayoutCachedWidth =1900
-                    LayoutCachedHeight =2050
                     ThemeFontIndex =-1
                     ForeThemeColorIndex =-1
                 End
@@ -706,7 +702,7 @@ Begin Form
                     ColumnHeads = NotDefault
                     OverlapFlags =85
                     IMESentenceMode =3
-                    ColumnCount =8
+                    ColumnCount =9
                     Left =300
                     Top =3950
                     Width =14500
@@ -718,7 +714,7 @@ Begin Form
                     Name ="lstMusteriler"
                     RowSourceType ="Table/Query"
                     RowSource ="SELECT * FROM qry_MusteriOzet; "
-                    ColumnWidths ="0;1400;2800;1400;1500;3000;1300;1300"
+                    ColumnWidths ="0;1300;2700;1400;1400;1400;2900;1200;1300"
                     OnDblClick ="=MusteriListedenSec()"
                     FontName ="Segoe UI"
                     GUID = Begin
@@ -1857,6 +1853,38 @@ Begin Form
                     LayoutCachedHeight =510
                     ThemeFontIndex =-1
                     ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =2950
+                    Width =1700
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblBabaAdi"
+                    Caption ="Baba Adı"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =2100
+                    Top =2850
+                    Width =2300
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtBabaAdi"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =30
                 End
             End
         End

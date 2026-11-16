@@ -1,7 +1,6 @@
 Version =21
 VersionRequired =20
 PublishOption =1
-Checksum =-1692694438
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
@@ -9,35 +8,16 @@ Begin Form
     DividingLines = NotDefault
     AllowDesignChanges = NotDefault
     DefaultView =0
+    ScrollBars =0
     TabularCharSet =162
     PictureAlignment =2
     DatasheetGridlinesBehavior =3
     GridY =10
-    Width =15500
+    Width =15800
     DatasheetFontHeight =11
-    ItemSuffix =39
-    Right =22370
-    Bottom =12050
+    ItemSuffix =52
     DatasheetGridlinesColor =15132391
-    RecSrcDt = Begin
-        0x8a462964969ee640
-    End
-    GUID = Begin
-        0x5b517e70e3a9eb4fbb35efc61eae8a73
-    End
-    NameMap = Begin
-        0x0acc0e55000000004841da1b33c7334a8dc71495b7f15c8d000000006cd443e4 ,
-        0xde9ee6400000000000000000740062006c005f004d0075007300740065007200 ,
-        0x6900000000000000599cbccfd0dd9c4980a182f2b36994a9070000004841da1b ,
-        0x33c7334a8dc71495b7f15c8d4d00750073007400650072006900490044000000 ,
-        0x00000000beb7d6b8795e2f49a53846f5b4f956d3070000004841da1b33c7334a ,
-        0x8dc71495b7f15c8d4100640053006f00790061006400000000000000fe6e998f ,
-        0x7dad7642bd7589e7d2eefa7c0000000032044f63f49ee6400000000000000000 ,
-        0x7100720079005f004b0061007300610045006b00730074007200650000000000 ,
-        0x0000000000000000000000000000000000000c00000005000000000000000000 ,
-        0x0000000000000000
-    End
-    Caption ="Kasa Hareketleri"
+    Caption ="Kasa / Banka Hareketleri"
     DatasheetFontName ="Calibri"
     OnLoad ="=KasaFormYukle()"
     FilterOnLoad =0
@@ -134,6 +114,17 @@ Begin Form
             PressedForeThemeColorIndex =0
             PressedForeTint =75.0
         End
+        Begin CheckBox
+            BorderLineStyle =0
+            LabelX =230
+            LabelY =-30
+            BorderColor =10921638
+            GridlineColor =10921638
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
         Begin TextBox
             AddColon = NotDefault
             FELineBreak = NotDefault
@@ -201,12 +192,9 @@ Begin Form
             GridlineShade =65.0
         End
         Begin Section
-            Height =10350
+            Height =10200
             BackColor =14939127
             Name ="Ayrıntı"
-            GUID = Begin
-                0xbaca823830f8d942a9124d35dd865e78
-            End
             AutoHeight =1
             AlternateBackColor =15921906
             AlternateBackThemeColorIndex =1
@@ -216,7 +204,9 @@ Begin Form
                     BackStyle =1
                     OverlapFlags =93
                     TextAlign =1
-                    Width =15500
+                    Left =0
+                    Top =0
+                    Width =15800
                     Height =640
                     FontSize =15
                     FontWeight =700
@@ -224,949 +214,50 @@ Begin Form
                     TopMargin =140
                     BackColor =2050619
                     ForeColor =16777215
-                    Name ="Etiket0"
-                    Caption ="KASA HAREKETLERİ"
+                    Name ="lblBaslik"
+                    Caption ="KASA / BANKA HAREKETLERİ"
                     FontName ="Segoe UI"
                     Tag ="tema"
-                    GUID = Begin
-                        0xa18dc6b41cd5d84b8900400de902f443
-                    End
-                    LayoutCachedWidth =15500
-                    LayoutCachedHeight =640
                     ThemeFontIndex =-1
                     BackThemeColorIndex =-1
                     ForeThemeColorIndex =-1
                 End
-                Begin TextBox
-                    Visible = NotDefault
-                    BorderWidth =1
-                    OverlapFlags =215
-                    IMESentenceMode =3
-                    Top =250
-                    Width =100
-                    Height =100
-                    FontSize =10
-                    BorderColor =8435888
-                    ForeColor =1520430
-                    Name ="txtKasaHareketID"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x226ac7fb8b8ba84aad0344fd4e71c8b1
-                    End
-
-                    LayoutCachedTop =250
-                    LayoutCachedWidth =100
-                    LayoutCachedHeight =350
-                    BackThemeColorIndex =-1
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin Label
-                    OverlapFlags =93
-                    Left =300
-                    Top =950
-                    Width =1600
-                    Height =300
-                    FontSize =10
-                    ForeColor =1520430
-                    Name ="Etiket2"
-                    Caption ="Tarih"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x883c7f38bed2e74e853511237e68e8fc
-                    End
-                    LayoutCachedLeft =300
-                    LayoutCachedTop =950
-                    LayoutCachedWidth =1900
-                    LayoutCachedHeight =1250
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin TextBox
-                    BorderWidth =1
-                    OverlapFlags =215
-                    IMESentenceMode =3
-                    Left =1500
-                    Top =850
-                    Width =1500
-                    Height =330
-                    FontSize =10
-                    TabIndex =1
-                    BorderColor =8435888
-                    ForeColor =1520430
-                    Name ="txtTarih"
-                    Format ="dd\\.mm\\.yyyy"
-                    DefaultValue ="=Date()"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0xc1c64af278f3614c97f9c758a03a14cf
-                    End
-
-                    LayoutCachedLeft =1500
-                    LayoutCachedTop =850
-                    LayoutCachedWidth =3000
-                    LayoutCachedHeight =1180
-                    BackThemeColorIndex =-1
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin Label
-                    OverlapFlags =93
-                    Left =3300
-                    Top =950
-                    Width =1600
-                    Height =300
-                    FontSize =10
-                    ForeColor =1520430
-                    Name ="Etiket4"
-                    Caption ="Müşteri"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x250cfafaa4b4364c85274d7120fe3a74
-                    End
-                    LayoutCachedLeft =3300
-                    LayoutCachedTop =950
-                    LayoutCachedWidth =4900
-                    LayoutCachedHeight =1250
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin ComboBox
-                    LimitToList = NotDefault
-                    BorderWidth =1
-                    OverlapFlags =215
-                    IMESentenceMode =3
-                    ColumnCount =2
-                    Left =4700
-                    Top =850
-                    Width =2800
-                    Height =330
-                    FontSize =10
-                    TabIndex =2
-                    BorderColor =8435888
-                    ForeColor =1520430
-                    ColumnInfo ="\"\";\"\";\"\";\"\";\"10\";\"200\""
-                    GUID = Begin
-                        0xbdd7851ef47be64e9a4ed93cb666e786
-                    End
-                    Name ="cmbMusteri"
-                    RowSourceType ="Table/Query"
-                    RowSource ="SELECT MusteriID, AdSoyad FROM tbl_Musteri ORDER BY AdSoyad; "
-                    ColumnWidths ="0;2835"
-                    FontName ="Segoe UI"
-                    BaseInfo ="\"SELECT MusteriID, AdSoyad FROM tbl_Musteri ORDER BY AdSoyad; \";\"tbl_Musteri\""
-                        ";\"\";\"MusteriID\";\"AdSoyad\";\"PrimaryKey\""
-
-                    LayoutCachedLeft =4700
-                    LayoutCachedTop =850
-                    LayoutCachedWidth =7500
-                    LayoutCachedHeight =1180
-                    ThemeFontIndex =-1
-                    BackThemeColorIndex =-1
-                    BorderThemeColorIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin Label
-                    OverlapFlags =93
-                    Left =7800
-                    Top =950
-                    Width =1600
-                    Height =300
-                    FontSize =10
-                    ForeColor =1520430
-                    Name ="Etiket6"
-                    Caption ="Hareket"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x05170033605eb743a4ba43e96bb7153a
-                    End
-                    LayoutCachedLeft =7800
-                    LayoutCachedTop =950
-                    LayoutCachedWidth =9400
-                    LayoutCachedHeight =1250
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin ComboBox
-                    LimitToList = NotDefault
-                    RowSourceTypeInt =1
-                    BorderWidth =1
-                    OverlapFlags =215
-                    IMESentenceMode =3
-                    Left =9100
-                    Top =850
-                    Width =1800
-                    Height =330
-                    FontSize =10
-                    TabIndex =3
-                    BorderColor =8435888
-                    ForeColor =1520430
-                    GUID = Begin
-                        0x1bc27b26d83b9b4daa4f47da280afe5d
-                    End
-                    Name ="cmbHareketTuru"
-                    RowSourceType ="Value List"
-                    RowSource ="Tahsilat;Ödeme"
-                    FontName ="Segoe UI"
-
-                    LayoutCachedLeft =9100
-                    LayoutCachedTop =850
-                    LayoutCachedWidth =10900
-                    LayoutCachedHeight =1180
-                    ThemeFontIndex =-1
-                    BackThemeColorIndex =-1
-                    BorderThemeColorIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin Label
-                    OverlapFlags =93
-                    Left =11200
-                    Top =950
-                    Width =1600
-                    Height =300
-                    FontSize =10
-                    ForeColor =1520430
-                    Name ="Etiket8"
-                    Caption ="Yöntem"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0xf6f3fd64c728624c8938f20556d5f9a4
-                    End
-                    LayoutCachedLeft =11200
-                    LayoutCachedTop =950
-                    LayoutCachedWidth =12800
-                    LayoutCachedHeight =1250
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin ComboBox
-                    LimitToList = NotDefault
-                    RowSourceTypeInt =1
-                    BorderWidth =1
-                    OverlapFlags =215
-                    IMESentenceMode =3
-                    Left =12400
-                    Top =850
-                    Width =2100
-                    Height =330
-                    FontSize =10
-                    TabIndex =4
-                    BorderColor =8435888
-                    ForeColor =1520430
-                    GUID = Begin
-                        0x664e39320fb28c46bf9374a17e52f7c7
-                    End
-                    Name ="cmbOdemeYontemi"
-                    RowSourceType ="Value List"
-                    RowSource ="Nakit;Banka;Kredi Kartı"
-                    FontName ="Segoe UI"
-
-                    LayoutCachedLeft =12400
-                    LayoutCachedTop =850
-                    LayoutCachedWidth =14500
-                    LayoutCachedHeight =1180
-                    ThemeFontIndex =-1
-                    BackThemeColorIndex =-1
-                    BorderThemeColorIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin Label
-                    OverlapFlags =93
-                    Left =300
-                    Top =1350
-                    Width =1600
-                    Height =300
-                    FontSize =10
-                    ForeColor =1520430
-                    Name ="Etiket10"
-                    Caption ="Tutar"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0xb27ded3904785a4aad5e1cceabc3914b
-                    End
-                    LayoutCachedLeft =300
-                    LayoutCachedTop =1350
-                    LayoutCachedWidth =1900
-                    LayoutCachedHeight =1650
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin TextBox
-                    BorderWidth =1
-                    OverlapFlags =215
-                    IMESentenceMode =3
-                    Left =1500
-                    Top =1250
-                    Width =1500
-                    Height =330
-                    FontSize =10
-                    TabIndex =5
-                    BorderColor =8435888
-                    ForeColor =1520430
-                    Name ="txtTutar"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x13f0512ab3cea74cbbef7cc71ea63a29
-                    End
-
-                    LayoutCachedLeft =1500
-                    LayoutCachedTop =1250
-                    LayoutCachedWidth =3000
-                    LayoutCachedHeight =1580
-                    BackThemeColorIndex =-1
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin Label
-                    OverlapFlags =93
-                    Left =3300
-                    Top =1350
-                    Width =1600
-                    Height =300
-                    FontSize =10
-                    ForeColor =1520430
-                    Name ="Etiket12"
-                    Caption ="Açıklama"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x279d572f0d437c4c99fe82a05130dd95
-                    End
-                    LayoutCachedLeft =3300
-                    LayoutCachedTop =1350
-                    LayoutCachedWidth =4900
-                    LayoutCachedHeight =1650
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin TextBox
-                    BorderWidth =1
-                    OverlapFlags =215
-                    IMESentenceMode =3
-                    Left =4700
-                    Top =1250
-                    Width =9800
-                    Height =330
-                    FontSize =10
-                    TabIndex =6
-                    BorderColor =8435888
-                    ForeColor =1520430
-                    Name ="txtAciklama"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0xfd55267dde533545af69dae04a8ad83d
-                    End
-
-                    LayoutCachedLeft =4700
-                    LayoutCachedTop =1250
-                    LayoutCachedWidth =14500
-                    LayoutCachedHeight =1580
-                    BackThemeColorIndex =-1
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin Label
-                    OverlapFlags =93
-                    Left =300
-                    Top =2350
-                    Width =1600
-                    Height =300
-                    FontSize =10
-                    ForeColor =1520430
-                    Name ="Etiket17"
-                    Caption ="Başlangıç"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x3ac443d1a8555f4c8aad842de58e3eea
-                    End
-                    LayoutCachedLeft =300
-                    LayoutCachedTop =2350
-                    LayoutCachedWidth =1900
-                    LayoutCachedHeight =2650
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin TextBox
-                    BorderWidth =1
-                    OverlapFlags =215
-                    IMESentenceMode =3
-                    Left =1500
-                    Top =2250
-                    Width =1500
-                    Height =330
-                    FontSize =10
-                    TabIndex =7
-                    BorderColor =8435888
-                    ForeColor =1520430
-                    Name ="txtBaslangic"
-                    Format ="dd\\.mm\\.yyyy"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0xcdc57f5cdbbded40add82c4753bdb0b2
-                    End
-
-                    LayoutCachedLeft =1500
-                    LayoutCachedTop =2250
-                    LayoutCachedWidth =3000
-                    LayoutCachedHeight =2580
-                    BackThemeColorIndex =-1
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin Label
-                    OverlapFlags =93
-                    Left =3300
-                    Top =2350
-                    Width =1600
-                    Height =300
-                    FontSize =10
-                    ForeColor =1520430
-                    Name ="Etiket19"
-                    Caption ="Bitiş"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0xa7126a6ae671bd4ea71e8b056e709110
-                    End
-                    LayoutCachedLeft =3300
-                    LayoutCachedTop =2350
-                    LayoutCachedWidth =4900
-                    LayoutCachedHeight =2650
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin TextBox
-                    BorderWidth =1
-                    OverlapFlags =215
-                    IMESentenceMode =3
-                    Left =4700
-                    Top =2250
-                    Width =1500
-                    Height =330
-                    FontSize =10
-                    TabIndex =8
-                    BorderColor =8435888
-                    ForeColor =1520430
-                    Name ="txtBitis"
-                    Format ="dd\\.mm\\.yyyy"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x5cf6a3d9a755814ba22803094464a657
-                    End
-
-                    LayoutCachedLeft =4700
-                    LayoutCachedTop =2250
-                    LayoutCachedWidth =6200
-                    LayoutCachedHeight =2580
-                    BackThemeColorIndex =-1
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin CommandButton
-                    OverlapFlags =85
-                    Left =6300
-                    Top =2210
-                    Width =1500
-                    Height =420
-                    FontSize =10
-                    FontWeight =700
-                    TabIndex =9
-                    ForeColor =16777215
-                    Name ="Komut21"
-                    Caption ="Tarih Filtrele"
-                    OnClick ="=KasaFiltrele()"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x2868fdfae89b674e8dadd9e37c0850fd
-                    End
-
-                    LayoutCachedLeft =6300
-                    LayoutCachedTop =2210
-                    LayoutCachedWidth =7800
-                    LayoutCachedHeight =2630
-                    ForeThemeColorIndex =-1
-                    Gradient =0
-                    BackColor =4103820
-                    BackThemeColorIndex =-1
-                    BorderColor =3179635
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    HoverColor =5288608
-                    HoverThemeColorIndex =-1
-                    PressedColor =3179635
-                    PressedThemeColorIndex =-1
-                    HoverForeColor =16777215
-                    HoverForeThemeColorIndex =-1
-                    PressedForeColor =16777215
-                    PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
-                End
-                Begin Label
-                    OverlapFlags =93
-                    Left =9000
-                    Top =2350
-                    Width =1500
-                    Height =300
-                    FontSize =10
-                    ForeColor =1520430
-                    Name ="Etiket22"
-                    Caption ="Açılış Bakiyesi"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x98874523615c2c4599a4eb62e5667b7e
-                    End
-                    LayoutCachedLeft =9000
-                    LayoutCachedTop =2350
-                    LayoutCachedWidth =10500
-                    LayoutCachedHeight =2650
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin TextBox
-                    BorderWidth =1
+                Begin Rectangle
+                    BackStyle =1
+                    OldBorderStyle =0
                     OverlapFlags =87
-                    IMESentenceMode =3
-                    Left =10500
-                    Top =2250
-                    Width =1500
-                    Height =330
-                    FontSize =10
-                    TabIndex =10
-                    BorderColor =8435888
-                    ForeColor =1520430
-                    Name ="txtKasaAcilis"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0xb9d239d4828c0044b90e8282f11833b7
-                    End
-
-                    LayoutCachedLeft =10500
-                    LayoutCachedTop =2250
-                    LayoutCachedWidth =12000
-                    LayoutCachedHeight =2580
-                    BackThemeColorIndex =-1
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin CommandButton
-                    OverlapFlags =85
-                    Left =12100
-                    Top =2210
-                    Width =2400
-                    Height =420
-                    FontSize =10
-                    FontWeight =700
-                    TabIndex =11
-                    ForeColor =16777215
-                    Name ="Komut24"
-                    Caption ="Açılışı Kaydet"
-                    OnClick ="=KasaAcilisGuncelle()"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0xcd5f0fdd5ad5e9419f278f7661450349
-                    End
-
-                    LayoutCachedLeft =12100
-                    LayoutCachedTop =2210
-                    LayoutCachedWidth =14500
-                    LayoutCachedHeight =2630
-                    ForeThemeColorIndex =-1
-                    Gradient =0
-                    BackColor =2785131
-                    BackThemeColorIndex =-1
-                    BorderColor =1990736
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    HoverColor =3446400
-                    HoverThemeColorIndex =-1
-                    PressedColor =1990736
-                    PressedThemeColorIndex =-1
-                    HoverForeColor =16777215
-                    HoverForeThemeColorIndex =-1
-                    PressedForeColor =16777215
-                    PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
-                End
-                Begin ListBox
-                    ColumnHeads = NotDefault
-                    OverlapFlags =85
-                    IMESentenceMode =3
-                    ColumnCount =13
-                    Left =300
-                    Top =3200
-                    Width =14500
-                    Height =6600
-                    FontSize =9
-                    TabIndex =12
-                    ForeColor =1520430
-                    BorderColor =8435888
-                    Name ="lstHareketler"
-                    RowSourceType ="Table/Query"
-                    RowSource ="SELECT * FROM qry_KasaEkstre; "
-                    ColumnWidths ="0;1100;0;1700;600;1100;1000;3000;1200;1200;1300;900;0"
-                    OnDblClick ="=KasaListedenSec()"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0xeb67d1ad5c9f9e418c809bc3786d9068
-                    End
-
-                    LayoutCachedLeft =300
-                    LayoutCachedTop =3200
-                    LayoutCachedWidth =14800
-                    LayoutCachedHeight =9800
-                    ThemeFontIndex =-1
-                    BackThemeColorIndex =-1
-                    BorderThemeColorIndex =-1
-                    ForeThemeColorIndex =-1
-                End
-                Begin CommandButton
-                    OverlapFlags =85
-                    Left =300
-                    Top =1700
-                    Width =1300
-                    Height =420
-                    FontWeight =700
-                    TabIndex =13
-                    ForeColor =2050619
-                    Name ="btnYeni"
-                    Caption ="Yeni Kayıt"
-                    OnClick ="=KasaYeni()"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0xa52790f4e0094744a6b16dbc39669fc4
-                    End
-
-                    LayoutCachedLeft =300
-                    LayoutCachedTop =1700
-                    LayoutCachedWidth =1600
-                    LayoutCachedHeight =2120
-                    ForeThemeColorIndex =-1
-                    Gradient =0
+                    Left =0
+                    Top =640
+                    Width =15800
+                    Height =55
                     BackColor =2597577
+                    Name ="rctCizgi"
+                    Tag ="tema"
                     BackThemeColorIndex =-1
-                    BorderColor =1673130
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    HoverColor =4110558
-                    HoverThemeColorIndex =-1
-                    PressedColor =1673130
-                    PressedThemeColorIndex =-1
-                    HoverForeColor =2050619
-                    HoverForeThemeColorIndex =-1
-                    PressedForeColor =2050619
-                    PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
-                End
-                Begin CommandButton
-                    OverlapFlags =85
-                    Left =1700
-                    Top =1700
-                    Width =1300
-                    Height =420
-                    FontWeight =700
-                    TabIndex =14
-                    ForeColor =16777215
-                    Name ="btnKaydet"
-                    Caption ="Kaydet"
-                    OnClick ="=KasaHareketKaydet()"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x42883187d5bf9d4eafc3576c81ab07a0
-                    End
-
-                    LayoutCachedLeft =1700
-                    LayoutCachedTop =1700
-                    LayoutCachedWidth =3000
-                    LayoutCachedHeight =2120
-                    ForeThemeColorIndex =-1
-                    Gradient =0
-                    BackColor =2785131
-                    BackThemeColorIndex =-1
-                    BorderColor =1990736
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    HoverColor =3446400
-                    HoverThemeColorIndex =-1
-                    PressedColor =1990736
-                    PressedThemeColorIndex =-1
-                    HoverForeColor =16777215
-                    HoverForeThemeColorIndex =-1
-                    PressedForeColor =16777215
-                    PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
-                End
-                Begin CommandButton
-                    OverlapFlags =85
-                    Left =3100
-                    Top =1700
-                    Width =1300
-                    Height =420
-                    FontWeight =700
-                    TabIndex =15
-                    ForeColor =16777215
-                    Name ="btnGuncelle"
-                    Caption ="Güncelle"
-                    OnClick ="=KasaHareketGuncelle()"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0xca8b76f393f7884b97d0d2e467896735
-                    End
-
-                    LayoutCachedLeft =3100
-                    LayoutCachedTop =1700
-                    LayoutCachedWidth =4400
-                    LayoutCachedHeight =2120
-                    ForeThemeColorIndex =-1
-                    Gradient =0
-                    BackColor =2785131
-                    BackThemeColorIndex =-1
-                    BorderColor =1990736
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    HoverColor =3446400
-                    HoverThemeColorIndex =-1
-                    PressedColor =1990736
-                    PressedThemeColorIndex =-1
-                    HoverForeColor =16777215
-                    HoverForeThemeColorIndex =-1
-                    PressedForeColor =16777215
-                    PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
-                End
-                Begin CommandButton
-                    OverlapFlags =85
-                    Left =4500
-                    Top =1700
-                    Width =1300
-                    Height =420
-                    FontWeight =700
-                    TabIndex =16
-                    ForeColor =16777215
-                    Name ="btnSil"
-                    Caption ="Sil"
-                    OnClick ="=KasaHareketSil()"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x92cb93aa76167f4e9a9edf5d981498ff
-                    End
-
-                    LayoutCachedLeft =4500
-                    LayoutCachedTop =1700
-                    LayoutCachedWidth =5800
-                    LayoutCachedHeight =2120
-                    ForeThemeColorIndex =-1
-                    Gradient =0
-                    BackColor =2637462
-                    BackThemeColorIndex =-1
-                    BorderColor =1978488
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    HoverColor =3691186
-                    HoverThemeColorIndex =-1
-                    PressedColor =1978488
-                    PressedThemeColorIndex =-1
-                    HoverForeColor =16777215
-                    HoverForeThemeColorIndex =-1
-                    PressedForeColor =16777215
-                    PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
-                End
-                Begin CommandButton
-                    OverlapFlags =85
-                    Left =5900
-                    Top =1700
-                    Width =1300
-                    Height =420
-                    FontWeight =700
-                    TabIndex =17
-                    ForeColor =16777215
-                    Name ="btnTemizle"
-                    Caption ="Temizle"
-                    OnClick ="=KasaTemizle()"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0xdddafae638ba0e409a3a4e88a1f3c968
-                    End
-
-                    LayoutCachedLeft =5900
-                    LayoutCachedTop =1700
-                    LayoutCachedWidth =7200
-                    LayoutCachedHeight =2120
-                    ForeThemeColorIndex =-1
-                    Gradient =0
-                    BackColor =6058096
-                    BackThemeColorIndex =-1
-                    BorderColor =4741722
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    HoverColor =7506056
-                    HoverThemeColorIndex =-1
-                    PressedColor =4741722
-                    PressedThemeColorIndex =-1
-                    HoverForeColor =16777215
-                    HoverForeThemeColorIndex =-1
-                    PressedForeColor =16777215
-                    PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
-                End
-                Begin CommandButton
-                    OverlapFlags =85
-                    Left =7300
-                    Top =1700
-                    Width =1300
-                    Height =420
-                    FontWeight =700
-                    TabIndex =18
-                    ForeColor =16777215
-                    Name ="btnKapat"
-                    Caption ="Kapat"
-                    OnClick ="=AktifFormuKapat()"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x7d8f21f3b1d2a943afd80e45fbe649d4
-                    End
-
-                    LayoutCachedLeft =7300
-                    LayoutCachedTop =1700
-                    LayoutCachedWidth =8600
-                    LayoutCachedHeight =2120
-                    ForeThemeColorIndex =-1
-                    Gradient =0
-                    BackColor =6058096
-                    BackThemeColorIndex =-1
-                    BorderColor =4741722
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    HoverColor =7506056
-                    HoverThemeColorIndex =-1
-                    PressedColor =4741722
-                    PressedThemeColorIndex =-1
-                    HoverForeColor =16777215
-                    HoverForeThemeColorIndex =-1
-                    PressedForeColor =16777215
-                    PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
-                End
-                Begin CommandButton
-                    OverlapFlags =85
-                    Left =7900
-                    Top =2210
-                    Width =900
-                    Height =420
-                    FontWeight =700
-                    TabIndex =19
-                    ForeColor =16777215
-                    Name ="btnTumu"
-                    Caption ="Tümü"
-                    OnClick ="=KasaTumu()"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x6738ed42e075434ea07093402bf67ed7
-                    End
-
-                    LayoutCachedLeft =7900
-                    LayoutCachedTop =2210
-                    LayoutCachedWidth =8800
-                    LayoutCachedHeight =2630
-                    ForeThemeColorIndex =-1
-                    Gradient =0
-                    BackColor =4103820
-                    BackThemeColorIndex =-1
-                    BorderColor =3179635
-                    BorderThemeColorIndex =-1
-                    ThemeFontIndex =-1
-                    HoverColor =5288608
-                    HoverThemeColorIndex =-1
-                    PressedColor =3179635
-                    PressedThemeColorIndex =-1
-                    HoverForeColor =16777215
-                    HoverForeThemeColorIndex =-1
-                    PressedForeColor =16777215
-                    PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
-                End
-                Begin Label
-                    OverlapFlags =85
-                    Left =300
-                    Top =2800
-                    Width =2000
-                    Height =300
-                    FontSize =10
-                    ForeColor =1520430
-                    Name ="lblKasaBakiye"
-                    Caption ="Güncel Kasa Bakiyesi"
-                    FontName ="Segoe UI"
-                    GUID = Begin
-                        0x7e5e79e3dc87084c8dc05df6b153faec
-                    End
-                    LayoutCachedLeft =300
-                    LayoutCachedTop =2800
-                    LayoutCachedWidth =2300
-                    LayoutCachedHeight =3100
-                    ThemeFontIndex =-1
-                    ForeThemeColorIndex =-1
                 End
                 Begin TextBox
+                    Enabled = NotDefault
                     Locked = NotDefault
                     TabStop = NotDefault
-                    OverlapFlags =85
+                    OldBorderStyle =0
+                    OverlapFlags =215
+                    TextAlign =3
+                    BackStyle =0
                     IMESentenceMode =3
-                    Left =2400
-                    Top =2700
-                    Width =1800
-                    Height =330
-                    FontSize =10
-                    TabIndex =20
-                    BackColor =13691116
-                    BorderColor =8435888
-                    ForeColor =1520430
-                    Name ="txtKasaBakiye"
-                    Format ="Standard"
+                    Left =10100
+                    Top =210
+                    Width =5400
+                    Height =300
+                    FontSize =9
+                    FontWeight =700
+                    ForeColor =2597577
+                    Name ="txtMarka"
+                    ControlSource ="=FirmaAdiBuyuk()"
                     FontName ="Segoe UI"
-                    GUID = Begin
-                        0x82658ca475123f45aabed0d1f51fa6ad
-                    End
-
-                    LayoutCachedLeft =2400
-                    LayoutCachedTop =2700
-                    LayoutCachedWidth =4200
-                    LayoutCachedHeight =3030
-                    BackThemeColorIndex =-1
-                    BorderThemeColorIndex =-1
+                    Tag ="tema"
                     ThemeFontIndex =-1
                     ForeThemeColorIndex =-1
+                    TabIndex =0
                 End
                 Begin Image
                     Left =160
@@ -1176,9 +267,6 @@ Begin Form
                     Name ="imgLogo"
                     Tag ="tema"
                     Picture ="apaydin_logo_kucuk.png"
-                    GUID = Begin
-                        0xdcaa3b306927e940843a5cc45479bb9e
-                    End
                     ImageData = Begin
                         0x89504e470d0a1a0a0000000d49484452000000a0000000a008060000008bcf67 ,
                         0x2d000000017352474200aece1ce90000000467414d410000b18f0bfc61050000 ,
@@ -1497,57 +585,796 @@ Begin Form
                     LayoutCachedTop =45
                     LayoutCachedWidth =720
                     LayoutCachedHeight =605
-                    TabIndex =22
+                    TabIndex =24
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =930
+                    Width =1100
+                    Height =300
+                    FontSize =10
+                    FontWeight =700
+                    ForeColor =1520430
+                    Name ="lblKasa"
+                    Caption ="Hesap"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin ComboBox
+                    LimitToList = NotDefault
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    ColumnCount =2
+                    Left =1500
+                    Top =900
+                    Width =3600
+                    Height =330
+                    FontSize =10
+                    FontWeight =700
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="cmbKasa"
+                    RowSourceType ="Table/Query"
+                    RowSource ="SELECT KasaID, KasaAdi & IIf(Nz(KasaTuru,'Nakit')='Banka','  (Banka)','') AS Hesap FROM tbl_Kasa WHERE Aktif=True ORDER BY IIf(Nz(KasaTuru,'Nakit')='Nakit',0,1), KasaAdi;"
+                    ColumnWidths ="0;3600"
+                    AfterUpdate ="=KasaHesapDegisti()"
+                    FontName ="Segoe UI"
+                    AllowValueListEdits =0
+                    ThemeFontIndex =-1
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =5300
+                    Top =930
+                    Width =1620
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblBakiye"
+                    Caption ="Hesap Bakiyesi"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    Locked = NotDefault
+                    TabStop = NotDefault
+                    OverlapFlags =85
+                    TextAlign =3
+                    IMESentenceMode =3
+                    Left =6950
+                    Top =900
+                    Width =1900
+                    Height =330
+                    FontSize =10
+                    FontWeight =700
+                    BackColor =13691116
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtKasaBakiye"
+                    Format ="#,##0.00"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =2
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =9150
+                    Top =930
+                    Width =1620
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblAcilis"
+                    Caption ="Açılış Bakiyesi"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    TextAlign =3
+                    IMESentenceMode =3
+                    Left =10800
+                    Top =900
+                    Width =1500
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtKasaAcilis"
+                    Format ="#,##0.00"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =3
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =12400
+                    Top =870
+                    Width =2000
+                    Height =400
+                    FontSize =10
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnAcilis"
+                    Caption ="Açılışı Kaydet"
+                    OnClick ="=KasaAcilisGuncelle()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =6058096
+                    BackThemeColorIndex =-1
+                    BorderColor =4741722
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =7506056
+                    HoverThemeColorIndex =-1
+                    PressedColor =4741722
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =4
                 End
                 Begin Rectangle
                     BackStyle =1
                     OldBorderStyle =0
-                    OverlapFlags =87
-                    Top =640
-                    Width =15500
-                    Height =55
-                    BackColor =2597577
-                    Name ="rctCizgi"
-                    Tag ="tema"
-                    GUID = Begin
-                        0x8d79df2d78ba6c4995a91de130a36048
-                    End
-                    LayoutCachedTop =640
-                    LayoutCachedWidth =15500
-                    LayoutCachedHeight =695
+                    OverlapFlags =85
+                    Left =300
+                    Top =1430
+                    Width =15200
+                    Height =15
+                    BackColor =8435888
+                    Name ="rctAyrac"
                     BackThemeColorIndex =-1
                 End
-                Begin TextBox
-                    Enabled = NotDefault
-                    Locked = NotDefault
-                    TabStop = NotDefault
-                    OldBorderStyle =0
-                    OverlapFlags =215
-                    TextAlign =3
-                    BackStyle =0
-                    IMESentenceMode =3
-                    Left =9800
-                    Top =210
-                    Width =5400
-                    Height =300
-                    FontSize =9
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =1550
+                    Width =5000
+                    Height =320
+                    FontSize =10
                     FontWeight =700
-                    TabIndex =21
                     ForeColor =2597577
-                    Name ="txtMarka"
-                    ControlSource ="=FirmaAdiBuyuk()"
+                    Name ="lblB1"
+                    Caption ="HAREKET"
                     FontName ="Segoe UI"
                     Tag ="tema"
-                    GUID = Begin
-                        0xbcd647db529fc147b876860ebabbc7fd
-                    End
-
-                    LayoutCachedLeft =9800
-                    LayoutCachedTop =210
-                    LayoutCachedWidth =15200
-                    LayoutCachedHeight =510
                     ThemeFontIndex =-1
                     ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =1980
+                    Width =1140
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblTarih"
+                    Caption ="Tarih"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =1500
+                    Top =1950
+                    Width =1500
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtTarih"
+                    Format ="dd\\.mm\\.yyyy"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =5
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =3300
+                    Top =1980
+                    Width =940
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblHareketTuru"
+                    Caption ="Hareket"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin ComboBox
+                    LimitToList = NotDefault
+                    RowSourceTypeInt =1
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    ColumnCount =1
+                    Left =4300
+                    Top =1950
+                    Width =1600
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="cmbHareketTuru"
+                    RowSourceType ="Value List"
+                    RowSource ="Tahsilat;Ödeme"
+                    FontName ="Segoe UI"
+                    AllowValueListEdits =0
+                    ThemeFontIndex =-1
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =6
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =6200
+                    Top =1980
+                    Width =940
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblOdemeYontemi"
+                    Caption ="Yöntem"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin ComboBox
+                    RowSourceTypeInt =1
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    ColumnCount =1
+                    Left =7200
+                    Top =1950
+                    Width =1600
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="cmbOdemeYontemi"
+                    RowSourceType ="Value List"
+                    RowSource ="Nakit;Havale;Kart;EFT;Çek"
+                    FontName ="Segoe UI"
+                    AllowValueListEdits =0
+                    ThemeFontIndex =-1
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =7
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =9100
+                    Top =1980
+                    Width =740
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblTutar"
+                    Caption ="Tutar"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    TextAlign =3
+                    IMESentenceMode =3
+                    Left =9900
+                    Top =1950
+                    Width =1600
+                    Height =330
+                    FontSize =10
+                    FontWeight =700
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtTutar"
+                    Format ="#,##0.00"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =8
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =2400
+                    Width =1140
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblMusteri"
+                    Caption ="Müşteri"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin ComboBox
+                    LimitToList = NotDefault
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    ColumnCount =2
+                    Left =1500
+                    Top =2370
+                    Width =3500
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="cmbMusteri"
+                    RowSourceType ="Table/Query"
+                    RowSource ="SELECT MusteriID, AdSoyad FROM tbl_Musteri ORDER BY AdSoyad;"
+                    ColumnWidths ="0;3500"
+                    AfterUpdate ="=KasaMusteriSecildi()"
+                    FontName ="Segoe UI"
+                    AllowValueListEdits =0
+                    ThemeFontIndex =-1
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =9
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =5300
+                    Top =2400
+                    Width =640
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblParti"
+                    Caption ="Parti"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin ComboBox
+                    ColumnHeads = NotDefault
+                    LimitToList = NotDefault
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    ColumnCount =4
+                    ListWidth =3500
+                    Left =6000
+                    Top =2370
+                    Width =2300
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="cmbParti"
+                    RowSourceType ="Table/Query"
+                    RowSource ="SELECT PartiNo FROM tbl_Parti WHERE 1=0;"
+                    ColumnWidths ="0;900;1100;1300"
+                    FontName ="Segoe UI"
+                    AllowValueListEdits =0
+                    ThemeFontIndex =-1
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =10
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =8600
+                    Top =2400
+                    Width =1040
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblAciklama"
+                    Caption ="Açıklama"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =9700
+                    Top =2370
+                    Width =5800
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtAciklama"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =11
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =2790
+                    Width =15000
+                    Height =300
+                    FontSize =9
+                    ForeColor =6584440
+                    Name ="lblIpucu"
+                    Caption ="Sonradan gelen havaleyi borcu olan partiye bağlamak için müşteri ve parti seçin; tutar partinin kalan borcundan düşer."
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    Visible = NotDefault
+                    TabStop = NotDefault
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =100
+                    Top =250
+                    Width =100
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtKasaHareketID"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =12
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =300
+                    Top =3150
+                    Width =1600
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =2050619
+                    Name ="btnYeni"
+                    Caption ="Yeni Kayıt"
+                    OnClick ="=KasaYeni()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2597577
+                    BackThemeColorIndex =-1
+                    BorderColor =1673130
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =4110558
+                    HoverThemeColorIndex =-1
+                    PressedColor =1673130
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =2050619
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =2050619
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =13
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =2000
+                    Top =3150
+                    Width =1400
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnKaydet"
+                    Caption ="Kaydet"
+                    OnClick ="=KasaHareketKaydet()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2785131
+                    BackThemeColorIndex =-1
+                    BorderColor =1990736
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =3446400
+                    HoverThemeColorIndex =-1
+                    PressedColor =1990736
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =14
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =3500
+                    Top =3150
+                    Width =1500
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnGuncelle"
+                    Caption ="Güncelle"
+                    OnClick ="=KasaHareketGuncelle()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2785131
+                    BackThemeColorIndex =-1
+                    BorderColor =1990736
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =3446400
+                    HoverThemeColorIndex =-1
+                    PressedColor =1990736
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =15
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =5100
+                    Top =3150
+                    Width =1100
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnSil"
+                    Caption ="Sil"
+                    OnClick ="=KasaHareketSil()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2637462
+                    BackThemeColorIndex =-1
+                    BorderColor =1978488
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =3691186
+                    HoverThemeColorIndex =-1
+                    PressedColor =1978488
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =16
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =6300
+                    Top =3150
+                    Width =1400
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnTemizle"
+                    Caption ="Temizle"
+                    OnClick ="=KasaTemizle()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =6058096
+                    BackThemeColorIndex =-1
+                    BorderColor =4741722
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =7506056
+                    HoverThemeColorIndex =-1
+                    PressedColor =4741722
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =17
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =7800
+                    Top =3150
+                    Width =1300
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnKapat"
+                    Caption ="Kapat"
+                    OnClick ="=AktifFormuKapat()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =6058096
+                    BackThemeColorIndex =-1
+                    BorderColor =4741722
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =7506056
+                    HoverThemeColorIndex =-1
+                    PressedColor =4741722
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =18
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =3880
+                    Width =1140
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblBaslangic"
+                    Caption ="Başlangıç"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =1500
+                    Top =3850
+                    Width =1500
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtBaslangic"
+                    Format ="dd\\.mm\\.yyyy"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =19
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =3300
+                    Top =3880
+                    Width =640
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblBitis"
+                    Caption ="Bitiş"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin TextBox
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    Left =4000
+                    Top =3850
+                    Width =1500
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="txtBitis"
+                    Format ="dd\\.mm\\.yyyy"
+                    FontName ="Segoe UI"
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =20
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =5700
+                    Top =3810
+                    Width =1900
+                    Height =410
+                    FontSize =10
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnFiltre"
+                    Caption ="Tarih Filtrele"
+                    OnClick ="=KasaFiltrele()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =4103820
+                    BackThemeColorIndex =-1
+                    BorderColor =3179635
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =5288608
+                    HoverThemeColorIndex =-1
+                    PressedColor =3179635
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =21
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =7700
+                    Top =3810
+                    Width =1100
+                    Height =410
+                    FontSize =10
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnTumu"
+                    Caption ="Tümü"
+                    OnClick ="=KasaTumu()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =6058096
+                    BackThemeColorIndex =-1
+                    BorderColor =4741722
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =7506056
+                    HoverThemeColorIndex =-1
+                    PressedColor =4741722
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =22
+                End
+                Begin ListBox
+                    ColumnHeads = NotDefault
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    ColumnCount =14
+                    Left =300
+                    Top =4400
+                    Width =15200
+                    Height =5600
+                    FontSize =9
+                    ForeColor =1520430
+                    BorderColor =8435888
+                    Name ="lstHareketler"
+                    RowSourceType ="Table/Query"
+                    RowSource ="SELECT * FROM qry_KasaEkstre WHERE 1=0;"
+                    ColumnWidths ="0;1050;0;2200;700;1000;900;3900;1250;1250;1350;1100;0;0"
+                    OnDblClick ="=KasaListedenSec()"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =23
                 End
             End
         End

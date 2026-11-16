@@ -1,7 +1,11 @@
-﻿* text=auto
+* text=auto
 *.bas text eol=crlf
 *.sql text eol=crlf
 *.txt text eol=crlf
+*.py text eol=lf
+# Kur.vbs ve KaynakDisaAktar.vbs UTF-16 olarak saklanır; satır sonu çevrilmemeli
+*.vbs binary
 *.accdb binary
 *.png binary
 *.ico binary
+araclar/uretici/*.txt text eol=lf

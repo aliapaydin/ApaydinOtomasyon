@@ -59,6 +59,13 @@ End Function
 Public Function GirisYukle()
     On Error GoTo Hata
     Dim rs As DAO.Recordset
+    ' Veri dosyası bağlantısı ve sürümü
+    If Not VeriBaglantisiHazir() Then
+        Mesaj "Veri dosyası olmadan program çalışamaz. Program kapatılacak.", vbCritical
+        DoCmd.Quit acQuitSaveNone
+        Exit Function
+    End If
+    ShiftKapat
     KullaniciVarsayilanOlustur
     OturumID = 0: OturumAd = "": OturumAdmin = False
     ProfilAdet = 0: Sayfa = 0: SeciliID = 0
@@ -223,6 +230,7 @@ Public Function MenuYukle()
     frm!btnKullanicilar.Visible = OturumAdmin Or TestModu
     frm!btnAyarlar.Visible = OturumAdmin Or TestModu
     frm!lblOturum.Caption = OturumBilgisi()
+    frm!lblSezon.Caption = "Aktif sezon: " & AktifSezon()
     BaslikYenile
 End Function
 
@@ -377,35 +385,174 @@ Public Function AyarlarYukle()
     frm!txtFirmaAdi = Ayar("FirmaAdi")
     frm!txtFirmaTelefon = MetinVeyaNull(Ayar("FirmaTelefon"))
     frm!txtFirmaAdres = MetinVeyaNull(Ayar("FirmaAdres"))
-    frm!txtVarsayilanUcret = MetinVeyaNull(Ayar("VarsayilanSikimUcreti"))
-    frm!txtVarsayilanOran = MetinVeyaNull(Ayar("VarsayilanHakyagiOrani"))
+    frm!txtHakyagiOrani = AyarSayi("HakyagiOrani", 12)
+    frm!txtYagFiyati = AyarSayi("YagFiyati", 200)
+    frm!cmbAktifSezon.RowSource = SezonListesi()
+    frm!cmbAktifSezon = AktifSezon()
+    frm!lblVeriYolu.Caption = "Veri dosyası: " & VeriYolu() & "   (sürüm " & VeriSurumu() & ")"
     KutulariTemizle frm, Array("txtEskiSifre", "txtYeniSifre", "txtYeniSifre2")
+    HesapTemizle
 End Function
 
 Public Function AyarlarKaydet()
     On Error GoTo Hata
-    Dim frm As Form
+    Dim frm As Form, eskiSezon As String
     Set frm = a()
     If Bos(frm!txtFirmaAdi) Then
         Mesaj "Firma adını giriniz.", vbExclamation: Exit Function
     End If
-    If Not Bos(frm!txtVarsayilanUcret) And Not SayiMi(frm!txtVarsayilanUcret) Then
-        Mesaj "Varsayılan sıkım ücreti sayı olmalıdır.", vbExclamation: Exit Function
+    If Not SayiMi(frm!txtHakyagiOrani) Then
+        Mesaj "Hakyağı oranını (%) sayı olarak giriniz.", vbExclamation: Exit Function
     End If
-    If Not Bos(frm!txtVarsayilanOran) And Not SayiMi(frm!txtVarsayilanOran) Then
-        Mesaj "Varsayılan hakyağı oranı sayı olmalıdır.", vbExclamation: Exit Function
+    If Sayi(frm!txtHakyagiOrani) <= 0 Or Sayi(frm!txtHakyagiOrani) >= 100 Then
+        Mesaj "Hakyağı oranı 0 ile 100 arasında olmalıdır.", vbExclamation: Exit Function
     End If
+    If Not SayiMi(frm!txtYagFiyati) Or Sayi(frm!txtYagFiyati) <= 0 Then
+        Mesaj "1 kg yağ fiyatını (TL) giriniz.", vbExclamation: Exit Function
+    End If
+    If Len(Nz(frm!cmbAktifSezon, "")) <> 9 Then
+        Mesaj "Aktif sezonu seçiniz.", vbExclamation: Exit Function
+    End If
+    eskiSezon = AktifSezon()
     AyarYaz "FirmaAdi", Trim$(frm!txtFirmaAdi)
     AyarYaz "FirmaTelefon", frm!txtFirmaTelefon
     AyarYaz "FirmaAdres", frm!txtFirmaAdres
-    AyarYaz "VarsayilanSikimUcreti", frm!txtVarsayilanUcret
-    AyarYaz "VarsayilanHakyagiOrani", frm!txtVarsayilanOran
+    AyarYaz "HakyagiOrani", CStr(Sayi(frm!txtHakyagiOrani))
+    AyarYaz "YagFiyati", CStr(Sayi(frm!txtYagFiyati))
+    AyarYaz "AktifSezon", frm!cmbAktifSezon
     BaslikYenile
     BasliklariYenile
-    Mesaj "Ayarlar kaydedildi."
+    Mesaj "Ayarlar kaydedildi." & vbCrLf & vbCrLf & _
+        "Hakyağı oranı ve yağ fiyatı bundan sonra açılan partilere uygulanır; kayıtlı partiler değişmez." & _
+        IIf(eskiSezon <> AktifSezon(), vbCrLf & "Aktif sezon " & AktifSezon() & " oldu. Açık ekranları kapatıp yeniden açın.", "")
     Exit Function
 Hata:
     Mesaj "Kayıt sırasında hata: " & Err.Description, vbExclamation
+End Function
+
+' ---------------------------------------------------------------
+' Kasa ve banka hesapları (Ayarlar ekranı)
+' ---------------------------------------------------------------
+Public Function HesapTemizle()
+    On Error Resume Next
+    Dim frm As Form
+    Set frm = a()
+    KutulariTemizle frm, Array("txtHesapID", "txtHesapAdi", "txtHesapBanka", "txtHesapIBAN")
+    frm!cmbHesapTuru = "Banka"
+    frm!lstHesaplar.Requery
+End Function
+
+Public Function HesapListedenSec()
+    On Error Resume Next
+    Dim frm As Form, rs As DAO.Recordset, id As Long
+    Set frm = a()
+    id = ListeID(frm!lstHesaplar)
+    If id = 0 Then Exit Function
+    Set rs = CurrentDb.OpenRecordset("SELECT * FROM tbl_Kasa WHERE KasaID=" & id, dbOpenSnapshot)
+    If Not rs.EOF Then
+        frm!txtHesapID = rs!KasaID
+        frm!txtHesapAdi = rs!KasaAdi
+        frm!cmbHesapTuru = Nz(rs!KasaTuru, "Nakit")
+        frm!txtHesapBanka = rs!BankaAdi
+        frm!txtHesapIBAN = rs.Fields("IBAN")
+    End If
+    rs.Close
+End Function
+
+Public Function HesapKaydet()
+    On Error GoTo Hata
+    Dim frm As Form, rs As DAO.Recordset, id As Long
+    Set frm = a()
+    If Bos(frm!txtHesapAdi) Then
+        Mesaj "Hesap adını giriniz (ör. Ziraat Bankası TL).", vbExclamation: Exit Function
+    End If
+    id = Nz(frm!txtHesapID, 0)
+    Set rs = KayitAc("tbl_Kasa", "KasaID", id)
+    rs!KasaAdi = Trim$(frm!txtHesapAdi)
+    rs!KasaTuru = IIf(Nz(frm!cmbHesapTuru, "Banka") = "Nakit", "Nakit", "Banka")
+    rs!BankaAdi = MetinVeyaNull(frm!txtHesapBanka)
+    rs.Fields("IBAN") = MetinVeyaNull(UCase$(Replace(Nz(frm!txtHesapIBAN, ""), " ", "")))
+    rs!Aktif = True
+    If id = 0 Then rs!AcilisBakiyesi = 0
+    rs.Update
+    rs.Close
+    HesapTemizle
+    KombolariYenile
+    Mesaj "Hesap kaydedildi."
+    Exit Function
+Hata:
+    Mesaj "Kayıt sırasında hata: " & Err.Description, vbExclamation
+End Function
+
+Public Function HesapSil()
+    On Error GoTo Hata
+    Dim frm As Form, id As Long
+    Set frm = a()
+    id = Nz(frm!txtHesapID, 0)
+    If id = 0 Then
+        Mesaj "Önce listeden bir hesap seçin (çift tıklayın).", vbExclamation: Exit Function
+    End If
+    If id = VarsayilanKasaID() Then
+        Mesaj "Ana nakit kasa silinemez.", vbExclamation: Exit Function
+    End If
+    If DCount("*", "tbl_KasaHareket", "KasaID=" & id) > 0 Then
+        If Not Soru("Bu hesapta hareket var; silinemez. Hesap pasif yapılsın mı? (Listelerde görünmez.)") Then Exit Function
+        CurrentDb.Execute "UPDATE tbl_Kasa SET Aktif=False WHERE KasaID=" & id, dbFailOnError
+    Else
+        If Not Soru(Nz(frm!txtHesapAdi, "") & " silinsin mi?") Then Exit Function
+        CurrentDb.Execute "DELETE FROM tbl_Kasa WHERE KasaID=" & id, dbFailOnError
+    End If
+    HesapTemizle
+    KombolariYenile
+    Exit Function
+Hata:
+    Mesaj "Silme sırasında hata: " & Err.Description, vbExclamation
+End Function
+
+' ---------------------------------------------------------------
+' Yönetici araçları (Ayarlar ekranı)
+' ---------------------------------------------------------------
+' Shift ile açılışı kapatır (program her açılışta çağırır)
+Public Sub ShiftKapat()
+    On Error Resume Next
+    Dim db As DAO.Database
+    Set db = CurrentDb
+    db.Properties("AllowBypassKey") = False
+    If Err.Number <> 0 Then
+        Err.Clear
+        db.Properties.Append db.CreateProperty("AllowBypassKey", dbBoolean, False)
+    End If
+End Sub
+
+' Bir sonraki açılışta Shift'e basılı tutarak tasarım görünümüne girilebilir.
+' Program normal açılınca Shift yeniden kapanır.
+Public Function GelistiriciModu()
+    On Error Resume Next
+    If Not OturumAdmin And Not TestModu Then Exit Function
+    If Not Soru("Program bir sonraki açılışta Shift tuşuna basılı tutularak tasarım görünümünde açılabilecek." & vbCrLf & _
+                "(Normal açılışta bu izin yeniden kapanır.) Devam edilsin mi?") Then Exit Function
+    CurrentDb.Properties("AllowBypassKey") = True
+    Mesaj "Tamam. Programı kapatın; açarken Shift tuşuna basılı tutun."
+End Function
+
+Public Function KaynakAktarDugme()
+    Dim yol As String
+    yol = KaynakDisaAktar()
+    If yol <> "" Then Mesaj "Kaynaklar dışa aktarıldı:" & vbCrLf & yol
+End Function
+
+Public Function KayitlariYenidenOlustur()
+    On Error GoTo Hata
+    If Not Soru("Tüm partilerin otomatik cari / kasa / stok kayıtları ve bidon listeleri yeniden oluşturulsun mu?" & vbCrLf & _
+                "(Tutarlar değişmez; elle girilen kayıtlar korunur.)") Then Exit Function
+    DoCmd.Hourglass True
+    TumPartiKayitlariniYenidenYaz
+    DoCmd.Hourglass False
+    Mesaj "Kayıtlar yeniden oluşturuldu."
+    Exit Function
+Hata:
+    DoCmd.Hourglass False
+    Mesaj "İşlem sırasında hata: " & Err.Description, vbExclamation
 End Function
 
 ' Açık formlardaki firma adı yazılarını yeniler

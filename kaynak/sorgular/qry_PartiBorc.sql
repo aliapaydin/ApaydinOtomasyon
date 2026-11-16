@@ -1,0 +1,2 @@
+SELECT p.PartiNo, p.PartiKodu AS [Parti No], p.Sezon, Format(Nz(b.Kalan,0),"#,##0.00") AS [Kalan Borç], p.MusteriID, Nz(b.Kalan,0) AS KalanHam, Val(Nz(p.PartiKodu,"0")) AS PartiSira
+FROM tbl_Parti AS p LEFT JOIN qry_PartiBakiye AS b ON p.PartiNo=b.PartiNo;

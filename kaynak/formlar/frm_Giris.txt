@@ -1,7 +1,7 @@
 Version =21
 VersionRequired =20
 PublishOption =1
-Checksum =1477255825
+Checksum =329495463
 Begin Form
     RecordSelectors = NotDefault
     MaxButton = NotDefault
@@ -21,6 +21,10 @@ Begin Form
     Width =13000
     DatasheetFontHeight =11
     ItemSuffix =44
+    Left =7800
+    Top =1200
+    Right =20805
+    Bottom =9480
     DatasheetGridlinesColor =15132391
     RecSrcDt = Begin
         0x6739cf63f49ee640
@@ -154,7 +158,7 @@ Begin Form
                     Height =200
                     Name ="imgRenk0"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_0.png"
+                    Picture ="avatar_0.png"
                     GUID = Begin
                         0x9b626da888c7c14d897cdfb7a5e94335
                     End
@@ -1377,7 +1381,7 @@ Begin Form
                     Height =200
                     Name ="imgRenk1"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_1.png"
+                    Picture ="avatar_1.png"
                     GUID = Begin
                         0x102ceb2a5e95244da37cbdf1432906c3
                     End
@@ -2609,7 +2613,7 @@ Begin Form
                     Height =200
                     Name ="imgRenk2"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_2.png"
+                    Picture ="avatar_2.png"
                     GUID = Begin
                         0xcca5cce9b6926544ae14ef85acf3210c
                     End
@@ -3834,7 +3838,7 @@ Begin Form
                     Height =200
                     Name ="imgRenk3"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_3.png"
+                    Picture ="avatar_3.png"
                     GUID = Begin
                         0x550b9f062cd5f54aab89b86da3b3795b
                     End
@@ -5051,7 +5055,7 @@ Begin Form
                     Height =200
                     Name ="imgRenk4"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_4.png"
+                    Picture ="avatar_4.png"
                     GUID = Begin
                         0x7ef30354eebdf04fbd827dfd32267460
                     End
@@ -6262,7 +6266,7 @@ Begin Form
                     Height =200
                     Name ="imgRenk5"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_5.png"
+                    Picture ="avatar_5.png"
                     GUID = Begin
                         0x16170ed68babdb478543e3a30573f25e
                     End
@@ -7474,7 +7478,7 @@ Begin Form
                     Height =1000
                     Name ="imgLogo"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\apaydin_logo.png"
+                    Picture ="apaydin_logo.png"
                     GUID = Begin
                         0x0c724c429fba4d4cbb6e1fb85a4f93f3
                     End
@@ -8789,7 +8793,7 @@ Begin Form
                     Height =1800
                     Name ="imgSecim1"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_secim.png"
+                    Picture ="avatar_secim.png"
                     GUID = Begin
                         0xf70d981930251744b7b00f8c570db12e
                     End
@@ -9302,7 +9306,7 @@ Begin Form
                     Height =1600
                     Name ="imgProfil1"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_0.png"
+                    Picture ="avatar_0.png"
                     GUID = Begin
                         0xc1a1e7144ca4db4fb045cfe125d6a072
                     End
@@ -10565,10 +10569,10 @@ Begin Form
                     LayoutCachedTop =3350
                     LayoutCachedWidth =2700
                     LayoutCachedHeight =4950
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                     Overlaps =1
                 End
                 Begin Label
@@ -10601,7 +10605,7 @@ Begin Form
                     Height =1800
                     Name ="imgSecim2"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_secim.png"
+                    Picture ="avatar_secim.png"
                     GUID = Begin
                         0xad2f7a998445d34a90e4642e1d7aaf71
                     End
@@ -11114,7 +11118,7 @@ Begin Form
                     Height =1600
                     Name ="imgProfil2"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_0.png"
+                    Picture ="avatar_0.png"
                     GUID = Begin
                         0x356ea0ffd58bcf48a14bcbe011fc09c1
                     End
@@ -12377,10 +12381,10 @@ Begin Form
                     LayoutCachedTop =3350
                     LayoutCachedWidth =5100
                     LayoutCachedHeight =4950
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                     Overlaps =1
                 End
                 Begin Label
@@ -12413,7 +12417,7 @@ Begin Form
                     Height =1800
                     Name ="imgSecim3"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_secim.png"
+                    Picture ="avatar_secim.png"
                     GUID = Begin
                         0xb3e150b090fcc94e8733d4f5c3eaf76b
                     End
@@ -12926,7 +12930,7 @@ Begin Form
                     Height =1600
                     Name ="imgProfil3"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_0.png"
+                    Picture ="avatar_0.png"
                     GUID = Begin
                         0x2cf7e4b2212d2f4fb6deed1d7449da57
                     End
@@ -14189,10 +14193,10 @@ Begin Form
                     LayoutCachedTop =3350
                     LayoutCachedWidth =7500
                     LayoutCachedHeight =4950
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                     Overlaps =1
                 End
                 Begin Label
@@ -14225,7 +14229,7 @@ Begin Form
                     Height =1800
                     Name ="imgSecim4"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_secim.png"
+                    Picture ="avatar_secim.png"
                     GUID = Begin
                         0x93bc6ceffc08394c82586338f86f2958
                     End
@@ -14738,7 +14742,7 @@ Begin Form
                     Height =1600
                     Name ="imgProfil4"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_0.png"
+                    Picture ="avatar_0.png"
                     GUID = Begin
                         0x09d28e0c0a7cee46b4721a20ecdc99e7
                     End
@@ -16001,10 +16005,10 @@ Begin Form
                     LayoutCachedTop =3350
                     LayoutCachedWidth =9900
                     LayoutCachedHeight =4950
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                     Overlaps =1
                 End
                 Begin Label
@@ -16037,7 +16041,7 @@ Begin Form
                     Height =1800
                     Name ="imgSecim5"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_secim.png"
+                    Picture ="avatar_secim.png"
                     GUID = Begin
                         0x22c1f3216f4af144a190883b5d28eea6
                     End
@@ -16550,7 +16554,7 @@ Begin Form
                     Height =1600
                     Name ="imgProfil5"
                     Tag ="tema"
-                    Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\avatar_0.png"
+                    Picture ="avatar_0.png"
                     GUID = Begin
                         0xb8fb64f1aedab040ab9907207b5ebb08
                     End
@@ -17813,10 +17817,10 @@ Begin Form
                     LayoutCachedTop =3350
                     LayoutCachedWidth =12300
                     LayoutCachedHeight =4950
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                     Overlaps =1
                 End
                 Begin Label
@@ -17877,10 +17881,10 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin CommandButton
                     OverlapFlags =247
@@ -17918,10 +17922,10 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                     Overlaps =1
                 End
                 Begin Label
@@ -18032,10 +18036,10 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =2050619
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
                 Begin Label
                     OverlapFlags =85
@@ -18067,7 +18071,7 @@ Begin Form
                     FontSize =9
                     ForeColor =8565418
                     Name ="lblAlt"
-                    Caption ="Sürüm 2.0   •   Geliştirici: Ali Apaydın"
+                    Caption ="Sürüm 3.0   •   Geliştirici: Ali Apaydın"
                     FontName ="Segoe UI"
                     Tag ="tema"
                     GUID = Begin
@@ -18116,10 +18120,10 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    WebImagePaddingLeft =2
+                    WebImagePaddingTop =2
+                    WebImagePaddingRight =1
+                    WebImagePaddingBottom =1
                 End
             End
         End
