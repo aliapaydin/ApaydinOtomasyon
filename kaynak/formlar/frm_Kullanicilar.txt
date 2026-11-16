@@ -984,7 +984,7 @@ Begin Form
                     OverlapFlags =85
                     Left =300
                     Top =2550
-                    Width =5000
+                    Width =5250
                     Height =300
                     FontSize =9
                     ForeColor =6584440
@@ -995,10 +995,6 @@ Begin Form
                     GUID = Begin
                         0x2982e3a680b0ee46a2741cd15c264898
                     End
-                    LayoutCachedLeft =300
-                    LayoutCachedTop =2550
-                    LayoutCachedWidth =5300
-                    LayoutCachedHeight =2850
                     ThemeFontIndex =-1
                     ForeThemeColorIndex =-1
                 End

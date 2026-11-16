@@ -13,7 +13,7 @@ Option Explicit
 ' =============================================================
 
 Private Const FORM_ADI As String = "frm_CicerMusteri"
-Private Const MUSTERI_KUTULARI As String = "txtMusteriID,txtTCKN,txtAdSoyad,txtTelefon,txtAdres,txtBanka,txtIBAN,cmbCariTipi,txtAcilisBakiyesi"
+Private Const MUSTERI_KUTULARI As String = "txtMusteriID,txtTCKN,txtAdSoyad,txtBabaAdi,txtTelefon,txtAdres,txtBanka,txtIBAN,cmbCariTipi,txtAcilisBakiyesi"
 Private Const CARI_KUTULARI As String = "txtCariHareketID,cmbCariYon,txtCariTutar,txtCariAciklama"
 
 Private Function F() As Form
@@ -102,6 +102,7 @@ Private Sub MusteriYazIslem(ByVal guncelle As Boolean)
     Set rs = KayitAc("tbl_Musteri", "MusteriID", id)
     rs!TCKN_VKN = MetinVeyaNull(frm!txtTCKN)
     rs!adSoyad = MetinVeyaNull(frm!txtAdSoyad)
+    rs!BabaAdi = MetinVeyaNull(frm!txtBabaAdi)
     rs!Telefon = MetinVeyaNull(frm!txtTelefon)
     rs!Adres = MetinVeyaNull(frm!txtAdres)
     rs!BankaAdi = MetinVeyaNull(frm!txtBanka)
@@ -159,6 +160,7 @@ Private Sub MusteriYukle(ByVal id As Long)
     frm!txtMusteriID = rs!musteriID
     frm!txtTCKN = rs!TCKN_VKN
     frm!txtAdSoyad = rs!adSoyad
+    frm!txtBabaAdi = rs!BabaAdi
     frm!txtTelefon = rs!Telefon
     frm!txtAdres = rs!Adres
     frm!txtBanka = rs!BankaAdi
@@ -315,4 +317,70 @@ Public Function CariHareketSil()
     Exit Function
 Hata:
     Mesaj "Silme sırasında hata: " & Err.Description, vbExclamation
+End Function
+' ---------------------------------------------------------------
+' HIZLI CARİ EKLEME   (form: frm_HizliCari)
+' Mal Kabul ekranındaki "+ Yeni" düğmesiyle açılır. Kaydedilen
+' müşteri çağıran formun müşteri kutusuna seçili olarak gelir.
+' Aynı ad ve baba adıyla kayıt varsa uyarır.
+' ---------------------------------------------------------------
+Private Function H() As Form
+    Set H = Forms("frm_HizliCari")
+End Function
+
+Public Function HizliCariYukle()
+    On Error Resume Next
+    KutulariTemizle H(), Array("txtAdSoyad", "txtBabaAdi", "txtTCKN", "txtTelefon", "txtAdres")
+    H().Controls("txtAdSoyad").SetFocus
+End Function
+
+Public Function HizliCariKaydet()
+    On Error GoTo Hata
+    Dim frm As Form, rs As DAO.Recordset, id As Long, ad As String, baba As String, cagiran As String, tc As String
+    Set frm = H()
+    ad = Trim$(Nz(frm!txtAdSoyad, ""))
+    baba = Trim$(Nz(frm!txtBabaAdi, ""))
+    tc = Trim$(Nz(frm!txtTCKN, ""))
+    If ad = "" Then
+        Mesaj "Ad Soyad giriniz.", vbExclamation: Exit Function
+    End If
+    If DCount("*", "tbl_Musteri", "AdSoyad=" & SqlMetin(ad) & " AND Nz(BabaAdi,'')=" & SqlMetin(baba)) > 0 Then
+        If Not Soru("Aynı ad" & IIf(baba = "", "", " ve baba adı") & "yla kayıtlı bir müşteri var. Yine de yeni müşteri eklensin mi?") Then Exit Function
+    End If
+    If tc <> "" Then
+        If DCount("*", "tbl_Musteri", "TCKN_VKN=" & SqlMetin(tc)) > 0 Then
+            If Not Soru("Bu TCKN/VKN başka bir müşteride kayıtlı. Yine de eklensin mi?") Then Exit Function
+        End If
+    End If
+    Set rs = CurrentDb.OpenRecordset("tbl_Musteri", dbOpenDynaset)
+    rs.AddNew
+    rs!adSoyad = ad
+    rs!BabaAdi = MetinVeyaNull(baba)
+    rs!TCKN_VKN = MetinVeyaNull(tc)
+    rs!Telefon = MetinVeyaNull(frm!txtTelefon)
+    rs!Adres = MetinVeyaNull(frm!txtAdres)
+    rs!CariTipi = "Alım/Satım"
+    rs!AcilisBakiyesi = 0
+    rs.Update
+    rs.Bookmark = rs.LastModified
+    id = rs!musteriID
+    rs.Close
+
+    cagiran = Nz(frm.OpenArgs, "")
+    DoCmd.Close acForm, frm.Name
+    KombolariYenile
+    If cagiran <> "" Then
+        If FormAcikMi(cagiran) Then
+            Forms(cagiran).Controls("cmbMusteri").Requery
+            Forms(cagiran).Controls("cmbMusteri").Value = id
+            If cagiran = "frm_MalKabul" Then MalKabulMusteriSecildi
+        End If
+    End If
+    Exit Function
+Hata:
+    Mesaj "Müşteri eklenemedi: " & Err.Description, vbExclamation
+End Function
+
+Public Function HizliCariVazgec()
+    DoCmd.Close acForm, "frm_HizliCari"
 End Function

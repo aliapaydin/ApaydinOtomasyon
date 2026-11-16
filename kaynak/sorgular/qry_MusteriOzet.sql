@@ -1,3 +1,3 @@
-SELECT m.MusteriID, m.TCKN_VKN AS [TCKN/VKN], m.AdSoyad AS [Ad Soyad / Ünvan], m.Telefon, m.BankaAdi AS Banka, m.IBAN, m.CariTipi AS [Cari Tipi], Format(Nz(m.AcilisBakiyesi,0) + Nz(DSum("Nz(Borc,0)-Nz(Alacak,0)","tbl_CariHareket","Nz(IptalMi,False)=False AND MusteriID=" & m.MusteriID),0),"#,##0.00") AS Bakiye
-FROM tbl_Musteri AS m
+SELECT m.MusteriID, m.TCKN_VKN AS [TCKN/VKN], m.AdSoyad AS [Ad Soyad / Ünvan], m.BabaAdi AS [Baba Adı], m.Telefon, m.BankaAdi AS Banka, m.IBAN, m.CariTipi AS [Cari Tipi], Format(Nz(m.AcilisBakiyesi,0)+Nz(b.Toplam,0),"#,##0.00") AS Bakiye
+FROM tbl_Musteri AS m LEFT JOIN (SELECT MusteriID, Sum(Nz(Borc,0)-Nz(Alacak,0)) AS Toplam FROM tbl_CariHareket WHERE IptalMi=False GROUP BY MusteriID) AS b ON m.MusteriID=b.MusteriID
 ORDER BY m.AdSoyad;

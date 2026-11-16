@@ -1402,7 +1402,7 @@ Begin Form
                     OverlapFlags =215
                     Left =1900
                     Top =380
-                    Width =6900
+                    Width =7000
                     Height =480
                     FontSize =16
                     FontWeight =700
@@ -1414,10 +1414,6 @@ Begin Form
                     GUID = Begin
                         0x7919f022674efd48b955aa1cba5f16c4
                     End
-                    LayoutCachedLeft =1900
-                    LayoutCachedTop =380
-                    LayoutCachedWidth =8800
-                    LayoutCachedHeight =860
                     ThemeFontIndex =-1
                     ForeThemeColorIndex =-1
                 End

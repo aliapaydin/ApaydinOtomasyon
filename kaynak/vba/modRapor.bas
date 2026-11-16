@@ -51,13 +51,14 @@ Private Function RaporNesnesi(ByVal kod As String) As String
         Case "STOK": RaporNesnesi = "rpt_StokHareket"
         Case "KASA": RaporNesnesi = "rpt_Kasa"
         Case "FIS": RaporNesnesi = "rpt_TeslimFisi"
+        Case "KABULFIS": RaporNesnesi = "rpt_MalKabulFisi"
     End Select
 End Function
 
 Private Function RaporAciklamasi(ByVal kod As String) As String
     Select Case kod
-        Case "URETIM": RaporAciklamasi = "Seçilen tarihler arasında gelen partiler: gelen zeytin, çıkan yağ, randıman, hakyağı ve sıkım ücretleri. İsterseniz müşteriye göre süzün."
-        Case "UCRET": RaporAciklamasi = "Sıkım ücretli partilerin ücretleri; tahsil edilenler ve edilmeyenler ayrı gruplarda toplanır."
+        Case "URETIM": RaporAciklamasi = "Seçilen tarihler arasında sıkımı yapılan partiler: gelen zeytin, çıkan yağ, randıman, hakyağı ve sıkım ücretleri. İsterseniz müşteriye göre süzün."
+        Case "UCRET": RaporAciklamasi = "Üretimi yapılmış sıkım ücretli partilerin ücretleri ve tahsil edilen kısımları; borcu kapananlar ve borçta kalanlar ayrı gruplarda toplanır."
         Case "BIDON": RaporAciklamasi = "Müşteri bazında bidonlar: yağı teslim edilenler ve teslim bekleyenler."
         Case "TESLIMLER": RaporAciklamasi = "Seçilen tarihler arasında yapılan yağ teslimleri: teslim alan, teslim eden ve miktarlar."
         Case "ALACAK": RaporAciklamasi = "Bitiş tarihi itibarıyla her carinin bakiyesi: alacaklarımız ve borçlarımız. Başlangıç tarihi kullanılmaz."
@@ -105,9 +106,6 @@ End Function
 ' ---------------------------------------------------------------
 ' Rapor SQL'leri
 ' ---------------------------------------------------------------
-Private Function SqlSayi(ByVal d As Double) As String
-    SqlSayi = Trim$(Str$(d))
-End Function
 
 Private Function RaporSQL(ByVal kod As String, ByVal bas As Date, ByVal bit As Date, _
         ByVal musteri As Variant, ByVal urun As Variant, ByVal durum As String) As String
@@ -139,25 +137,23 @@ Private Function RaporSQL(ByVal kod As String, ByVal bas As Date, ByVal bit As D
 
     Case "ALACAK"
         RaporSQL = "SELECT x.*, IIf(x.Bakiye>0,x.Bakiye,0) AS Alacagimiz, IIf(x.Bakiye<0,-x.Bakiye,0) AS Borcumuz FROM (" & _
-            "SELECT m.MusteriID, m.AdSoyad AS Musteri, m.Telefon, Round(Nz(m.AcilisBakiyesi,0)+Nz(DSum('Nz(Borc,0)-Nz(Alacak,0)','tbl_CariHareket'," & _
-            "'Nz(IptalMi,False)=False AND MusteriID=' & m.MusteriID & ' AND Tarih<=" & SqlSayi(CDbl(bit)) & "'),0),2) AS Bakiye FROM tbl_Musteri AS m" & _
+            "SELECT m.MusteriID, m.AdSoyad AS Musteri, m.Telefon, Round(Nz(m.AcilisBakiyesi,0)+Nz(t.Toplam,0),2) AS Bakiye " & _
+            "FROM tbl_Musteri AS m LEFT JOIN (SELECT MusteriID, Sum(Nz(Borc,0)-Nz(Alacak,0)) AS Toplam FROM tbl_CariHareket " & _
+            "WHERE Nz(IptalMi,False)=False AND Tarih<" & SqlTarih(bit + 1) & " GROUP BY MusteriID) AS t ON m.MusteriID=t.MusteriID" & _
             IIf(IsNull(musteri), "", " WHERE m.MusteriID=" & musteri) & ") AS x" & _
             IIf(durum = "Tümü", "", " WHERE Abs(x.Bakiye)>0.005")
-
     Case "CARI"
-        devir = "Nz(DLookup('AcilisBakiyesi','tbl_Musteri','MusteriID=' & q.MusteriID),0)+Nz(DSum('Nz(Borc,0)-Nz(Alacak,0)','tbl_CariHareket'," & _
-            "'Nz(IptalMi,False)=False AND MusteriID=' & q.MusteriID & ' AND Tarih<" & SqlSayi(CDbl(bas)) & "'),0)"
         w = "q.Tarih" & aralik
         If Not IsNull(musteri) Then w = w & " AND q.MusteriID=" & musteri
-        RaporSQL = "SELECT q.*, " & devir & " AS Devir FROM qry_R_Cari AS q WHERE " & w
-
+        RaporSQL = "SELECT q.*, Nz(mm.AcilisBakiyesi,0)+Nz(d.Toplam,0) AS Devir FROM (qry_R_Cari AS q INNER JOIN tbl_Musteri AS mm ON q.MusteriID=mm.MusteriID) " & _
+            "LEFT JOIN (SELECT MusteriID, Sum(Nz(Borc,0)-Nz(Alacak,0)) AS Toplam FROM tbl_CariHareket WHERE Nz(IptalMi,False)=False AND Tarih<" & SqlTarih(bas) & _
+            " GROUP BY MusteriID) AS d ON q.MusteriID=d.MusteriID WHERE " & w
     Case "STOK"
-        devir = "Nz(DLookup('AcilisStok','tbl_Urun','UrunID=' & q.UrunID),0)+Nz(DSum('Nz(Giris,0)-Nz(Cikis,0)','tbl_StokHareket'," & _
-            "'Nz(IptalMi,False)=False AND UrunID=' & q.UrunID & ' AND Tarih<" & SqlSayi(CDbl(bas)) & "'),0)"
         w = "q.Tarih" & aralik
         If Not IsNull(urun) Then w = w & " AND q.UrunID=" & urun
-        RaporSQL = "SELECT q.*, " & devir & " AS Devir FROM qry_R_Stok AS q WHERE " & w
-
+        RaporSQL = "SELECT q.*, Nz(uu.AcilisStok,0)+Nz(d.Toplam,0) AS Devir FROM (qry_R_Stok AS q INNER JOIN tbl_Urun AS uu ON q.UrunID=uu.UrunID) " & _
+            "LEFT JOIN (SELECT UrunID, Sum(Nz(Giris,0)-Nz(Cikis,0)) AS Toplam FROM tbl_StokHareket WHERE Nz(IptalMi,False)=False AND Tarih<" & SqlTarih(bas) & _
+            " GROUP BY UrunID) AS d ON q.UrunID=d.UrunID WHERE " & w
     Case "KASA"
         devir = SqlSayi(Nz(DSum("Nz(AcilisBakiyesi,0)", "tbl_Kasa"), 0) + _
             Nz(DSum("Nz(Tahsilat,0)-Nz(Odeme,0)", "tbl_KasaHareket", "Nz(IptalMi,False)=False AND Tarih<" & SqlTarih(bas)), 0))
@@ -236,8 +232,9 @@ Public Function RaporlarYukle()
     Dim frm As Form
     Set frm = F()
     frm!lstRaporlar.RowSource = RaporListesi()
-    frm!txtBas = DateSerial(Year(Date), Month(Date), 1)
-    frm!txtBit = Date
+    frm!cmbRSezon.RowSource = SezonListesi()
+    frm!cmbRSezon = AktifSezon()
+    RaporSezonSecildi
     frm!lstRaporlar = "URETIM"
     RaporSecildi
 End Function
@@ -267,9 +264,32 @@ Public Function RaporSecildi()
     If Not frm!cmbRUrun.Enabled Then frm!cmbRUrun = Null
 End Function
 
+' Sezon seçilince tarih aralığı sezon başı - sezon sonu (veya bugün) olur
+Public Function RaporSezonSecildi()
+    On Error Resume Next
+    Dim frm As Form, s As String
+    Set frm = F()
+    s = Nz(frm!cmbRSezon, "")
+    If Len(s) <> 9 Then Exit Function
+    frm!txtBas = SezonBaslangic(s)
+    If SezonBitis(s) > Date And SezonBaslangic(s) <= Date Then
+        frm!txtBit = Date
+    Else
+        frm!txtBit = SezonBitis(s)
+    End If
+End Function
+
+' Tarih aralığı tam olarak bir sezonu kapsıyorsa sezon adını döndürür
+Private Function AralikSezonu(ByVal bas As Date, ByVal bit As Date) As String
+    Dim s As String
+    s = SezonBul(bas)
+    If bas = SezonBaslangic(s) And SezonBul(bit) = s Then AralikSezonu = s
+End Function
+
 Public Function RaporHizliTarih(ByVal tur As String)
     Dim frm As Form
     Set frm = F()
+    frm!cmbRSezon = Null
     Select Case tur
         Case "gun": frm!txtBas = Date: frm!txtBit = Date
         Case "hafta": frm!txtBas = Date - Weekday(Date, vbMonday) + 1: frm!txtBit = Date
@@ -296,6 +316,7 @@ Public Function RaporCalistir(ByVal cikti As String)
         aralik = Format$(bit, "dd.mm.yyyy") & " tarihi itibarıyla"
     Else
         aralik = Format$(bas, "dd.mm.yyyy") & " - " & Format$(bit, "dd.mm.yyyy")
+        If AralikSezonu(bas, bit) <> "" Then aralik = "Sezon " & AralikSezonu(bas, bit) & "   •   " & aralik
     End If
     If Not IsNull(frm!cmbRMusteri) Then aralik = aralik & "   •   Müşteri: " & frm!cmbRMusteri.Column(1)
     If Not IsNull(frm!cmbRUrun) Then aralik = aralik & "   •   Ürün: " & frm!cmbRUrun.Column(1)
@@ -311,7 +332,14 @@ End Function
 Public Function TeslimFisiAc(ByVal partiNo As Long, ByVal cikti As String) As String
     TeslimFisiAc = RaporCiktisi("rpt_TeslimFisi", "SELECT * FROM qry_R_TeslimFisi WHERE PartiNo=" & partiNo, _
         "Yağ Teslim Fişi - Parti " & Nz(DLookup("PartiKodu", "tbl_Parti", "PartiNo=" & partiNo), ""), _
-        "Fiş tarihi: " & Format$(Date, "dd.mm.yyyy"), cikti)
+        "Sezon " & Nz(DLookup("Sezon", "tbl_Parti", "PartiNo=" & partiNo), "") & "   •   Fiş tarihi: " & Format$(Date, "dd.mm.yyyy"), cikti)
+End Function
+
+' Mal kabul modülünden çağrılır
+Public Function MalKabulFisiAc(ByVal partiNo As Long, ByVal cikti As String) As String
+    MalKabulFisiAc = RaporCiktisi("rpt_MalKabulFisi", "SELECT * FROM qry_R_TeslimFisi WHERE PartiNo=" & partiNo, _
+        "Mal Kabul Fişi - Parti " & Nz(DLookup("PartiKodu", "tbl_Parti", "PartiNo=" & partiNo), ""), _
+        "Sezon " & Nz(DLookup("Sezon", "tbl_Parti", "PartiNo=" & partiNo), "") & "   •   Fiş tarihi: " & Format$(Date, "dd.mm.yyyy"), cikti)
 End Function
 
 ' Test / otomasyon için: raporu doğrudan kodla PDF'e çıkarır
@@ -319,4 +347,15 @@ Public Function RaporTestPdf(ByVal kod As String) As String
     Dim bas As Date, bit As Date
     bas = DateSerial(2000, 1, 1): bit = DateSerial(2100, 12, 31)
     RaporTestPdf = RaporCiktisi(RaporNesnesi(kod), RaporSQL(kod, bas, bit, Null, Null, "Tümü"), "Test " & kod, "Tüm kayıtlar", "pdf")
+End Function
+' Teslim fişindeki tahsil durumu yazısı
+Public Function TahsilDurumMetni(ByVal tur As Variant, ByVal tutar As Variant, ByVal yontem As Variant, ByVal kalan As Variant) As String
+    Dim s As String
+    Select Case Nz(tur, "Yok")
+        Case "Peşin": s = "Peşin tahsil edildi (" & Nz(yontem, "") & ")"
+        Case "Kısmi": s = TLYaz(Nz(tutar, 0)) & " tahsil edildi (" & Nz(yontem, "") & ")"
+        Case Else: s = "Tahsil edilmedi"
+    End Select
+    If Nz(kalan, 0) > 0.005 Then s = s & "  •  Kalan borç: " & TLYaz(kalan)
+    TahsilDurumMetni = s
 End Function

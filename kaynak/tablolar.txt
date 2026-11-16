@@ -1,0 +1,176 @@
+TABLO tbl_AlimSatim
+    IslemID  tip=4  boyut=4  OTOSAYI
+    Tarih  tip=8  boyut=8  ZORUNLU
+    IslemTuru  tip=10  boyut=10  ZORUNLU
+    MusteriID  tip=4  boyut=4  ZORUNLU
+    UrunID  tip=4  boyut=4  ZORUNLU
+    Miktar  tip=7  boyut=8  ZORUNLU
+    BirimFiyat  tip=5  boyut=8  ZORUNLU
+    ToplamTutar  tip=5  boyut=8
+    PesinOdendi  tip=1  boyut=1
+    Aciklama  tip=10  boyut=255
+    IptalMi  tip=1  boyut=1
+    INDEX IX_AlimSatim_Tarih (+Tarih)
+    INDEX PK_tbl_AlimSatim (+IslemID) PK UNIQUE
+    INDEX rel_Musteri_AlimSatim (+MusteriID)
+    INDEX rel_Urun_AlimSatim (+UrunID)
+
+TABLO tbl_Ayarlar
+    Anahtar  tip=10  boyut=50
+    Deger  tip=10  boyut=255
+    INDEX PK_tbl_Ayarlar (+Anahtar) PK UNIQUE
+
+TABLO tbl_CariHareket
+    CariHareketID  tip=4  boyut=4  OTOSAYI
+    Tarih  tip=8  boyut=8  ZORUNLU
+    MusteriID  tip=4  boyut=4  ZORUNLU
+    PartiNo  tip=4  boyut=4
+    HareketTuru  tip=10  boyut=40
+    Aciklama  tip=10  boyut=255
+    Borc  tip=5  boyut=8
+    Alacak  tip=5  boyut=8
+    KaynakTipi  tip=10  boyut=30
+    KaynakID  tip=4  boyut=4
+    OtomatikMi  tip=1  boyut=1
+    IptalMi  tip=1  boyut=1
+    INDEX IX_Cari_MusteriTarih (+MusteriID;+Tarih)
+    INDEX PK_tbl_CariHareket (+CariHareketID) PK UNIQUE
+    INDEX rel_Musteri_CariYeni (+MusteriID)
+    INDEX rel_Parti_CariYeni (+PartiNo)
+
+TABLO tbl_Kasa
+    KasaID  tip=4  boyut=4  OTOSAYI
+    KasaAdi  tip=10  boyut=100  ZORUNLU
+    AcilisBakiyesi  tip=5  boyut=8
+    Aktif  tip=1  boyut=1
+    INDEX PK_tbl_Kasa (+KasaID) PK UNIQUE
+
+TABLO tbl_KasaHareket
+    KasaHareketID  tip=4  boyut=4  OTOSAYI
+    Tarih  tip=8  boyut=8  ZORUNLU
+    MusteriID  tip=4  boyut=4
+    PartiNo  tip=4  boyut=4
+    HareketTuru  tip=10  boyut=20
+    OdemeYontemi  tip=10  boyut=30
+    Aciklama  tip=10  boyut=255
+    Tahsilat  tip=5  boyut=8
+    Odeme  tip=5  boyut=8
+    KaynakTipi  tip=10  boyut=30
+    KaynakID  tip=4  boyut=4
+    OtomatikMi  tip=1  boyut=1
+    IptalMi  tip=1  boyut=1
+    KasaID  tip=4  boyut=4
+    INDEX IX_Kasa_Tarih (+Tarih)
+    INDEX PK_tbl_KasaHareket (+KasaHareketID) PK UNIQUE
+    INDEX rel_Kasa_HareketYeni (+KasaID)
+    INDEX rel_Musteri_KasaYeni (+MusteriID)
+    INDEX rel_Parti_KasaYeni (+PartiNo)
+
+TABLO tbl_Kullanici
+    KullaniciID  tip=4  boyut=4  OTOSAYI
+    KullaniciAdi  tip=10  boyut=50  ZORUNLU
+    AdSoyad  tip=10  boyut=100
+    Sifre  tip=10  boyut=100
+    Yonetici  tip=1  boyut=1
+    Aktif  tip=1  boyut=1
+    Renk  tip=4  boyut=4
+    SonGiris  tip=8  boyut=8
+    OlusturmaTarihi  tip=8  boyut=8
+    INDEX PK_tbl_Kullanici (+KullaniciID) PK UNIQUE
+    INDEX UX_Kullanici_Adi (+KullaniciAdi) UNIQUE
+
+TABLO tbl_Musteri
+    MusteriID  tip=4  boyut=4  OTOSAYI
+    TCKN_VKN  tip=10  boyut=20
+    AdSoyad  tip=10  boyut=100
+    Telefon  tip=10  boyut=20
+    Adres  tip=10  boyut=255
+    BankaAdi  tip=10  boyut=100
+    IBAN  tip=10  boyut=34
+    CariTipi  tip=10  boyut=20
+    AcilisBakiyesi  tip=5  boyut=8
+    INDEX PrimaryKey (+MusteriID) PK UNIQUE
+
+TABLO tbl_Parti
+    PartiNo  tip=4  boyut=4  OTOSAYI
+    Tarih  tip=8  boyut=8
+    MusteriID  tip=4  boyut=4
+    Cinsi  tip=10  boyut=50
+    Ozellik  tip=10  boyut=50
+    GirisPersonelID  tip=4  boyut=4
+    ZeytinMiktari_Kg  tip=7  boyut=8
+    CikanYag_Kg  tip=7  boyut=8
+    AtikMiktari_Kg  tip=7  boyut=8
+    OdemeTipi  tip=10  boyut=50
+    SimSikimUcreti  tip=5  boyut=8
+    HakYagiOrani_Yuzde  tip=7  boyut=8
+    TLTutari  tip=5  boyut=8
+    HakYagi_Kg  tip=7  boyut=8
+    MusteriKalanYag_Kg  tip=7  boyut=8
+    TeslimTarihi  tip=8  boyut=8
+    TeslimPersonelID  tip=4  boyut=4
+    BidonDetay  tip=10  boyut=255
+    PartiKodu  tip=4  boyut=4
+    UrunID  tip=4  boyut=4
+    PesinTahsilEdildi  tip=1  boyut=1
+    SikimTarihi  tip=8  boyut=8
+    TeslimAlan  tip=10  boyut=100
+    TeslimYag_Kg  tip=7  boyut=8
+    TeslimAciklama  tip=10  boyut=255
+    TahsilatTarihi  tip=8  boyut=8
+    INDEX PrimaryKey (+PartiNo) PK UNIQUE
+    INDEX rel_Musteri_Parti (+MusteriID)
+    INDEX rel_Personel_PartiGiris (+GirisPersonelID)
+    INDEX rel_Personel_PartiTeslim (+TeslimPersonelID)
+    INDEX UX_tbl_Parti_PartiKodu (+PartiKodu) UNIQUE
+
+TABLO tbl_PartiBidon
+    PartiBidonID  tip=4  boyut=4  OTOSAYI
+    PartiNo  tip=4  boyut=4  ZORUNLU
+    BidonNo  tip=10  boyut=30  ZORUNLU
+    MiktarKg  tip=7  boyut=8
+    TeslimEdildi  tip=1  boyut=1
+    TeslimTarihi  tip=8  boyut=8
+    Aciklama  tip=10  boyut=255
+    INDEX IX_Bidon_Parti (+PartiNo)
+    INDEX PK_tbl_PartiBidon (+PartiBidonID) PK UNIQUE
+    INDEX rel_Parti_BidonYeni (+PartiNo)
+
+TABLO tbl_Personel
+    PersonelID  tip=4  boyut=4  OTOSAYI
+    AdSoyad  tip=10  boyut=100
+    Gorev  tip=10  boyut=100
+    INDEX PrimaryKey (+PersonelID) PK UNIQUE
+
+TABLO tbl_StokHareket
+    StokHareketID  tip=4  boyut=4  OTOSAYI
+    Tarih  tip=8  boyut=8  ZORUNLU
+    UrunID  tip=4  boyut=4  ZORUNLU
+    MusteriID  tip=4  boyut=4
+    PartiNo  tip=4  boyut=4
+    HareketTuru  tip=10  boyut=30
+    Aciklama  tip=10  boyut=255
+    Giris  tip=7  boyut=8
+    Cikis  tip=7  boyut=8
+    KaynakTipi  tip=10  boyut=30
+    KaynakID  tip=4  boyut=4
+    OtomatikMi  tip=1  boyut=1
+    IptalMi  tip=1  boyut=1
+    INDEX IX_Stok_UrunTarih (+UrunID;+Tarih)
+    INDEX PK_tbl_StokHareket (+StokHareketID) PK UNIQUE
+    INDEX rel_Parti_StokYeni (+PartiNo)
+    INDEX rel_Urun_StokYeni (+UrunID)
+
+TABLO tbl_Urun
+    UrunID  tip=4  boyut=4  OTOSAYI
+    UrunKodu  tip=10  boyut=30
+    UrunAdi  tip=10  boyut=100  ZORUNLU
+    Birim  tip=10  boyut=20
+    Aktif  tip=1  boyut=1
+    AcilisStok  tip=7  boyut=8
+    AlisFiyati  tip=5  boyut=8
+    SatisFiyati  tip=5  boyut=8
+    MinimumStok  tip=7  boyut=8
+    INDEX PK_tbl_Urun (+UrunID) PK UNIQUE
+    INDEX UX_tbl_Urun_UrunKodu (+UrunKodu) UNIQUE
+

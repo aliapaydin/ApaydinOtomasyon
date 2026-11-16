@@ -1,0 +1,5 @@
+' Artık kullanılmayan kaynak dosyaları (Kur.vbs bunları Yedek\kaynak_eski klasörüne taşır)
+formlar\frm_CicerParti.txt
+formlar\frm_Deneme.txt
+sorgular\qry_PartiDetayYeni.sql
+sorgular\qry_TeslimParti.sql

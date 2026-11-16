@@ -25,14 +25,20 @@ Public Const KAYNAK_PARTI As String = "PARTI"
 Public Const KAYNAK_ALIMSATIM As String = "ALIMSATIM"
 Public Const KAYNAK_KASA As String = "KASA"
 Public Const KAYNAK_MANUEL As String = "MANUEL"
+Public Const KAYNAK_TESLIM As String = "TESLIM"
 
 ' Ürün ve geliştirici bilgileri (Hakkında ekranında gösterilir, değiştirilemez)
 Public Const URUN_ADI As String = "Zeytinyağı Üretim Otomasyonu"
-Public Const URUN_SURUM As String = "2.0"
+Public Const URUN_SURUM As String = "3.0"
 Public Const GELISTIRICI As String = "Ali Apaydın"
 Public Const GELISTIRICI_EPOSTA As String = "apaydin.a@gmail.com"
 Public Const GELISTIRICI_TELEFON As String = "0553 605 35 00"
 Public Const GELISTIRICI_GITHUB As String = "github.com/aliapaydin"
+
+' Unicode mesaj kutusu: VBA'nın MsgBox'ı Türkçe olmayan Windows'ta
+' ı, ş, ğ harflerini "?" gösterir; MessageBoxW her dilde doğru gösterir.
+Private Declare PtrSafe Function MessageBoxW Lib "user32" (ByVal hWnd As LongPtr, ByVal lpText As LongPtr, _
+    ByVal lpCaption As LongPtr, ByVal uType As Long) As Long
 
 Public Const ANA_MENU As String = "frm_CicerAnaMenu"
 Public Const GIRIS_FORMU As String = "frm_Giris"
@@ -72,7 +78,9 @@ Public Function Mesaj(ByVal metin As String, Optional ByVal stil As VbMsgBoxStyl
             Mesaj = vbOK
         End If
     Else
-        Mesaj = MsgBox(metin, stil, ProgramBasligi())
+        Dim baslik As String
+        baslik = ProgramBasligi()
+        Mesaj = MessageBoxW(Application.hWndAccessApp, StrPtr(metin), StrPtr(baslik), stil Or &H2000&)  ' MB_TASKMODAL
     End If
 End Function
 
@@ -275,7 +283,7 @@ End Function
 Public Function YeniKayit()
     On Error Resume Next
     Select Case Screen.ActiveForm.Name
-        Case "frm_CicerParti": PartiYeni
+        Case "frm_MalKabul": MalKabulYeni
         Case "frm_CicerMusteri": MusteriYeni
         Case "frm_CicerUrun": UrunYeni
         Case "frm_CicerKasa": KasaYeni
@@ -309,12 +317,14 @@ End Function
 ' Kasa hareketlerinin yazılacağı kasa (ilk aktif kasa). Yoksa "Ana Kasa" oluşturur.
 Public Function VarsayilanKasaID() As Long
     Dim rs As DAO.Recordset
-    VarsayilanKasaID = Nz(DMin("KasaID", "tbl_Kasa", "Aktif=True"), 0)
+    VarsayilanKasaID = Nz(DMin("KasaID", "tbl_Kasa", "Aktif=True AND Nz(KasaTuru,'Nakit')='Nakit'"), 0)
+    If VarsayilanKasaID = 0 Then VarsayilanKasaID = Nz(DMin("KasaID", "tbl_Kasa", "Aktif=True"), 0)
     If VarsayilanKasaID = 0 Then VarsayilanKasaID = Nz(DMin("KasaID", "tbl_Kasa"), 0)
     If VarsayilanKasaID = 0 Then
         Set rs = CurrentDb.OpenRecordset("tbl_Kasa", dbOpenDynaset)
         rs.AddNew
         rs!KasaAdi = "Ana Kasa"
+        rs!KasaTuru = "Nakit"
         rs!AcilisBakiyesi = 0
         rs!Aktif = True
         rs.Update
@@ -334,9 +344,12 @@ Public Function MusteriBakiye(ByVal musteriID As Long) As Currency
             "MusteriID=" & musteriID & " AND (IptalMi=False OR IptalMi Is Null)"), 0)
 End Function
 
-Public Function KasaBakiye() As Currency
-    KasaBakiye = Nz(DSum("Nz(AcilisBakiyesi,0)", "tbl_Kasa"), 0) + _
-        Nz(DSum("Nz(Tahsilat,0)-Nz(Odeme,0)", "tbl_KasaHareket", "IptalMi=False OR IptalMi Is Null"), 0)
+' kasaID = 0 ise tüm kasa ve banka hesaplarının toplamı
+Public Function KasaBakiye(Optional ByVal kasaID As Long = 0) As Currency
+    Dim k As String
+    If kasaID <> 0 Then k = " AND KasaID=" & kasaID
+    KasaBakiye = Nz(DSum("Nz(AcilisBakiyesi,0)", "tbl_Kasa", "True" & k), 0) + _
+        Nz(DSum("Nz(Tahsilat,0)-Nz(Odeme,0)", "tbl_KasaHareket", "Nz(IptalMi,False)=False" & k), 0)
 End Function
 
 Public Function UrunStok(ByVal urunID As Long) As Double
@@ -391,11 +404,12 @@ Public Function KasaYaz(ByVal tarih As Date, ByVal musteriID As Variant, ByVal p
         ByVal hareketTuru As String, ByVal odemeYontemi As String, ByVal aciklama As String, _
         ByVal tahsilat As Currency, ByVal odeme As Currency, _
         ByVal kaynakTipi As String, ByVal kaynakID As Variant, ByVal otomatik As Boolean, _
-        Optional ByVal id As Long = 0) As Long
+        Optional ByVal id As Long = 0, Optional ByVal kasaID As Long = 0) As Long
     Dim rs As DAO.Recordset
     Set rs = KayitAc("tbl_KasaHareket", "KasaHareketID", id)
     rs!tarih = tarih
-    rs!KasaID = VarsayilanKasaID()
+    If kasaID = 0 Then kasaID = VarsayilanKasaID()
+    rs!kasaID = kasaID
     rs!musteriID = musteriID
     rs!partiNo = partiNo
     rs!hareketTuru = Left$(hareketTuru, 20)
@@ -451,11 +465,78 @@ End Sub
 ' Otomatik kayıt kullanıcıya açıklanırken kaynağın adı
 Public Function KaynakAdi(ByVal kaynakTipi As Variant) As String
     Select Case Nz(kaynakTipi, "")
-        Case KAYNAK_PARTI: KaynakAdi = "Parti / Üretim"
+        Case KAYNAK_PARTI: KaynakAdi = "Üretim"
         Case KAYNAK_ALIMSATIM: KaynakAdi = "Alım / Satım"
-        Case KAYNAK_KASA: KaynakAdi = "Kasa"
+        Case KAYNAK_KASA: KaynakAdi = "Kasa / Banka"
+        Case KAYNAK_TESLIM: KaynakAdi = "Yağ Teslim"
         Case Else: KaynakAdi = "Manuel"
     End Select
+End Function
+
+' ---------------------------------------------------------------
+' SEZON
+' Zeytin sezonu 1 Eylül'de başlar, 31 Ağustos'ta biter.
+' Sezon adı "2026/2027" biçimindedir. Ayarlar'da aktif sezon seçilir;
+' yeni parti numaraları ve listeler aktif sezona göre çalışır.
+' ---------------------------------------------------------------
+Public Function SezonBul(ByVal tarih As Variant) As String
+    Dim y As Integer
+    If Not IsDate(tarih) Then tarih = Date
+    y = Year(CDate(tarih))
+    If Month(CDate(tarih)) < 9 Then y = y - 1
+    SezonBul = y & "/" & (y + 1)
+End Function
+
+Public Function AktifSezon() As String
+    AktifSezon = Ayar("AktifSezon")
+    If Len(AktifSezon) <> 9 Then AktifSezon = SezonBul(Date)
+End Function
+
+Public Function SezonBaslangic(ByVal sezon As String) As Date
+    SezonBaslangic = DateSerial(CInt(Left$(sezon, 4)), 9, 1)
+End Function
+
+Public Function SezonBitis(ByVal sezon As String) As Date
+    SezonBitis = DateSerial(CInt(Left$(sezon, 4)) + 1, 8, 31)
+End Function
+
+' Açılır kutular için sezon listesi (en eski partiden gelecek sezona)
+Public Function SezonListesi() As String
+    Dim ilk As Integer, son As Integer, y As Integer, s As String, enEski As Variant
+    son = CInt(Left$(SezonBul(Date), 4)) + 1
+    ilk = son - 2
+    enEski = DMin("Tarih", "tbl_Parti")
+    If IsDate(enEski) Then
+        y = CInt(Left$(SezonBul(enEski), 4))
+        If y < ilk Then ilk = y
+    End If
+    For y = son To ilk Step -1
+        s = s & IIf(s = "", "", ";") & y & "/" & (y + 1)
+    Next
+    SezonListesi = s
+End Function
+
+Public Function AktifSezonMetni() As String
+    AktifSezonMetni = "Sezon: " & AktifSezon()
+End Function
+
+' Sayıyı SQL'e nokta ondalıkla yazar
+Public Function SqlSayi(ByVal d As Double) As String
+    SqlSayi = Trim$(Str$(d))
+End Function
+
+' Ondalık ayarı: "12" / "12,5" / "12.5" -> sayı (geçersizse varsayılan)
+Public Function AyarSayi(ByVal anahtar As String, ByVal varsayilan As Double) As Double
+    Dim s As String
+    s = Trim$(Ayar(anahtar))
+    If s = "" Then AyarSayi = varsayilan: Exit Function
+    If IsNumeric(s) Then
+        AyarSayi = CDbl(s)
+    ElseIf IsNumeric(Replace(s, ".", ",")) Then
+        AyarSayi = CDbl(Replace(s, ".", ","))
+    Else
+        AyarSayi = varsayilan
+    End If
 End Function
 
 ' ---------------------------------------------------------------

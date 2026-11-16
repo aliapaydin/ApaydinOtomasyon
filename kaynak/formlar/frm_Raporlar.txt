@@ -810,7 +810,7 @@ Begin Form
                     OverlapFlags =85
                     Left =5900
                     Top =2600
-                    Width =1300
+                    Width =1100
                     Height =380
                     FontWeight =700
                     TabIndex =4
@@ -823,10 +823,6 @@ Begin Form
                         0x9c213c76ba78084995f288050e89dc90
                     End
 
-                    LayoutCachedLeft =5900
-                    LayoutCachedTop =2600
-                    LayoutCachedWidth =7200
-                    LayoutCachedHeight =2980
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =4103820
@@ -849,9 +845,9 @@ Begin Form
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =7300
+                    Left =7100
                     Top =2600
-                    Width =1300
+                    Width =1200
                     Height =380
                     FontWeight =700
                     TabIndex =5
@@ -864,10 +860,6 @@ Begin Form
                         0xdc8ae38e5934a74bb9cc3146d1f0a184
                     End
 
-                    LayoutCachedLeft =7300
-                    LayoutCachedTop =2600
-                    LayoutCachedWidth =8600
-                    LayoutCachedHeight =2980
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =4103820
@@ -890,9 +882,9 @@ Begin Form
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =8700
+                    Left =8400
                     Top =2600
-                    Width =1300
+                    Width =1000
                     Height =380
                     FontWeight =700
                     TabIndex =6
@@ -905,10 +897,6 @@ Begin Form
                         0x42d61e1ce6b06f4e9856cc75ef27de06
                     End
 
-                    LayoutCachedLeft =8700
-                    LayoutCachedTop =2600
-                    LayoutCachedWidth =10000
-                    LayoutCachedHeight =2980
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =4103820
@@ -931,9 +919,9 @@ Begin Form
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =10100
+                    Left =9500
                     Top =2600
-                    Width =1300
+                    Width =1000
                     Height =380
                     FontWeight =700
                     TabIndex =7
@@ -946,10 +934,6 @@ Begin Form
                         0xa0f9982d7b370e4ab2dcd7bee1dee065
                     End
 
-                    LayoutCachedLeft =10100
-                    LayoutCachedTop =2600
-                    LayoutCachedWidth =11400
-                    LayoutCachedHeight =2980
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =4103820
@@ -1338,6 +1322,45 @@ Begin Form
                     LayoutCachedHeight =6300
                     ThemeFontIndex =-1
                     ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =10600
+                    Top =2640
+                    Width =650
+                    Height =300
+                    FontSize =10
+                    ForeColor =1520430
+                    Name ="lblRSezon"
+                    Caption ="Sezon"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin ComboBox
+                    RowSourceTypeInt =1
+                    LimitToList = NotDefault
+                    OverlapFlags =85
+                    IMESentenceMode =3
+                    ColumnCount =1
+                    Left =11250
+                    Top =2620
+                    Width =1450
+                    Height =330
+                    FontSize =10
+                    BorderColor =8435888
+                    ForeColor =1520430
+                    Name ="cmbRSezon"
+                    RowSourceType ="Value List"
+                    RowSource =""
+                    AfterUpdate ="=RaporSezonSecildi()"
+                    FontName ="Segoe UI"
+                    AllowValueListEdits =0
+                    ThemeFontIndex =-1
+                    BackThemeColorIndex =-1
+                    BorderThemeColorIndex =-1
+                    ForeThemeColorIndex =-1
+                    TabIndex =16
                 End
             End
         End

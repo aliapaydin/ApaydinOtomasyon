@@ -1,7 +1,6 @@
 Version =21
 VersionRequired =20
 PublishOption =1
-Checksum =-1811066872
 Begin Form
     RecordSelectors = NotDefault
     AutoCenter = NotDefault
@@ -14,24 +13,10 @@ Begin Form
     PictureAlignment =2
     DatasheetGridlinesBehavior =3
     GridY =10
-    Width =11300
+    Width =15000
     DatasheetFontHeight =11
-    ItemSuffix =48
-    Left =7090
-    Top =1890
-    Right =17330
-    Bottom =7920
+    ItemSuffix =34
     DatasheetGridlinesColor =15132391
-    RecSrcDt = Begin
-        0x2159c064969ee640
-    End
-    GUID = Begin
-        0x94add37805d52f4eb287c26dfa6991d7
-    End
-    NameMap = Begin
-        0x0acc0e5500000000000000000000000000000000000000000c00000005000000 ,
-        0x0000000000000000000000000000
-    End
     Caption ="Ana Menü"
     DatasheetFontName ="Calibri"
     OnLoad ="=MenuYukle()"
@@ -129,12 +114,24 @@ Begin Form
             PressedForeThemeColorIndex =0
             PressedForeTint =75.0
         End
+        Begin CheckBox
+            BorderLineStyle =0
+            LabelX =230
+            LabelY =-30
+            BorderColor =10921638
+            GridlineColor =10921638
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
         Begin TextBox
             AddColon = NotDefault
             FELineBreak = NotDefault
             TextFontCharSet =162
             BorderLineStyle =0
-            LabelX =-1800
+            Width =1701
+            LabelX =-1701
             FontSize =11
             BorderColor =10921638
             ForeColor =4210752
@@ -150,13 +147,55 @@ Begin Form
             GridlineThemeColorIndex =1
             GridlineShade =65.0
         End
+        Begin ListBox
+            TextFontCharSet =162
+            BorderLineStyle =0
+            Width =1701
+            Height =1417
+            LabelX =-1701
+            FontSize =11
+            ForeColor =4210752
+            BorderColor =10921638
+            FontName ="Calibri"
+            GridlineColor =10921638
+            AllowValueListEdits =1
+            InheritValueList =1
+            ThemeFontIndex =1
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            ForeThemeColorIndex =0
+            ForeTint =75.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin ComboBox
+            AddColon = NotDefault
+            TextFontCharSet =162
+            BorderLineStyle =0
+            Width =1701
+            LabelX =-1701
+            FontSize =11
+            BorderColor =10921638
+            ForeColor =3484194
+            FontName ="Calibri"
+            GridlineColor =10921638
+            AllowValueListEdits =1
+            InheritValueList =1
+            ThemeFontIndex =1
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            ForeThemeColorIndex =2
+            ForeShade =50.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
         Begin Section
-            Height =6900
+            Height =6000
             BackColor =14939127
             Name ="Ayrıntı"
-            GUID = Begin
-                0x781cdc17908dbe45a09476127376ce06
-            End
+            AutoHeight =1
             AlternateBackColor =15921906
             AlternateBackThemeColorIndex =1
             AlternateBackShade =95.0
@@ -165,16 +204,13 @@ Begin Form
                     BackStyle =1
                     OldBorderStyle =0
                     OverlapFlags =85
-                    Width =11300
+                    Left =0
+                    Top =0
+                    Width =15000
                     Height =1500
                     BackColor =2050619
                     Name ="rctBant"
                     Tag ="tema"
-                    GUID = Begin
-                        0xd6d39ce8d240744099dd68947b206db0
-                    End
-                    LayoutCachedWidth =11300
-                    LayoutCachedHeight =1500
                     BackThemeColorIndex =-1
                 End
                 Begin Image
@@ -185,9 +221,6 @@ Begin Form
                     Name ="imgLogo"
                     Tag ="tema"
                     Picture ="C:\\Users\\APAYDIN\\Desktop\\Cicer Zeytinyagi\\Gorseller\\apaydin_logo.png"
-                    GUID = Begin
-                        0xcd0d1ed572967742a31df9ce80593fe6
-                    End
                     ImageData = Begin
                         0x89504e470d0a1a0a0000000d4948445200000200000002000806000000f478d4 ,
                         0xfa000000017352474200aece1ce90000000467414d410000b18f0bfc61050000 ,
@@ -1418,7 +1451,7 @@ Begin Form
                     LayoutCachedTop =150
                     LayoutCachedWidth =1550
                     LayoutCachedHeight =1350
-                    TabIndex =16
+                    TabIndex =17
                 End
                 Begin TextBox
                     Enabled = NotDefault
@@ -1431,7 +1464,7 @@ Begin Form
                     IMESentenceMode =3
                     Left =1750
                     Top =300
-                    Width =9300
+                    Width =9500
                     Height =600
                     FontSize =22
                     FontWeight =700
@@ -1440,22 +1473,15 @@ Begin Form
                     ControlSource ="=FirmaAdiBuyuk()"
                     FontName ="Segoe UI"
                     Tag ="tema"
-                    GUID = Begin
-                        0xf44424958a3203478bca52ad8a86e24d
-                    End
-
-                    LayoutCachedLeft =1750
-                    LayoutCachedTop =300
-                    LayoutCachedWidth =11050
-                    LayoutCachedHeight =900
                     ThemeFontIndex =-1
                     ForeThemeColorIndex =-1
+                    TabIndex =0
                 End
                 Begin Label
-                    OverlapFlags =247
+                    OverlapFlags =85
                     Left =1800
                     Top =880
-                    Width =9000
+                    Width =7000
                     Height =400
                     FontSize =13
                     FontWeight =700
@@ -1464,57 +1490,51 @@ Begin Form
                     Caption ="ZEYTİNYAĞI ÜRETİM OTOMASYONU"
                     FontName ="Segoe UI"
                     Tag ="tema"
-                    GUID = Begin
-                        0x014b972c308ac542addb5ec0849d9fa7
-                    End
-                    LayoutCachedLeft =1800
-                    LayoutCachedTop =880
-                    LayoutCachedWidth =10800
-                    LayoutCachedHeight =1280
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    TextAlign =3
+                    Left =10500
+                    Top =950
+                    Width =4200
+                    Height =360
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =2597577
+                    Name ="lblSezon"
+                    Caption =""
+                    FontName ="Segoe UI"
+                    Tag ="tema"
                     ThemeFontIndex =-1
                     ForeThemeColorIndex =-1
                 End
                 Begin Rectangle
                     BackStyle =1
                     OldBorderStyle =0
-                    OverlapFlags =87
+                    OverlapFlags =85
+                    Left =0
                     Top =1500
-                    Width =11300
+                    Width =15000
                     Height =60
                     BackColor =2597577
                     Name ="rctCizgi"
-                    Tag ="tema"
-                    GUID = Begin
-                        0x9591601dacce1241a2970a79ab471383
-                    End
-                    LayoutCachedTop =1500
-                    LayoutCachedWidth =11300
-                    LayoutCachedHeight =1560
                     BackThemeColorIndex =-1
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =450
+                    Left =350
                     Top =1850
-                    Width =2450
+                    Width =2700
                     Height =850
                     FontSize =12
                     FontWeight =700
-                    TabIndex =1
                     ForeColor =16777215
-                    Name ="btnParti"
-                    Caption ="Parti / Üretim"
-                    OnClick ="=MenuAc(\"frm_CicerParti\")"
+                    Name ="btnMalKabul"
+                    Caption ="Mal Kabul"
+                    OnClick ="=MenuAc(\"frm_MalKabul\")"
                     FontName ="Segoe UI"
-                    ControlTipText ="Zeytin girişi, sıkım, hakyağı"
-                    GUID = Begin
-                        0x07c6663466e82a47a2be3e04a562b46f
-                    End
-
-                    LayoutCachedLeft =450
-                    LayoutCachedTop =1850
-                    LayoutCachedWidth =2900
-                    LayoutCachedHeight =2700
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =2785131
@@ -1530,34 +1550,51 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =1
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =3100
+                    Left =3250
                     Top =1850
-                    Width =2450
+                    Width =2700
                     Height =850
                     FontSize =12
                     FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnUretim"
+                    Caption ="Üretim"
+                    OnClick ="=MenuAc(\"frm_Uretim\")"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2785131
+                    BackThemeColorIndex =-1
+                    BorderColor =1990736
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =3446400
+                    HoverThemeColorIndex =-1
+                    PressedColor =1990736
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
                     TabIndex =2
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =6150
+                    Top =1850
+                    Width =2700
+                    Height =850
+                    FontSize =12
+                    FontWeight =700
                     ForeColor =16777215
                     Name ="btnTeslim"
                     Caption ="Yağ Teslim"
                     OnClick ="=MenuAc(\"frm_CicerTeslim\")"
                     FontName ="Segoe UI"
-                    ControlTipText ="Yağ teslimi ve teslim fişi"
-                    GUID = Begin
-                        0x81c8a116c88a334baae74bc1dbefe423
-                    End
-
-                    LayoutCachedLeft =3100
-                    LayoutCachedTop =1850
-                    LayoutCachedWidth =5550
-                    LayoutCachedHeight =2700
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =2785131
@@ -1573,34 +1610,21 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =3
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =5750
+                    Left =9050
                     Top =1850
-                    Width =2450
+                    Width =2700
                     Height =850
                     FontSize =12
                     FontWeight =700
-                    TabIndex =3
                     ForeColor =16777215
                     Name ="btnMusteri"
                     Caption ="Müşteriler"
                     OnClick ="=MenuAc(\"frm_CicerMusteri\")"
                     FontName ="Segoe UI"
-                    ControlTipText ="Müşteri kartları"
-                    GUID = Begin
-                        0xf706d14e51717a489f4861c4d92cbfd3
-                    End
-
-                    LayoutCachedLeft =5750
-                    LayoutCachedTop =1850
-                    LayoutCachedWidth =8200
-                    LayoutCachedHeight =2700
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =2785131
@@ -1616,34 +1640,21 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =4
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =8400
+                    Left =11950
                     Top =1850
-                    Width =2450
+                    Width =2700
                     Height =850
                     FontSize =12
                     FontWeight =700
-                    TabIndex =4
                     ForeColor =16777215
                     Name ="btnCari"
                     Caption ="Cari Hareketler"
                     OnClick ="=MenuAc(\"frm_CicerCari\")"
                     FontName ="Segoe UI"
-                    ControlTipText ="Borç / alacak / kalan, bidonlar"
-                    GUID = Begin
-                        0x1d4d98f0edbcd8478233780c128b212d
-                    End
-
-                    LayoutCachedLeft =8400
-                    LayoutCachedTop =1850
-                    LayoutCachedWidth =10850
-                    LayoutCachedHeight =2700
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =2785131
@@ -1659,34 +1670,21 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =5
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =450
+                    Left =350
                     Top =2850
-                    Width =2450
+                    Width =2700
                     Height =850
                     FontSize =12
                     FontWeight =700
-                    TabIndex =5
                     ForeColor =16777215
                     Name ="btnKasa"
-                    Caption ="Kasa"
+                    Caption ="Kasa / Banka"
                     OnClick ="=MenuAc(\"frm_CicerKasa\")"
                     FontName ="Segoe UI"
-                    ControlTipText ="Tahsilat, ödeme, kasa bakiyesi"
-                    GUID = Begin
-                        0x6b2584744c6fe64bbd6150220d6d8181
-                    End
-
-                    LayoutCachedLeft =450
-                    LayoutCachedTop =2850
-                    LayoutCachedWidth =2900
-                    LayoutCachedHeight =3700
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =2785131
@@ -1702,34 +1700,21 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =6
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =3100
+                    Left =3250
                     Top =2850
-                    Width =2450
+                    Width =2700
                     Height =850
                     FontSize =12
                     FontWeight =700
-                    TabIndex =6
                     ForeColor =16777215
                     Name ="btnStok"
                     Caption ="Stok Hareketleri"
                     OnClick ="=MenuAc(\"frm_CicerStok\")"
                     FontName ="Segoe UI"
-                    ControlTipText ="Giren / çıkan / kalan"
-                    GUID = Begin
-                        0x21798e02bd5fcc449c2d87f416e75197
-                    End
-
-                    LayoutCachedLeft =3100
-                    LayoutCachedTop =2850
-                    LayoutCachedWidth =5550
-                    LayoutCachedHeight =3700
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =2785131
@@ -1745,34 +1730,21 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =7
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =5750
+                    Left =6150
                     Top =2850
-                    Width =2450
+                    Width =2700
                     Height =850
                     FontSize =12
                     FontWeight =700
-                    TabIndex =7
                     ForeColor =16777215
                     Name ="btnUrun"
                     Caption ="Ürün Kartları"
                     OnClick ="=MenuAc(\"frm_CicerUrun\")"
                     FontName ="Segoe UI"
-                    ControlTipText ="Ürünler ve fiyatlar"
-                    GUID = Begin
-                        0x4cb1d5b5af441846b2aa69ecae0bb50b
-                    End
-
-                    LayoutCachedLeft =5750
-                    LayoutCachedTop =2850
-                    LayoutCachedWidth =8200
-                    LayoutCachedHeight =3700
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =2785131
@@ -1788,34 +1760,21 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =8
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =8400
+                    Left =9050
                     Top =2850
-                    Width =2450
+                    Width =2700
                     Height =850
                     FontSize =12
                     FontWeight =700
-                    TabIndex =8
                     ForeColor =16777215
                     Name ="btnAlimSatim"
                     Caption ="Alım / Satım"
                     OnClick ="=MenuAc(\"frm_CicerAlimSatim\")"
                     FontName ="Segoe UI"
-                    ControlTipText ="Ürün alım ve satışları"
-                    GUID = Begin
-                        0xd22843bcef2bd14ca554e07f85c07cba
-                    End
-
-                    LayoutCachedLeft =8400
-                    LayoutCachedTop =2850
-                    LayoutCachedWidth =10850
-                    LayoutCachedHeight =3700
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =2785131
@@ -1831,34 +1790,21 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =9
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =450
-                    Top =3850
-                    Width =2450
+                    Left =11950
+                    Top =2850
+                    Width =2700
                     Height =850
                     FontSize =12
                     FontWeight =700
-                    TabIndex =9
                     ForeColor =2050619
                     Name ="btnRaporlar"
                     Caption ="Raporlar"
                     OnClick ="=MenuAc(\"frm_Raporlar\")"
                     FontName ="Segoe UI"
-                    ControlTipText ="A5 raporlar, PDF ve yazıcı çıktısı"
-                    GUID = Begin
-                        0x484ed8032c187d41aa2e0963e249781d
-                    End
-
-                    LayoutCachedLeft =450
-                    LayoutCachedTop =3850
-                    LayoutCachedWidth =2900
-                    LayoutCachedHeight =4700
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =2597577
@@ -1874,34 +1820,21 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =2050619
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =10
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =3100
+                    Left =350
                     Top =3850
-                    Width =2450
+                    Width =2700
                     Height =850
                     FontSize =12
                     FontWeight =700
-                    TabIndex =10
                     ForeColor =16777215
                     Name ="btnPersonel"
                     Caption ="Personel"
                     OnClick ="=MenuAc(\"frm_CicerPersonel\")"
                     FontName ="Segoe UI"
-                    ControlTipText ="Giriş ve teslim personeli"
-                    GUID = Begin
-                        0xd1830fdec8697248be2086ba2bffffac
-                    End
-
-                    LayoutCachedLeft =3100
-                    LayoutCachedTop =3850
-                    LayoutCachedWidth =5550
-                    LayoutCachedHeight =4700
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =2785131
@@ -1917,34 +1850,21 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =11
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =5750
+                    Left =3250
                     Top =3850
-                    Width =2450
+                    Width =2700
                     Height =850
                     FontSize =12
                     FontWeight =700
-                    TabIndex =11
                     ForeColor =16777215
                     Name ="btnKullanicilar"
                     Caption ="Kullanıcılar"
                     OnClick ="=MenuAc(\"frm_Kullanicilar\")"
                     FontName ="Segoe UI"
-                    ControlTipText ="Kullanıcı ekle / sil (yönetici)"
-                    GUID = Begin
-                        0x60b6b9ceb2582248b0bf6e85242409e0
-                    End
-
-                    LayoutCachedLeft =5750
-                    LayoutCachedTop =3850
-                    LayoutCachedWidth =8200
-                    LayoutCachedHeight =4700
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =4103820
@@ -1960,34 +1880,21 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =12
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =8400
+                    Left =6150
                     Top =3850
-                    Width =2450
+                    Width =2700
                     Height =850
                     FontSize =12
                     FontWeight =700
-                    TabIndex =12
                     ForeColor =16777215
                     Name ="btnAyarlar"
                     Caption ="Ayarlar"
                     OnClick ="=MenuAc(\"frm_Ayarlar\")"
                     FontName ="Segoe UI"
-                    ControlTipText ="Firma adı, varsayılanlar, şifre (yönetici)"
-                    GUID = Begin
-                        0x85ab9c07585fc945aa0b9d93b1b16317
-                    End
-
-                    LayoutCachedLeft =8400
-                    LayoutCachedTop =3850
-                    LayoutCachedWidth =10850
-                    LayoutCachedHeight =4700
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =4103820
@@ -2003,76 +1910,50 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =13
                 End
                 Begin Label
                     OverlapFlags =85
                     Left =450
-                    Top =5150
-                    Width =5500
+                    Top =5100
+                    Width =6000
                     Height =330
-                    FontSize =10
+                    FontSize =11
                     FontWeight =700
                     ForeColor =2050619
                     Name ="lblOturum"
+                    Caption =""
                     FontName ="Segoe UI"
-                    Tag ="tema"
-                    GUID = Begin
-                        0x9477e96416ffe14d94416b03dd87b1ed
-                    End
-                    LayoutCachedLeft =450
-                    LayoutCachedTop =5150
-                    LayoutCachedWidth =5950
-                    LayoutCachedHeight =5480
                     ThemeFontIndex =-1
                     ForeThemeColorIndex =-1
                 End
                 Begin Label
                     OverlapFlags =85
                     Left =450
-                    Top =5500
-                    Width =5500
+                    Top =5450
+                    Width =6000
                     Height =300
-                    FontSize =9
+                    FontSize =10
                     ForeColor =6584440
                     Name ="lblAltBilgi"
-                    Caption ="Sürüm 2.0   •   Geliştirici: Ali Apaydın"
+                    Caption ="Sürüm 3.0  •  Geliştirici: Ali Apaydın"
                     FontName ="Segoe UI"
-                    Tag ="tema"
-                    GUID = Begin
-                        0x752d9940275a654fb9578ad00e468fdf
-                    End
-                    LayoutCachedLeft =450
-                    LayoutCachedTop =5500
-                    LayoutCachedWidth =5950
-                    LayoutCachedHeight =5800
                     ThemeFontIndex =-1
                     ForeThemeColorIndex =-1
                 End
                 Begin CommandButton
-                    OverlapFlags =215
-                    Left =5750
-                    Top =5150
-                    Width =1700
+                    OverlapFlags =85
+                    Left =8500
+                    Top =5100
+                    Width =1800
                     Height =600
+                    FontSize =11
                     FontWeight =700
-                    TabIndex =13
                     ForeColor =2050619
                     Name ="btnHakkinda"
                     Caption ="Hakkında"
                     OnClick ="=MenuAc(\"frm_Hakkinda\")"
                     FontName ="Segoe UI"
-                    GUID = Begin
-                        0x722fa8a7c845e34484eb982bf5fd920e
-                    End
-
-                    LayoutCachedLeft =5750
-                    LayoutCachedTop =5150
-                    LayoutCachedWidth =7450
-                    LayoutCachedHeight =5750
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =2597577
@@ -2088,33 +1969,21 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =2050619
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
-                    Overlaps =1
+                    TabIndex =14
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =7550
-                    Top =5150
-                    Width =1950
+                    Left =10400
+                    Top =5100
+                    Width =2350
                     Height =600
+                    FontSize =11
                     FontWeight =700
-                    TabIndex =14
                     ForeColor =16777215
                     Name ="btnOturum"
                     Caption ="Oturumu Kapat"
                     OnClick ="=OturumuKapat()"
                     FontName ="Segoe UI"
-                    GUID = Begin
-                        0x650b5e54781fba4a816bfee5eb61b5ec
-                    End
-
-                    LayoutCachedLeft =7550
-                    LayoutCachedTop =5150
-                    LayoutCachedWidth =9500
-                    LayoutCachedHeight =5750
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =6058096
@@ -2130,32 +1999,21 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =15
                 End
                 Begin CommandButton
                     OverlapFlags =85
-                    Left =9600
-                    Top =5150
-                    Width =1250
+                    Left =12850
+                    Top =5100
+                    Width =1800
                     Height =600
+                    FontSize =11
                     FontWeight =700
-                    TabIndex =15
                     ForeColor =16777215
                     Name ="btnCikis"
                     Caption ="Çıkış"
                     OnClick ="=AktifFormuKapat()"
                     FontName ="Segoe UI"
-                    GUID = Begin
-                        0xf055db7e314dbd46a8688970fa13dab6
-                    End
-
-                    LayoutCachedLeft =9600
-                    LayoutCachedTop =5150
-                    LayoutCachedWidth =10850
-                    LayoutCachedHeight =5750
                     ForeThemeColorIndex =-1
                     Gradient =0
                     BackColor =6058096
@@ -2171,10 +2029,7 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    WebImagePaddingLeft =3
-                    WebImagePaddingTop =3
-                    WebImagePaddingRight =2
-                    WebImagePaddingBottom =2
+                    TabIndex =16
                 End
             End
         End

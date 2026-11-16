@@ -583,9 +583,9 @@ Begin Form
                 End
                 Begin Label
                     OverlapFlags =93
-                    Left =3400
+                    Left =3300
                     Top =1400
-                    Width =1100
+                    Width =1200
                     Height =300
                     FontSize =10
                     ForeColor =1520430
@@ -595,10 +595,6 @@ Begin Form
                     GUID = Begin
                         0x912418416706c94c9ca9de5ec8c988e4
                     End
-                    LayoutCachedLeft =3400
-                    LayoutCachedTop =1400
-                    LayoutCachedWidth =4500
-                    LayoutCachedHeight =1700
                     ThemeFontIndex =-1
                     ForeThemeColorIndex =-1
                 End

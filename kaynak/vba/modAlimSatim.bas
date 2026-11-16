@@ -98,6 +98,21 @@ Private Sub AlimSatimYazIslem(ByVal guncelle As Boolean)
     If Sayi(frm!txtMiktar) <= 0 Or Sayi(frm!txtBirimFiyat) <= 0 Then
         Mesaj "Miktar ve birim fiyatı giriniz.", vbExclamation: Exit Sub
     End If
+    ' Satışta stok kontrolü: eldeki miktardan fazla satılamaz
+    If Not AlimMi(frm!cmbIslemTuru) Then
+        Dim mevcut As Double
+        mevcut = UrunStok(CLng(frm!cmbUrun))
+        If id <> 0 Then
+            ' güncellenen satışın eski miktarı stoğa geri sayılır
+            mevcut = mevcut + Nz(DSum("Nz(Cikis,0)-Nz(Giris,0)", "tbl_StokHareket", "KaynakTipi='" & KAYNAK_ALIMSATIM & "' AND KaynakID=" & id & _
+                " AND UrunID=" & CLng(frm!cmbUrun) & " AND Nz(IptalMi,False)=False"), 0)
+        End If
+        If Sayi(frm!txtMiktar) > mevcut + 0.0001 Then
+            Mesaj "Stok yetersiz." & vbCrLf & vbCrLf & frm!cmbUrun.Column(1) & " için eldeki miktar: " & Format$(mevcut, "#,##0.##") & _
+                vbCrLf & "Satılmak istenen: " & Format$(Sayi(frm!txtMiktar), "#,##0.##"), vbExclamation
+            Exit Sub
+        End If
+    End If
 
     DBEngine.BeginTrans: islemde = True
     Set rs = KayitAc("tbl_AlimSatim", "IslemID", id)
