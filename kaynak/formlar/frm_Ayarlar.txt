@@ -15,7 +15,7 @@ Begin Form
     GridY =10
     Width =15000
     DatasheetFontHeight =11
-    ItemSuffix =60
+    ItemSuffix =64
     DatasheetGridlinesColor =15132391
     Caption ="Ayarlar"
     DatasheetFontName ="Calibri"
@@ -192,7 +192,7 @@ Begin Form
             GridlineShade =65.0
         End
         Begin Section
-            Height =8300
+            Height =9200
             BackColor =14939127
             Name ="Ayrıntı"
             AutoHeight =1
@@ -585,7 +585,7 @@ Begin Form
                     LayoutCachedTop =45
                     LayoutCachedWidth =720
                     LayoutCachedHeight =605
-                    TabIndex =25
+                    TabIndex =27
                 End
                 Begin Label
                     OverlapFlags =85
@@ -1324,13 +1324,103 @@ Begin Form
                 Begin Label
                     OverlapFlags =85
                     Left =7800
-                    Top =5600
+                    Top =5000
                     Width =6900
                     Height =320
                     FontSize =10
                     FontWeight =700
                     ForeColor =2597577
                     Name ="lblB5"
+                    Caption ="YEDEKLEME"
+                    FontName ="Segoe UI"
+                    Tag ="tema"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =7800
+                    Top =5400
+                    Width =3350
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnYedekAl"
+                    Caption ="Yedek Al"
+                    OnClick ="=YedekEkraniAc()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2785131
+                    BackThemeColorIndex =-1
+                    BorderColor =1990736
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =3446400
+                    HoverThemeColorIndex =-1
+                    PressedColor =1990736
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =21
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =11250
+                    Top =5400
+                    Width =3450
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =2050619
+                    Name ="btnGeriYukle"
+                    Caption ="Yedekten Geri Yükle"
+                    OnClick ="=GeriYukleEkraniAc()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2597577
+                    BackThemeColorIndex =-1
+                    BorderColor =1673130
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =4110558
+                    HoverThemeColorIndex =-1
+                    PressedColor =1673130
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =2050619
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =2050619
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =22
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =7800
+                    Top =5950
+                    Width =6900
+                    Height =520
+                    FontSize =9
+                    ForeColor =6584440
+                    Name ="lblSonYedek"
+                    Caption =""
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =7800
+                    Top =6600
+                    Width =6900
+                    Height =320
+                    FontSize =10
+                    FontWeight =700
+                    ForeColor =2597577
+                    Name ="lblB6"
                     Caption ="YÖNETİCİ ARAÇLARI"
                     FontName ="Segoe UI"
                     Tag ="tema"
@@ -1340,7 +1430,7 @@ Begin Form
                 Begin CommandButton
                     OverlapFlags =85
                     Left =7800
-                    Top =6000
+                    Top =7000
                     Width =3350
                     Height =450
                     FontSize =11
@@ -1365,12 +1455,12 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    TabIndex =21
+                    TabIndex =23
                 End
                 Begin CommandButton
                     OverlapFlags =85
                     Left =11250
-                    Top =6000
+                    Top =7000
                     Width =3450
                     Height =450
                     FontSize =11
@@ -1395,12 +1485,12 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    TabIndex =22
+                    TabIndex =24
                 End
                 Begin CommandButton
                     OverlapFlags =85
                     Left =7800
-                    Top =6550
+                    Top =7550
                     Width =3350
                     Height =450
                     FontSize =11
@@ -1425,12 +1515,12 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    TabIndex =23
+                    TabIndex =25
                 End
                 Begin Label
                     OverlapFlags =85
                     Left =300
-                    Top =7500
+                    Top =8550
                     Width =11800
                     Height =300
                     FontSize =9
@@ -1444,7 +1534,7 @@ Begin Form
                 Begin CommandButton
                     OverlapFlags =85
                     Left =13200
-                    Top =7400
+                    Top =8450
                     Width =1500
                     Height =450
                     FontSize =11
@@ -1469,7 +1559,7 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    TabIndex =24
+                    TabIndex =26
                 End
             End
         End

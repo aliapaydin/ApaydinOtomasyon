@@ -272,7 +272,7 @@ Public Function AktifFormuKapat()
     If ad = "" Then Exit Function
     On Error GoTo 0
     If ad = ANA_MENU Or ad = GIRIS_FORMU Then
-        If Soru("Programdan çıkılsın mı?") Then DoCmd.Quit acQuitSaveAll
+        CikisSor
     Else
         DoCmd.Close acForm, ad
         If Not FormAcikMi(ANA_MENU) Then DoCmd.OpenForm ANA_MENU

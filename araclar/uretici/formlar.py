@@ -238,7 +238,7 @@ def ana_menu():
 # ---------------------------------------------------------------
 def ayarlar():
     W = 15000
-    f = Form('frm_Ayarlar', 'Ayarlar', W, 8300, onload='=AyarlarYukle()', bant='AYARLAR')
+    f = Form('frm_Ayarlar', 'Ayarlar', W, 9200, onload='=AyarlarYukle()', bant='AYARLAR')
     f.bolum('lblB1', 'FİRMA BİLGİLERİ  (başlıklarda ve raporlarda görünür)', 300, 850, 7000)
     f.alan('Firma Adı', 'txtFirmaAdi', 300, 1250, 1900, 5000)
     f.alan('Telefon', 'txtFirmaTelefon', 300, 1650, 1900, 2600)
@@ -273,12 +273,16 @@ def ayarlar():
     f.dugme('btnHesapKaydet', 'Hesabı Kaydet', X, 4350, 2100, tik='=HesapKaydet()', stil='yesil')
     f.dugme('btnHesapSil', 'Hesabı Sil', X + 2200, 4350, 1800, tik='=HesapSil()', stil='kirmizi')
     f.dugme('btnHesapTemizle', 'Temizle', X + 4100, 4350, 1500, tik='=HesapTemizle()', stil='gri')
-    f.bolum('lblB5', 'YÖNETİCİ ARAÇLARI', X, 5600, 6900)
-    f.dugme('btnKaynak', 'Kaynakları Dışa Aktar', X, 6000, 3350, tik='=KaynakAktarDugme()', stil='acik')
-    f.dugme('btnYeniden', 'Kayıtları Yeniden Oluştur', X + 3450, 6000, 3450, tik='=KayitlariYenidenOlustur()', stil='gri')
-    f.dugme('btnGelistirici', 'Geliştirici Modu (Shift)', X, 6550, 3350, tik='=GelistiriciModu()', stil='gri')
-    f.etiket('lblVeriYolu', '', 300, 7500, 11800, boyut=9, renk=GRI_METIN, kontrol=False)
-    f.dugme('btnKapat', 'Kapat', 13200, 7400, 1500, tik='=AktifFormuKapat()', stil='gri')
+    f.bolum('lblB5', 'YEDEKLEME', X, 5000, 6900)
+    f.dugme('btnYedekAl', 'Yedek Al', X, 5400, 3350, tik='=YedekEkraniAc()', stil='yesil')
+    f.dugme('btnGeriYukle', 'Yedekten Geri Yükle', X + 3450, 5400, 3450, tik='=GeriYukleEkraniAc()', stil='altin')
+    f.etiket('lblSonYedek', '', X, 5950, 6900, h=520, boyut=9, renk=GRI_METIN, kontrol=False)
+    f.bolum('lblB6', 'YÖNETİCİ ARAÇLARI', X, 6600, 6900)
+    f.dugme('btnKaynak', 'Kaynakları Dışa Aktar', X, 7000, 3350, tik='=KaynakAktarDugme()', stil='acik')
+    f.dugme('btnYeniden', 'Kayıtları Yeniden Oluştur', X + 3450, 7000, 3450, tik='=KayitlariYenidenOlustur()', stil='gri')
+    f.dugme('btnGelistirici', 'Geliştirici Modu (Shift)', X, 7550, 3350, tik='=GelistiriciModu()', stil='gri')
+    f.etiket('lblVeriYolu', '', 300, 8550, 11800, boyut=9, renk=GRI_METIN, kontrol=False)
+    f.dugme('btnKapat', 'Kapat', 13200, 8450, 1500, tik='=AktifFormuKapat()', stil='gri')
     return f
 
 
@@ -330,7 +334,105 @@ def kasa():
     return f
 
 
+# ---------------------------------------------------------------
+# YEDEKLEME
+# ---------------------------------------------------------------
+KIRMIZI_METIN = 3158192
+KAPANIS_KODU = """
+Option Compare Database
+Option Explicit
+
+' Gizli form: Access penceresi X ile kapatilirken cikis sorusunu gosterir (bkz. modYedek)
+Private Sub Form_Unload(Cancel As Integer)
+    If Not CikisOnaylandi() Then
+        Cancel = True
+        Me.TimerInterval = 150
+    End If
+End Sub
+
+Private Sub Form_Timer()
+    Me.TimerInterval = 0
+    CikisSor
+End Sub
+"""
+
+
+def kucuk_baslik(f, metin):
+    f._ekle('Label', [('BackStyle', 1), ('OverlapFlags', 93), ('TextAlign', 1), ('Left', 0), ('Top', 0),
+                      ('Width', f.W), ('Height', 560), ('FontSize', 13), ('FontWeight', 700), ('LeftMargin', 300),
+                      ('TopMargin', 110), ('BackColor', KOYU), ('ForeColor', BEYAZ), ('Name', 'lblBaslik'),
+                      ('Caption', q(metin)), ('FontName', q('Segoe UI')), ('ThemeFontIndex', -1),
+                      ('BackThemeColorIndex', -1), ('ForeThemeColorIndex', -1)], tab=False)
+    f.cizgi('rctCizgi', 0, 560, f.W, 45, ALTIN)
+
+
+def cikis():
+    W = 7400
+    f = Form('frm_Cikis', 'Çıkış', W, 2900, onload='=CikisFormYukle()', popup=True, modal=True, kenarlik=3,
+             minmax=False)
+    kucuk_baslik(f, 'ÇIKIŞ')
+    f.etiket('lblSoru', 'Programdan çıkmak istiyor musunuz?', 400, 850, 6600, h=360, boyut=12, kalin=True)
+    f.etiket('lblSonYedek', '', 400, 1300, 6600, h=520, boyut=9, renk=GRI_METIN, kontrol=False)
+    f.dugme('btnEvet', 'Evet, Çık', 400, 2050, 1800, tik='=CikisEvet()', stil='kirmizi')
+    f.dugme('btnYedek', 'Yedek Alıp Kapat', 2300, 2050, 2800, tik='=CikisYedekle()', stil='yesil')
+    f.dugme('btnHayir', 'Hayır', 5200, 2050, 1800, tik='=CikisHayir()', stil='gri')
+    return f
+
+
+def yedek():
+    W = 11400
+    f = Form('frm_Yedek', 'Yedek Al', W, 7500, onload='=YedekFormYukle()', bant='YEDEK AL', popup=True,
+             modal=True, kenarlik=3, minmax=False)
+    f.etiket('lblAciklama', "Veri dosyası seçtiğiniz sürücüde 'ApaydinOtomasyon_Yedek' klasörüne tarihli adla "
+             "kopyalanır. Klasör yoksa oluşturulur; eski yedekler silinmez.", 300, 850, 10800, h=520, boyut=9,
+             renk=GRI_METIN, kontrol=False)
+    f.bolum('lblB1', 'YEDEĞİN ALINACAĞI YER', 300, 1450, 6000)
+    f.liste('lstSuruculer', 300, 1850, 10800, 2550, '', 6, '0;900;3300;2300;1700;1100', tik='=HedefGoster()',
+            degerListesi=True, boyut=10)
+    f.dugme('btnYenile', 'Sürücüleri Yenile', 300, 4550, 2500, h=400, tik='=SuruculeriListele()', stil='acik',
+            boyut=10)
+    f.dugme('btnKlasor', 'Klasör Seç...', 2900, 4550, 2000, h=400, tik='=YedekKlasorSec()', stil='gri', boyut=10)
+    f.etiket('lblUyari', '', 5100, 4560, 6000, h=420, boyut=9, renk=KIRMIZI_METIN, kontrol=False)
+    f.etiket('lblHedef', '', 300, 5100, 10800, h=760, boyut=9, kontrol=False)
+    f.etiket('lblSonYedek', '', 300, 5950, 10800, h=300, boyut=9, renk=GRI_METIN, kontrol=False)
+    f.dugme('btnYedekle', 'Yedeği Al', 6200, 6600, 3000, tik='=YedekAl()', stil='yesil')
+    f.dugme('btnVazgec', 'Vazgeç', 9300, 6600, 1800, tik='=YedekVazgec()', stil='gri')
+    return f
+
+
+def geri_yukle():
+    W = 12400
+    f = Form('frm_GeriYukle', 'Yedekten Geri Yükle', W, 9000, onload='=GeriYukleFormYukle()',
+             bant='YEDEKTEN GERİ YÜKLE', popup=True, modal=True, kenarlik=3, minmax=False)
+    f.etiket('lblAciklama', "Takılı flaş bellekler, bu bilgisayardaki sürücüler ve seçtiğiniz klasörler "
+             "'ApaydinOtomasyon_Yedek' klasörü için taranır. Yüklenen yedek mevcut verinin yerine geçer; mevcut "
+             "veri silinmez, bu bilgisayardaki Yedek klasörüne taşınır.", 300, 850, 11800, h=520, boyut=9,
+             renk=GRI_METIN, kontrol=False)
+    f.bolum('lblB1', 'ÖNERİLEN YEDEK  (en güncel)', 300, 1450, 6000)
+    f.cerceve('rctOneri', 300, 1850, 11800, 1050, arka=SALT)
+    f.etiket('lblOneri', '', 500, 1950, 8500, h=400, boyut=12, kalin=True, kontrol=False)
+    f.etiket('lblOneriYol', '', 500, 2380, 8500, h=480, boyut=9, renk=GRI_METIN, kontrol=False)
+    f.dugme('btnOneriYukle', 'Bu Yedeği Yükle', 9200, 2100, 2700, tik='=OneriYukle()', stil='yesil')
+    f.bolum('lblSayi', 'DİĞER YEDEKLER', 300, 3200, 6000)
+    f.liste('lstYedekler', 300, 3600, 11800, 3700, '', 5, '0;1900;3400;4300;1100', ciftTik='=SeciliYukle()',
+            degerListesi=True, boyut=10)
+    f.dugme('btnSeciliYukle', 'Seçili Yedeği Yükle', 300, 7500, 3000, tik='=SeciliYukle()', stil='altin')
+    f.dugme('btnTara', 'Yeniden Tara', 3400, 7500, 2000, tik='=YedekleriTara()', stil='gri')
+    f.dugme('btnKlasor', 'Klasör Seç...', 5500, 7500, 2000, tik='=GeriYukleKlasorSec()', stil='gri')
+    f.dugme('btnKapat', 'Kapat', 10500, 7500, 1600, tik='=GeriYukleKapat()', stil='gri')
+    f.etiket('lblNot', 'Listeden daha eski bir yedek seçerseniz yüklemeden önce uyarı gösterilir.', 300, 8200,
+             11800, boyut=9, renk=GRI_METIN, kontrol=False)
+    return f
+
+
+def kapanis():
+    f = Form('frm_Kapanis', 'Kapanış', 3000, 600, kod=KAPANIS_KODU, olaylar=['OnUnload', 'OnTimer'])
+    f.etiket('lblBilgi', 'Çıkış kontrolü', 100, 100, 2800, kontrol=False)
+    return f
+
+
 if __name__ == '__main__':
-    for fn in (mal_kabul, uretim, teslim, hizli_cari, ana_menu, ayarlar, kasa):
+    for fn in (mal_kabul, uretim, teslim, hizli_cari, ana_menu, ayarlar, kasa, cikis, yedek, geri_yukle,
+               kapanis):
         frm = fn()
         print(frm.yaz(HEDEF))
