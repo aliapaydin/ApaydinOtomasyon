@@ -544,6 +544,8 @@ End Function
 ' Firma, geliştirici ve iletişim bilgileri burada tutulur.
 ' ---------------------------------------------------------------
 Public Function Ayar(ByVal anahtar As String) As String
+    ' Veri dosyası henüz bağlanmamışken (ilk açılış, başka bilgisayar) hata vermesin
+    On Error Resume Next
     Ayar = Nz(DLookup("Deger", "tbl_Ayarlar", "Anahtar=" & SqlMetin(anahtar)), "")
 End Function
 

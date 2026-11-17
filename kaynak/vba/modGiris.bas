@@ -66,6 +66,10 @@ Public Function GirisYukle()
         Exit Function
     End If
     ShiftKapat
+    ' Bağlantı yeni kurulduysa firma adı gibi hesaplanan alanları yenile
+    On Error Resume Next
+    Forms("frm_Giris").Recalc
+    On Error GoTo Hata
     KullaniciVarsayilanOlustur
     OturumID = 0: OturumAd = "": OturumAdmin = False
     ProfilAdet = 0: Sayfa = 0: SeciliID = 0
