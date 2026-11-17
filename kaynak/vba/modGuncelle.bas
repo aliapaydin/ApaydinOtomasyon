@@ -18,7 +18,8 @@ Option Explicit
 ' Herkese açmak için değerler DENEME_ öneki olmadan yazılır.
 '
 ' Dosyalar herkese açık ApaydinOtomasyon deposunun Releases bölümünden
-' indirilir, SHA-256 ile doğrulanır. Zorunlu sürümler sorulmadan,
+' zip olarak indirilir (GitHub .accde/.accdb yüklemeye izin vermiyor),
+' zip SHA-256 ile doğrulanır ve içinden program dosyası çıkarılır. Zorunlu sürümler sorulmadan,
 ' diğerleri onayla kurulur. Açık program kendini değiştiremediği için
 ' program klasörüne Guncelle.vbs yazılır ve çalıştırılır: program
 ' kapanınca eski sürümü Yedek klasörüne alır, yenisini koyar, masaüstü
@@ -192,21 +193,31 @@ Public Function GuncellemeDenetle(Optional ByVal elle As Boolean = False) As Boo
         If Not Soru(soruMetni) Then Exit Function
     End If
 
-    gecici = Environ$("TEMP") & "\ApaydinOtomasyon_" & gSurum & "." & gUzanti
-    SilVarsa gecici
+    Dim zipYol As String, acilan As String
+    zipYol = Environ$("TEMP") & "\ApaydinOtomasyon_" & gSurum & ".zip"
+    acilan = Environ$("TEMP") & "\ApaydinOtomasyon_" & gSurum
+    SilVarsa zipYol
     DoCmd.Hourglass True
-    If Not DosyaIndir(gAdres, gecici) Then
+    If Not DosyaIndir(gAdres, zipYol) Then
         DoCmd.Hourglass False
         Mesaj "Yeni sürüm indirilemedi. İnternet bağlantısını kontrol edip daha sonra tekrar deneyin." & vbCrLf & _
               "Sorun sürerse Ayarlar > Güncelleme ve Güvenlik Bilgisi bölümüne bakın.", vbExclamation
         Exit Function
     End If
-    If DosyaOzeti(gecici) <> gOzet Then
+    If DosyaOzeti(zipYol) <> gOzet Then
         DoCmd.Hourglass False
-        SilVarsa gecici
+        SilVarsa zipYol
         Mesaj "İndirilen dosya doğrulanamadı (bozuk ya da eksik indi); güncelleme yapılmadı.", vbExclamation
         Exit Function
     End If
+    gecici = acilan & "\ApaydinOtomasyon." & gUzanti
+    If Not ZipAc(zipYol, acilan, gecici) Then
+        DoCmd.Hourglass False
+        Mesaj "İndirilen güncelleme açılamadı. Antivirüs engellemiş olabilir; " & _
+              "Ayarlar > Güncelleme ve Güvenlik Bilgisi bölümüne bakın.", vbExclamation
+        Exit Function
+    End If
+    SilVarsa zipYol
     DoCmd.Hourglass False
     AyarYaz "GuncellemeNotlari", Left$(gNotlar, 250)
     GuncellemeDenetle = True
@@ -247,6 +258,34 @@ Bitir:
     Exit Function
 Hata:
     SysCmd acSysCmdClearStatus
+End Function
+
+' Zip'i Windows'un kendi zip desteğiyle açar, beklenen dosya çıkana kadar bekler
+Private Function ZipAc(ByVal zipYol As String, ByVal klasor As String, ByVal beklenen As String) As Boolean
+    On Error GoTo Hata
+    Dim kabuk As Object, kaynak As Object, hedef As Object, bas As Single, boyut As Double
+    If Fso().FolderExists(klasor) Then Fso().DeleteFolder klasor, True
+    Fso().CreateFolder klasor
+    Set kabuk = CreateObject("Shell.Application")
+    Set kaynak = kabuk.Namespace(CVar(zipYol))
+    Set hedef = kabuk.Namespace(CVar(klasor))
+    If kaynak Is Nothing Or hedef Is Nothing Then Exit Function
+    hedef.CopyHere kaynak.Items, 4 + 16 + 1024
+    bas = Timer
+    boyut = -1
+    Do
+        DoEvents
+        Sleep 300
+        If Fso().FileExists(beklenen) Then
+            If FileLen(beklenen) > 0 And FileLen(beklenen) = boyut Then
+                ZipAc = True
+                Exit Function
+            End If
+            boyut = FileLen(beklenen)
+        End If
+    Loop While Timer - bas < 60 And Timer >= bas
+    Exit Function
+Hata:
 End Function
 
 Private Function DosyaOzeti(ByVal yol As String) As String
@@ -340,7 +379,7 @@ Private Sub BetikYaz(ByVal yol As String)
     BSatir m, "    WScript.Quit"
     BSatir m, "End If"
     BSatir m, "On Error Resume Next"
-    BSatir m, "fso.DeleteFile gecici, True"
+    BSatir m, "fso.DeleteFolder fso.GetParentFolderName(gecici), True"
     BSatir m, "On Error GoTo 0"
     BSatir m, "' 3. Masaustu kisayollari eski dosyayi gosteriyorsa yenisine cevir"
     BSatir m, "If LCase(hedef) <> LCase(eski) Then Kisayollar eski, hedef"
