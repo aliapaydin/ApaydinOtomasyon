@@ -169,6 +169,7 @@ Public Function GirisYukle()
     Dim rs As DAO.Recordset
     ' Yedekten geri yükleme bekliyorsa önce onu yap (veri tablolarına dokunmadan)
     BekleyenGeriYukleme
+    BekleyenSikistirma
     ' Veri dosyası bağlantısı ve sürümü
     If Not VeriBaglantisiHazir() Then
         Mesaj "Veri dosyası olmadan program çalışamaz. Program kapatılacak.", vbCritical

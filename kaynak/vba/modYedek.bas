@@ -25,6 +25,7 @@ Option Explicit
 
 Public Const YEDEK_KLASOR_ADI As String = "ApaydinOtomasyon_Yedek"
 Private Const BEKLEYEN_AD As String = "ApaydinVeri_geriyukle.accdb"
+Private Const SIKISTIRMA_AD As String = "ApaydinVeri_sikistirilmis.accdb"
 
 Private Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal ms As Long)
 
@@ -699,13 +700,89 @@ Hata:
 End Sub
 
 Private Sub YenidenBaslat()
+    ProgramiYenidenBaslat "Program kapanacak. Lütfen programı yeniden açın; yedek açılışta yüklenecek."
+End Sub
+
+Public Sub ProgramiYenidenBaslat(Optional ByVal hataMesaji As String = "")
     On Error Resume Next
+    If hataMesaji = "" Then hataMesaji = "Program kapanacak. Lütfen programı yeniden açın."
     Dim exe As String
     exe = SysCmd(acSysCmdAccessDir) & "MSACCESS.EXE"
     Shell """" & exe & """ """ & CurrentProject.FullName & """", vbNormalFocus
-    If Err.Number <> 0 Then Mesaj "Program kapanacak. Lütfen programı yeniden açın; yedek açılışta yüklenecek."
+    If Err.Number <> 0 Then Mesaj hataMesaji
     CikisOnay = True
     DoCmd.Quit acQuitSaveNone
+End Sub
+
+' ---------------------------------------------------------------
+' Cari silme (modCariYonetim) için yedek ve sıkıştırma
+' ---------------------------------------------------------------
+' Veri dosyasının sıkıştırılmış ve doğrulanmış kopyasını hedefe yazar (dosya açıkken de güvenli)
+Private Sub VeriKopyasiYaz(ByVal hedef As String)
+    Dim kaynak As String, tmp1 As String, tmp2 As String, surum As Long
+    kaynak = VeriYolu()
+    If Not Fso().FileExists(kaynak) Then Err.Raise vbObjectError + 514, , "Veri dosyası bulunamadı: " & kaynak
+    tmp1 = Environ$("TEMP") & "\apaydin_kopya_1.accdb"
+    tmp2 = Environ$("TEMP") & "\apaydin_kopya_2.accdb"
+    SilVarsa tmp1
+    SilVarsa tmp2
+    PaylasimliKopyala kaynak, tmp1
+    DBEngine.CompactDatabase tmp1, tmp2
+    SilVarsa tmp1
+    If Not YedekBilgisi(tmp2, surum) Then
+        SilVarsa tmp2
+        Err.Raise vbObjectError + 513, , "Veri kopyası doğrulanamadı."
+    End If
+    SilVarsa hedef
+    Fso().CopyFile tmp2, hedef, True
+    SilVarsa tmp2
+End Sub
+
+' Silmeden önce bu bilgisayardaki Yedek klasörüne yedek alır, yolunu döndürür
+Public Function CariSilmeYedegiAl() As String
+    Dim hedef As String
+    If Not Fso().FolderExists(YerelYedekKlasoru()) Then Fso().CreateFolder YerelYedekKlasoru()
+    hedef = YolBirlestir(YerelYedekKlasoru(), "ApaydinVeri_cari_silme_oncesi_" & Format$(Now, "yyyy-mm-dd_hh-nn-ss") & ".accdb")
+    VeriKopyasiYaz hedef
+    CariSilmeYedegiAl = hedef
+End Function
+
+' Silinen kayıtların izi dosyada kalmasın diye sıkıştırılmış kopya hazırlanır;
+' program yeniden açılırken (veri tablolarına dokunulmadan önce) eski dosyanın yerine geçer.
+Public Sub VeriSikistirmaHazirla()
+    VeriKopyasiYaz YolBirlestir(Fso().GetParentFolderName(VeriYolu()), SIKISTIRMA_AD)
+End Sub
+
+' Açılışta BekleyenGeriYukleme'den hemen sonra çağrılır
+Public Sub BekleyenSikistirma()
+    On Error GoTo Hata
+    Dim veri As String, bekleyen As String, eski As String, i As Long, tasindi As Boolean
+    veri = VeriYolu()
+    If veri = "" Then Exit Sub
+    bekleyen = YolBirlestir(Fso().GetParentFolderName(veri), SIKISTIRMA_AD)
+    If Not Fso().FileExists(bekleyen) Then Exit Sub
+    If Not Fso().FileExists(veri) Then SilVarsa bekleyen: Exit Sub
+    ' Kopya hazırlandıktan sonra veri değiştiyse (program yeniden başlatılmadan kullanıldıysa) kopyayı kullanma
+    If FileDateTime(veri) > DateAdd("n", 3, FileDateTime(bekleyen)) Then SilVarsa bekleyen: Exit Sub
+    eski = YolBirlestir(Fso().GetParentFolderName(veri), "ApaydinVeri_sikistirma_oncesi.accdb")
+    SilVarsa eski
+    ' Eski program kapanırken dosya bir süre kullanımda kalabilir: 20 saniyeye kadar dene
+    For i = 1 To 40
+        On Error Resume Next
+        Err.Clear
+        Name veri As eski
+        If Err.Number = 0 Then tasindi = True
+        On Error GoTo Hata
+        If tasindi Then Exit For
+        Sleep 500
+    Next
+    If Not tasindi Then Exit Sub        ' bir sonraki açılışta tekrar denenir
+    Name bekleyen As veri
+    SilVarsa eski
+    Exit Sub
+Hata:
+    On Error Resume Next
+    If tasindi And Not Fso().FileExists(veri) Then Name eski As veri
 End Sub
 
 Public Function GeriYukleKapat()

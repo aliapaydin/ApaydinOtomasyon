@@ -281,6 +281,7 @@ def ayarlar():
     f.dugme('btnKaynak', 'Kaynakları Dışa Aktar', X, 7000, 3350, tik='=KaynakAktarDugme()', stil='acik')
     f.dugme('btnYeniden', 'Kayıtları Yeniden Oluştur', X + 3450, 7000, 3450, tik='=KayitlariYenidenOlustur()', stil='gri')
     f.dugme('btnGelistirici', 'Geliştirici Modu (Shift)', X, 7550, 3350, tik='=GelistiriciModu()', stil='gri')
+    f.dugme('btnCariYonetim', 'Cari İşlem Yönetimi', X + 3450, 7550, 3450, tik='=CariYonetimiAc()', stil='kirmizi')
     f.bolum('lblB7', 'KULLANIM DURUMU', 300, 7450, 7000)
     f.etiket('lblLisans', '', 300, 7850, 7200, h=300, boyut=9, renk=GRI_METIN, kontrol=False)
     f.bolum('lblB8', 'GÜNCELLEME', 300, 8350, 7000)
@@ -504,8 +505,40 @@ def guncelleme_bilgi():
     return f
 
 
+# ---------------------------------------------------------------
+def cari_yonetim():
+    W = 15800
+    f = Form('frm_CariYonetim', 'Cari İşlem Yönetimi', W, 10250, onload='=CariYonYukle()',
+             bant='CARİ İŞLEM YÖNETİMİ')
+    # Sol: cari listesi
+    f.bolum('lblB1', 'CARİLER', 300, 850, 5000)
+    f.etiket('lblAra', 'Ara', 300, 1280, 520)
+    f.kutu('txtAra', 850, 1250, 4450, degisince='=CariYonAra()')
+    f.liste('lstCariler', 300, 1700, 5000, 8050, '', 4, '0;2550;1300;1100', tik='=CariYonSecildi()')
+    # Sağ: seçili carinin bilgileri ve kayıtları
+    X, R = 5600, 9900
+    f.bolum('lblB2', 'SEÇİLİ CARİ', X, 850, 5000)
+    f.etiket('lblCari', '', X, 1220, R, h=400, boyut=13, kalin=True, kontrol=False)
+    f.etiket('lblCariDetay', '', X, 1640, R, boyut=9, renk=GRI_METIN, kontrol=False)
+    f.etiket('lblOzet', '', X, 1960, R, boyut=10, kontrol=False)
+    f.etiket('lblGorunum', 'Gösterilen kayıtlar', X, 2430, 2000)
+    f.acilir('cmbGorunum', X + 2050, 2400, 3000,
+             'Cari Hareketler;Partiler;Kasa / Banka;Alım / Satım;Stok Hareketleri', sonra='=CariYonGorunum()')
+    f.liste('lstKayitlar', X, 2850, R, 3950, '', 1, '0')
+    # Silme
+    f.bolum('lblB3', 'CARİYİ TÜMÜYLE SİL', X, 6980, 5000)
+    f.etiket('lblEtki', '', X, 7340, R, h=980, boyut=9, renk=KIRMIZI_METIN, kontrol=False)
+    f.alan('Onay için carinin adı', 'txtOnayAd', X, 8420, 2500, 3900)
+    f.alan('Yönetici şifreniz', 'txtSifre', X, 8840, 2500, 2300, girisMaskesi='Password')
+    f.dugme('btnSil', 'Cariyi Tümüyle Sil', 12300, 8400, 3200, h=760, tik='=CariTumuyleSil()', stil='kirmizi')
+    f.etiket('lblNot', 'Silmeden önce otomatik yedek alınır. Silme bitince veri dosyası temizlenir ve program '
+             'yeniden başlar.', X, 9330, R, boyut=9, renk=GRI_METIN, kontrol=False)
+    f.dugme('btnKapat', 'Kapat', 14000, 9700, 1500, h=420, tik='=AktifFormuKapat()', stil='gri', boyut=10)
+    return f
+
+
 if __name__ == '__main__':
     for fn in (mal_kabul, uretim, teslim, hizli_cari, ana_menu, ayarlar, kasa, cikis, yedek, geri_yukle,
-               kapanis, kilit, guncelleme_bilgi):
+               kapanis, kilit, guncelleme_bilgi, cari_yonetim):
         frm = fn()
         print(frm.yaz(HEDEF))

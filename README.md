@@ -11,7 +11,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Microsoft%20Access-VBA-A4373A?logo=microsoftaccess&logoColor=white" alt="Access">
-  <img src="https://img.shields.io/badge/sürüm-3.2-6B7F2A" alt="Sürüm">
+  <img src="https://img.shields.io/badge/sürüm-3.3-6B7F2A" alt="Sürüm">
   <img src="https://img.shields.io/badge/dil-Türkçe-C9A227" alt="Türkçe">
 </p>
 
@@ -29,7 +29,12 @@
 | **Ayarlar** | **Kullanıma kapalı** |
 | ![Ayarlar](docs/ekran-goruntuleri/ayarlar.png) | ![Kilit](docs/ekran-goruntuleri/kilit.png) |
 
-## Sürüm 3.3 / 3.3.1 (deneme)
+## Sürüm 3.4 (deneme)
+
+- **Cari İşlem Yönetimi** (Ayarlar > Yönetici Araçları, yalnızca yönetici): cariler aranır, seçilen carinin cari hareketleri, partileri, kasa / banka, alım / satım ve stok kayıtları tek ekranda görülür.
+- **Cariyi Tümüyle Sil**: cari ve ona bağlı her kayıt (partiler, bidonlar, cari / kasa / stok hareketleri, alım / satım) silinir. Kasa / banka bakiyelerine ve stoklara etkisi önceden gösterilir; carinin adı ve yönetici şifresiyle onaylanır. Silmeden önce `Yedek` klasörüne otomatik yedek alınır; silme sonrası veri dosyası sıkıştırılır ve program yeniden başlar, silinen kayıtların izi veri dosyasında kalmaz.
+
+## Sürüm 3.3 / 3.3.1
 
 - Program artık Access'in kendi penceresi gibi görünmüyor: **şerit (ribbon), durum çubuğu, gezinti bölmesi ve sağ tık menüleri gizli**, pencere tam ekran açılır, giriş ekranı ortalanır.
 - Geliştirici kopyasında (accdb + `kaynak\` + geçerli geliştirici anahtarı) Access arayüzü açık kalır.
