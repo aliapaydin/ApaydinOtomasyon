@@ -1087,6 +1087,7 @@ Begin Form
                     Name ="txtBrut"
                     Format ="General Number"
                     AfterUpdate ="=MalKabulHesapla()"
+                    OnChange ="=MalKabulHesapla()"
                     FontName ="Segoe UI"
                     BackThemeColorIndex =-1
                     BorderThemeColorIndex =-1
@@ -1122,6 +1123,7 @@ Begin Form
                     Name ="txtDara"
                     Format ="General Number"
                     AfterUpdate ="=MalKabulHesapla()"
+                    OnChange ="=MalKabulHesapla()"
                     FontName ="Segoe UI"
                     BackThemeColorIndex =-1
                     BorderThemeColorIndex =-1

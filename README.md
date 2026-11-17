@@ -11,7 +11,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Microsoft%20Access-VBA-A4373A?logo=microsoftaccess&logoColor=white" alt="Access">
-  <img src="https://img.shields.io/badge/sürüm-3.1-6B7F2A" alt="Sürüm">
+  <img src="https://img.shields.io/badge/sürüm-3.2-6B7F2A" alt="Sürüm">
   <img src="https://img.shields.io/badge/dil-Türkçe-C9A227" alt="Türkçe">
 </p>
 
@@ -142,7 +142,7 @@ ApaydinOtomasyon/
 2. `ApaydinOtomasyon.accdb` dosyasını Microsoft Access (2016 / 2019 / 2021 / 365) ile açın.
 3. Sarı güvenlik çubuğu çıkarsa **İçeriği Etkinleştir**'e basın.
    Kalıcı çözüm: *Dosya → Seçenekler → Güven Merkezi → Güven Merkezi Ayarları → Güvenilen Konumlar → Yeni konum ekle* ile klasörü ekleyin.
-4. İlk açılışta `Veri\ApaydinVeri.accdb` yoksa program **örnek veriyi kopyalamayı** önerir. Kabul ederseniz `ornek` klasöründeki dosya `Veri` klasörüne kopyalanır ve tablolar ona bağlanır.
+4. İlk açılışta `Veri\ApaydinVeri.accdb` yoksa program sorar: **Evet** boş veri dosyası (yeni fabrika, gerçek kullanım; yalnızca yönetici, Ana Kasa ve ürün kartları kalır), **Hayır** örnek verili dosya (deneme), **İptal** var olan bir veri dosyasını seçme.
 5. `Gorseller` klasörü program dosyasıyla aynı klasörde durmalıdır (simge ve logolar buradan okunur).
 
 ### İlk giriş

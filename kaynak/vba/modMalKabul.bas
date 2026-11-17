@@ -81,15 +81,29 @@ Public Function MalKabulMusteriSecildi()
     frm!txtMusteriBilgi = MetinVeyaNull(s)
 End Function
 
+' Brüt / dara yazılırken (OnChange) ve alandan çıkınca (AfterUpdate) çağrılır.
+' Yazılmakta olan alanın değeri henüz Value'ya geçmediği için .Text okunur.
 Public Function MalKabulHesapla()
     Dim frm As Form, brut As Double, dara As Double
     Set frm = F()
-    brut = Sayi(frm!txtBrut)
-    dara = Sayi(frm!txtDara)
+    brut = AlanSayisi(frm, "txtBrut")
+    dara = AlanSayisi(frm, "txtDara")
     If brut > 0 Then
         frm!txtNet = brut - dara
     Else
         frm!txtNet = Null
+    End If
+End Function
+
+Private Function AlanSayisi(ByVal frm As Form, ByVal ad As String) As Double
+    Dim aktif As String
+    On Error Resume Next
+    aktif = Screen.ActiveControl.Name
+    On Error GoTo 0
+    If aktif = ad Then
+        AlanSayisi = Sayi(frm.Controls(ad).Text)
+    Else
+        AlanSayisi = Sayi(frm.Controls(ad).Value)
     End If
 End Function
 

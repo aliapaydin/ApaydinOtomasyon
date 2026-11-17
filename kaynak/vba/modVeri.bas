@@ -114,14 +114,19 @@ Public Function VeriBaglantisiHazir() As Boolean
     Dim yol As String
     If Not BaglantiSaglam() Then
         yol = VarsayilanVeriYolu()
-        ' İlk açılış: veri dosyası yoksa örnek veriyle başlatmayı öner
+        ' İlk açılış: veri dosyası yoksa boş (gerçek kullanım) ya da örnek verili dosya oluştur
         If Not DosyaVar(yol) And DosyaVar(OrnekVeriYolu()) Then
-            If Soru("Veri dosyası bulunamadı." & vbCrLf & vbCrLf & _
-                    "Örnek verilerle yeni bir veri dosyası oluşturulsun mu?" & vbCrLf & yol) Then
+            Dim secim As VbMsgBoxResult
+            secim = Mesaj("Veri dosyası bulunamadı (ilk kurulum)." & vbCrLf & vbCrLf & _
+                    "EVET: Boş veri dosyası oluştur (yeni fabrika, gerçek kullanım)" & vbCrLf & _
+                    "HAYIR: Örnek verilerle oluştur (deneme amaçlı)" & vbCrLf & _
+                    "İPTAL: Var olan bir veri dosyasını seç" & vbCrLf & vbCrLf & yol, vbYesNoCancel + vbQuestion)
+            If secim = vbYes Or secim = vbNo Then
                 On Error Resume Next
                 If Dir(CurrentProject.Path & "\Veri", vbDirectory) = "" Then MkDir CurrentProject.Path & "\Veri"
                 FileCopy OrnekVeriYolu(), yol
                 On Error GoTo 0
+                If secim = vbYes And DosyaVar(yol) Then BosVeriHazirla yol
             End If
         End If
         If Not DosyaVar(yol) Then
@@ -135,6 +140,28 @@ Public Function VeriBaglantisiHazir() As Boolean
     End If
     VeriBaglantisiHazir = VeriGuncelle()
 End Function
+
+' Örnek veri dosyasının kopyasını yeni fabrika için boşaltır: hareketler, müşteriler,
+' partiler, personel ve ek kullanıcılar silinir; ürün kartları, Ana Kasa ve yönetici kalır.
+Private Sub BosVeriHazirla(ByVal yol As String)
+    Dim db As DAO.Database, t As Variant
+    On Error Resume Next
+    Set db = DBEngine.OpenDatabase(yol)
+    For Each t In Array("DELETE FROM tbl_PartiBidon", "DELETE FROM tbl_CariHareket", "DELETE FROM tbl_KasaHareket", _
+                        "DELETE FROM tbl_StokHareket", "DELETE FROM tbl_AlimSatim", "DELETE FROM tbl_Parti", _
+                        "DELETE FROM tbl_Musteri", "DELETE FROM tbl_Personel", _
+                        "DELETE FROM tbl_Kullanici WHERE Yonetici=False", _
+                        "DELETE FROM tbl_Kasa WHERE KasaTuru<>'Nakit'", "UPDATE tbl_Kasa SET AcilisBakiyesi=0", _
+                        "UPDATE tbl_Urun SET AcilisStok=0", _
+                        "UPDATE tbl_Ayarlar SET Deger='Zeytinyağı Fabrikası' WHERE Anahtar='FirmaAdi'", _
+                        "UPDATE tbl_Ayarlar SET Deger='' WHERE Anahtar IN ('FirmaAdres','FirmaTelefon','SonYedekTarihi','SonYedekYolu')")
+        Err.Clear
+        db.Execute t, dbFailOnError
+    Next
+    db.Close
+    Mesaj "Boş veri dosyası oluşturuldu." & vbCrLf & vbCrLf & _
+          "Yönetici şifresi: 1234. Girişten sonra Ayarlar'dan şifreyi değiştirin ve firma bilgilerini girin."
+End Sub
 
 ' Kur.vbs tarafından çağrılır
 Public Function VeriGuncelleKurulum(ByVal yol As String) As String

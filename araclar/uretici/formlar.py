@@ -41,8 +41,8 @@ def mal_kabul():
     f.alan('Bidonlar', 'txtBidonDetay', 5300, r[3], 1500, 3200, sonra='=MalKabulBidonDuzenle()')
     f.alan('Açıklama', 'txtKabulAciklama', 5300, r[4], 1500, 3200)
     # C sütunu
-    f.alan('Brüt Kg', 'txtBrut', 10500, r[0], 1800, 1600, sonra='=MalKabulHesapla()', hiza=3, bicim='General Number')
-    f.alan('Dara Kg', 'txtDara', 10500, r[1], 1800, 1600, sonra='=MalKabulHesapla()', hiza=3, bicim='General Number')
+    f.alan('Brüt Kg', 'txtBrut', 10500, r[0], 1800, 1600, sonra='=MalKabulHesapla()', degisince='=MalKabulHesapla()', hiza=3, bicim='General Number')
+    f.alan('Dara Kg', 'txtDara', 10500, r[1], 1800, 1600, sonra='=MalKabulHesapla()', degisince='=MalKabulHesapla()', hiza=3, bicim='General Number')
     f.alan('Net Zeytin Kg', 'txtNet', 10500, r[2], 1800, 1600, salt=True, kalin=True, hiza=3, bicim='#,##0.0 "kg"')
     f.alan('Durum', 'txtDurum', 10500, r[3], 1800, 1600, salt=True)
     f.etiket('lblBidonIpucu', 'Bidon no: 11, 12, 13 veya 11-14 yazılabilir.', 10500, r[4] + 40, 4900, boyut=9,
