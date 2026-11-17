@@ -21,3 +21,9 @@ DEVAM_NOTLARI.md
 
 # Geliştirici anahtarı (lisans kontrolünü atlar) - asla depoya eklemeyin
 *.anahtar
+
+# Güncelleme ve dağıtım çıktıları
+dagitim/
+/Guncelle.vbs
+/guncelleme.ayar
+/guncelleme.sonuc

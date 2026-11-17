@@ -238,7 +238,7 @@ def ana_menu():
 # ---------------------------------------------------------------
 def ayarlar():
     W = 15000
-    f = Form('frm_Ayarlar', 'Ayarlar', W, 9200, onload='=AyarlarYukle()', bant='AYARLAR')
+    f = Form('frm_Ayarlar', 'Ayarlar', W, 10500, onload='=AyarlarYukle()', bant='AYARLAR')
     f.bolum('lblB1', 'FİRMA BİLGİLERİ  (başlıklarda ve raporlarda görünür)', 300, 850, 7000)
     f.alan('Firma Adı', 'txtFirmaAdi', 300, 1250, 1900, 5000)
     f.alan('Telefon', 'txtFirmaTelefon', 300, 1650, 1900, 2600)
@@ -283,8 +283,14 @@ def ayarlar():
     f.dugme('btnGelistirici', 'Geliştirici Modu (Shift)', X, 7550, 3350, tik='=GelistiriciModu()', stil='gri')
     f.bolum('lblB7', 'KULLANIM DURUMU', 300, 7450, 7000)
     f.etiket('lblLisans', '', 300, 7850, 7200, h=300, boyut=9, renk=GRI_METIN, kontrol=False)
-    f.etiket('lblVeriYolu', '', 300, 8550, 11800, boyut=9, renk=GRI_METIN, kontrol=False)
-    f.dugme('btnKapat', 'Kapat', 13200, 8450, 1500, tik='=AktifFormuKapat()', stil='gri')
+    f.bolum('lblB8', 'GÜNCELLEME', 300, 8350, 7000)
+    f.etiket('lblGuncelleme', '', 300, 8750, 14400, h=300, boyut=9, renk=GRI_METIN, kontrol=False)
+    f.dugme('btnGuncelle', 'Güncellemeleri Denetle', 300, 9100, 3200, h=420, tik='=GuncellemeElleDenetle()',
+            stil='yesil', boyut=10)
+    f.dugme('btnGuncelleBilgi', 'Güncelleme ve Güvenlik Bilgisi', 3600, 9100, 3600, h=420,
+            tik='=GuncellemeBilgisiAc()', stil='gri', boyut=10)
+    f.etiket('lblVeriYolu', '', 300, 9850, 11800, boyut=9, renk=GRI_METIN, kontrol=False)
+    f.dugme('btnKapat', 'Kapat', 13200, 9750, 1500, tik='=AktifFormuKapat()', stil='gri')
     return f
 
 
@@ -447,8 +453,48 @@ def kilit():
     return f
 
 
+def guncelleme_bilgi():
+    W = 11600
+    f = Form('frm_GuncellemeBilgi', 'Güncelleme ve Güvenlik Bilgisi', W, 9300, onload='=GuncellemeBilgiYukle()',
+             bant='GÜNCELLEME VE GÜVENLİK BİLGİSİ', popup=True, modal=True, kenarlik=3, minmax=False)
+    y = 850
+    f.bolum('lblB1', 'GÜNCELLEME NASIL YAPILIR', 300, y, 8000)
+    f.etiket('lblMetin1', 'Program her açılışta yeni sürüm olup olmadığını denetler. Zorunlu güncellemeler sorulmadan, '
+             'diğerleri onayınızla kurulur. Güncelleme sırasında program kapanır; program klasörüne yazılan küçük bir '
+             'yardımcı betik (Guncelle.vbs) eski sürümü Yedek klasörüne alır, yenisini yerine koyar ve programı yeniden '
+             'açar. Verileriniz değişmez.', 300, y + 380, 11000, h=900, boyut=10, kontrol=False)
+    y = 2250
+    f.bolum('lblB2', 'ANTİVİRÜS UYARISI', 300, y, 8000)
+    f.etiket('lblMetin2', 'Bazı antivirüs programları indirilen yeni sürümü ya da Guncelle.vbs betiğini yanlışlıkla '
+             'engelleyebilir veya silebilir. Güncelleme yapılamazsa program klasörünü antivirüsün dışlama '
+             '(istisna) listesine ekleyin.', 300, y + 380, 11000, h=650, boyut=10, renk=KIRMIZI_METIN, kontrol=False)
+    f.etiket('lblMetin3', 'Windows Güvenliği (Defender):  Virüs ve tehdit koruması  >  Ayarları yönet  >  Dışlamalar: '
+             'Dışlama ekle veya kaldır  >  Dışlama ekle  >  Klasör  >  aşağıdaki klasörü seçin. '
+             'Başka bir antivirüs kullanıyorsanız "İstisnalar" ya da "Dışlamalar" bölümüne aynı klasörü ekleyin.',
+             300, y + 1080, 11000, h=650, boyut=10, kontrol=False)
+    y = 4150
+    f.etiket('lblKlasor', 'Program klasörü', 300, y + 30, 1900, kalin=True)
+    f.kutu('txtKlasor', 2200, y, 9100, salt=True)
+    f.dugme('btnDefender', "Windows Güvenliği'ni Aç", 2200, y + 500, 3300, h=420, tik='=WindowsGuvenligiAc()',
+            stil='yesil', boyut=10)
+    f.dugme('btnKlasorAc', 'Klasörü Aç', 5600, y + 500, 1900, h=420, tik='=ProgramKlasorunuAc()', stil='gri',
+            boyut=10)
+    y = 5400
+    f.bolum('lblB3', '"İÇERİĞİ ETKİNLEŞTİR" UYARISI', 300, y, 8000)
+    f.etiket('lblMetin4', 'Güncellemeden sonra Access sarı "İçeriği Etkinleştir" çubuğunu gösterirse program klasörünü '
+             'güvenilen konum olarak ekleyin:  Dosya  >  Seçenekler  >  Güven Merkezi  >  Güven Merkezi Ayarları  >  '
+             'Güvenilen Konumlar  >  Yeni konum ekle  >  yukarıdaki klasör ("Bu konumun alt klasörlerine de güvenilsin" '
+             'işaretli).', 300, y + 380, 11000, h=900, boyut=10, kontrol=False)
+    y = 6800
+    f.bolum('lblB4', 'GERİ DÖNÜŞ', 300, y, 8000)
+    f.etiket('lblMetin5', 'Her güncellemede önceki sürüm Yedek klasörüne "ApaydinOtomasyon_eski_tarih" adıyla saklanır. '
+             'Yeni sürümde sorun olursa yazılımcıya haber verin.', 300, y + 380, 11000, h=650, boyut=10, kontrol=False)
+    f.dugme('btnKapat', 'Kapat', 9700, 8550, 1600, tik='=GuncellemeBilgiKapat()', stil='gri')
+    return f
+
+
 if __name__ == '__main__':
     for fn in (mal_kabul, uretim, teslim, hizli_cari, ana_menu, ayarlar, kasa, cikis, yedek, geri_yukle,
-               kapanis, kilit):
+               kapanis, kilit, guncelleme_bilgi):
         frm = fn()
         print(frm.yaz(HEDEF))
