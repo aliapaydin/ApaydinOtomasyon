@@ -95,8 +95,14 @@ End Function
 ' Geliştirici anahtarı
 ' ---------------------------------------------------------------
 Private Function Sha256Hex(ByVal metin As String) As String
-    Dim hProv As LongPtr, hHash As LongPtr, b() As Byte, h(0 To 31) As Byte, n As Long, i As Long, s As String
+    Dim b() As Byte
     b = StrConv(metin, vbFromUnicode)
+    Sha256Hex = Sha256Bayt(b)
+End Function
+
+' Bayt dizisinin SHA-256 özeti (küçük harf onaltılık). Güncellemede dosya doğrulamak için de kullanılır.
+Public Function Sha256Bayt(ByRef b() As Byte) As String
+    Dim hProv As LongPtr, hHash As LongPtr, h(0 To 31) As Byte, n As Long, i As Long, s As String
     If CryptAcquireContextW(hProv, 0, 0, 24, &HF0000000) = 0 Then Exit Function   ' PROV_RSA_AES, VERIFYCONTEXT
     If CryptCreateHash(hProv, &H800C&, 0, 0, hHash) <> 0 Then                     ' CALG_SHA_256
         If UBound(b) >= 0 Then CryptHashData hHash, b(0), UBound(b) + 1, 0
@@ -109,7 +115,7 @@ Private Function Sha256Hex(ByVal metin As String) As String
         CryptDestroyHash hHash
     End If
     CryptReleaseContext hProv, 0
-    Sha256Hex = LCase$(s)
+    Sha256Bayt = LCase$(s)
 End Function
 
 Public Function GelistiriciAnahtariVar() As Boolean
@@ -155,11 +161,16 @@ End Function
 ' Lisans dosyasını indirir. Önce GitHub API (en fazla 1 dk önbellek), olmazsa
 ' raw.githubusercontent.com denenir; ikisi de okuma anahtarıyla.
 Private Function UzakMetin(ByRef metin As String) As Boolean
-    If AdrestenOku("https://api.github.com/repos/" & DEPO & "/contents/" & DOSYA & "?ref=" & DAL, _
+    UzakMetin = GizliDosyaOku(DOSYA, metin)
+End Function
+
+' app_licenses deposundan bir dosyayı okur (güncelleme bildirimi de bunu kullanır)
+Public Function GizliDosyaOku(ByVal yol As String, ByRef metin As String) As Boolean
+    If AdrestenOku("https://api.github.com/repos/" & DEPO & "/contents/" & yol & "?ref=" & DAL, _
                    "application/vnd.github.raw", metin) Then
-        UzakMetin = True
-    ElseIf AdrestenOku("https://raw.githubusercontent.com/" & DEPO & "/" & DAL & "/" & DOSYA, "", metin) Then
-        UzakMetin = True
+        GizliDosyaOku = True
+    ElseIf AdrestenOku("https://raw.githubusercontent.com/" & DEPO & "/" & DAL & "/" & yol, "", metin) Then
+        GizliDosyaOku = True
     End If
 End Function
 

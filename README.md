@@ -11,7 +11,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Microsoft%20Access-VBA-A4373A?logo=microsoftaccess&logoColor=white" alt="Access">
-  <img src="https://img.shields.io/badge/sürüm-3.0-6B7F2A" alt="Sürüm">
+  <img src="https://img.shields.io/badge/sürüm-3.1-6B7F2A" alt="Sürüm">
   <img src="https://img.shields.io/badge/dil-Türkçe-C9A227" alt="Türkçe">
 </p>
 
@@ -175,6 +175,21 @@ ILETISIM = Yazılımcı: ...
 > - Anahtarın **süresi dolarsa** ya da silinirse programlar dosyayı okuyamaz ve son başarılı kontrolden 7 gün sonra kilitlenir.
 > - `app_licenses` deposunu silmeyin, adını ya da dosyanın yerini değiştirmeyin.
 > - Bu kontrol caydırıcıdır, kırılamaz değildir: `.accdb` dosyasında bilgili biri kodu değiştirebilir. Daha sıkı koruma için program `.accde` olarak dağıtılabilir.
+
+### Otomatik güncelleme
+
+- Program her açılışta gizli `app_licenses` deposundaki `apaydin_otomasyon/surum.txt` bildirimini okur. Daha yeni bir sürüm varsa `ZORUNLU = evet` ise sormadan, değilse sorarak kurar.
+- Dosyalar bu deponun **Releases** bölümünden zip olarak iner (GitHub `.accde`/`.accdb` yüklemeye izin vermez), SHA-256 ile doğrulanır ve açılır. 64 bit Access korumalı `.accde`, 32 bit Access `.accdb` sürümünü alır.
+- Kurulumu program klasörüne yazılan `Guncelle.vbs` yapar: program kapanınca eski sürümü `Yedek`'e alır, yenisini koyar, masaüstü kısayollarını yeni dosyaya çevirir, programı yeniden açar.
+- **Kademeli dağıtım:** `DENEME_*` satırlarını yalnızca geliştirici anahtarı olan kurulumlar ve `DENEME_KODLAR`'a yazılan kurulumlar alır; önek olmayan satırlar herkese gider.
+- Kaynaktan kurulmuş geliştirme kopyasında (`.accdb` + `kaynak` klasörü + geliştirici anahtarı) otomatik güncelleme yapılmaz.
+- Ayarlar → **Güncelleme**: sürüm, son denetim, "Güncellemeleri Denetle" ve antivirüs dışlama / güvenilen konum anlatımını içeren **Güncelleme ve Güvenlik Bilgisi** ekranı.
+
+**Yeni sürüm yayınlama:**
+1. `kaynak\vba\modOrtak.bas` içinde `URUN_SURUM`'u artırın, `araclar\Kur.vbs` ile programı kurun.
+2. `araclar\SurumHazirla.vbs`'yi çalıştırın: `dagitim\<sürüm>\` altında `.accde`, `.accdb`, kurulum `.zip`'i ve `surum_satirlari.txt` oluşur.
+3. GitHub'da `v<sürüm>` etiketiyle bir Release açıp üç zip dosyasını yükleyin.
+4. `surum_satirlari.txt`'deki `DENEME_*` satırlarını `app_licenses/apaydin_otomasyon/surum.txt`'ye yazın; deneme bitince aynı değerleri önek olmadan yazarak herkese açın.
 
 ### Yedekten başka bilgisayara kurulum
 

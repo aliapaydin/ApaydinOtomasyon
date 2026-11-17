@@ -74,8 +74,14 @@ Public Function GirisYukle()
         DoCmd.Quit acQuitSaveNone
         Exit Function
     End If
+    ' Önceki güncellemenin sonucu ve yeni sürüm denetimi (kurulacaksa program kapanır)
+    GuncellemeSonucuGoster
+    If GuncellemeDenetle(False) Then Exit Function
     ShiftKapat
     KapanisFormunuAc
+    On Error Resume Next
+    Forms(GIRIS_FORMU)!lblAlt.Caption = "Sürüm " & URUN_SURUM & "   •   Geliştirici: " & GELISTIRICI
+    On Error GoTo Hata
     ' Bağlantı yeni kurulduysa firma adı gibi hesaplanan alanları yenile
     On Error Resume Next
     Forms("frm_Giris").Recalc
@@ -407,6 +413,12 @@ Public Function AyarlarYukle()
     frm!lblVeriYolu.Caption = "Veri dosyası: " & VeriYolu() & "   (sürüm " & VeriSurumu() & ")"
     frm!lblSonYedek.Caption = SonYedekMetni()
     frm!lblLisans.Caption = LisansBilgiMetni()
+    frm!lblGuncelleme.Caption = GuncellemeBilgiMetni()
+    ' Korumalı (.accde) sürümde tasarım araçları çalışmaz
+    If KorumaliSurum() Then
+        frm!btnKaynak.Enabled = False
+        frm!btnGelistirici.Enabled = False
+    End If
     KutulariTemizle frm, Array("txtEskiSifre", "txtYeniSifre", "txtYeniSifre2")
     HesapTemizle
 End Function
