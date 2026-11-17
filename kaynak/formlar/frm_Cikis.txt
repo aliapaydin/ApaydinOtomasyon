@@ -1,0 +1,361 @@
+Version =21
+VersionRequired =20
+PublishOption =1
+Begin Form
+    RecordSelectors = NotDefault
+    AutoCenter = NotDefault
+    NavigationButtons = NotDefault
+    DividingLines = NotDefault
+    AllowDesignChanges = NotDefault
+    PopUp = NotDefault
+    Modal = NotDefault
+    DefaultView =0
+    ScrollBars =0
+    BorderStyle =3
+    TabularCharSet =162
+    PictureAlignment =2
+    DatasheetGridlinesBehavior =3
+    GridY =10
+    Width =7400
+    DatasheetFontHeight =11
+    ItemSuffix =17
+    DatasheetGridlinesColor =15132391
+    Caption ="Çıkış"
+    DatasheetFontName ="Calibri"
+    OnLoad ="=CikisFormYukle()"
+    FilterOnLoad =0
+    ShowPageMargins =0
+    DisplayOnSharePointSite =1
+    DatasheetAlternateBackColor =15921906
+    DatasheetGridlinesColor12 =0
+    FitToScreen =1
+    DatasheetBackThemeColorIndex =1
+    BorderThemeColorIndex =3
+    ThemeFontIndex =1
+    ForeThemeColorIndex =0
+    AlternateBackThemeColorIndex =1
+    AlternateBackShade =95.0
+    NoSaveCTIWhenDisabled =1
+    Begin
+        Begin Label
+            BackStyle =0
+            TextFontCharSet =162
+            FontSize =11
+            BorderColor =8355711
+            ForeColor =6710886
+            FontName ="Calibri"
+            GridlineColor =10921638
+            ThemeFontIndex =1
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =0
+            BorderTint =50.0
+            ForeThemeColorIndex =0
+            ForeTint =60.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin Rectangle
+            SpecialEffect =3
+            BackStyle =0
+            BorderLineStyle =0
+            BorderColor =10921638
+            GridlineColor =10921638
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin Image
+            BackStyle =0
+            OldBorderStyle =0
+            BorderLineStyle =0
+            SizeMode =3
+            PictureAlignment =2
+            BorderColor =10921638
+            GridlineColor =10921638
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin CommandButton
+            TextFontCharSet =162
+            Width =1701
+            Height =283
+            FontSize =11
+            FontWeight =400
+            ForeColor =4210752
+            FontName ="Calibri"
+            GridlineColor =10921638
+            ForeThemeColorIndex =0
+            ForeTint =75.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+            UseTheme =1
+            Shape =1
+            Gradient =12
+            BackColor =14461583
+            BackThemeColorIndex =4
+            BackTint =60.0
+            BorderLineStyle =0
+            BorderColor =14461583
+            BorderThemeColorIndex =4
+            BorderTint =60.0
+            ThemeFontIndex =1
+            HoverColor =15189940
+            HoverThemeColorIndex =4
+            HoverTint =40.0
+            PressedColor =9917743
+            PressedThemeColorIndex =4
+            PressedShade =75.0
+            HoverForeColor =4210752
+            HoverForeThemeColorIndex =0
+            HoverForeTint =75.0
+            PressedForeColor =4210752
+            PressedForeThemeColorIndex =0
+            PressedForeTint =75.0
+        End
+        Begin CheckBox
+            BorderLineStyle =0
+            LabelX =230
+            LabelY =-30
+            BorderColor =10921638
+            GridlineColor =10921638
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin TextBox
+            AddColon = NotDefault
+            FELineBreak = NotDefault
+            TextFontCharSet =162
+            BorderLineStyle =0
+            Width =1701
+            LabelX =-1701
+            FontSize =11
+            BorderColor =10921638
+            ForeColor =4210752
+            FontName ="Calibri"
+            AsianLineBreak =1
+            GridlineColor =10921638
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            ThemeFontIndex =1
+            ForeThemeColorIndex =0
+            ForeTint =75.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin ListBox
+            TextFontCharSet =162
+            BorderLineStyle =0
+            Width =1701
+            Height =1417
+            LabelX =-1701
+            FontSize =11
+            ForeColor =4210752
+            BorderColor =10921638
+            FontName ="Calibri"
+            GridlineColor =10921638
+            AllowValueListEdits =1
+            InheritValueList =1
+            ThemeFontIndex =1
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            ForeThemeColorIndex =0
+            ForeTint =75.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin ComboBox
+            AddColon = NotDefault
+            TextFontCharSet =162
+            BorderLineStyle =0
+            Width =1701
+            LabelX =-1701
+            FontSize =11
+            BorderColor =10921638
+            ForeColor =3484194
+            FontName ="Calibri"
+            GridlineColor =10921638
+            AllowValueListEdits =1
+            InheritValueList =1
+            ThemeFontIndex =1
+            BackThemeColorIndex =1
+            BorderThemeColorIndex =1
+            BorderShade =65.0
+            ForeThemeColorIndex =2
+            ForeShade =50.0
+            GridlineThemeColorIndex =1
+            GridlineShade =65.0
+        End
+        Begin Section
+            Height =2900
+            BackColor =14939127
+            Name ="Ayrıntı"
+            AutoHeight =1
+            AlternateBackColor =15921906
+            AlternateBackThemeColorIndex =1
+            AlternateBackShade =95.0
+            Begin
+                Begin Label
+                    BackStyle =1
+                    OverlapFlags =93
+                    TextAlign =1
+                    Left =0
+                    Top =0
+                    Width =7400
+                    Height =560
+                    FontSize =13
+                    FontWeight =700
+                    LeftMargin =300
+                    TopMargin =110
+                    BackColor =2050619
+                    ForeColor =16777215
+                    Name ="lblBaslik"
+                    Caption ="ÇIKIŞ"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    BackThemeColorIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Rectangle
+                    BackStyle =1
+                    OldBorderStyle =0
+                    OverlapFlags =85
+                    Left =0
+                    Top =560
+                    Width =7400
+                    Height =45
+                    BackColor =2597577
+                    Name ="rctCizgi"
+                    BackThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =400
+                    Top =850
+                    Width =6600
+                    Height =360
+                    FontSize =12
+                    FontWeight =700
+                    ForeColor =1520430
+                    Name ="lblSoru"
+                    Caption ="Programdan çıkmak istiyor musunuz?"
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =400
+                    Top =1300
+                    Width =6600
+                    Height =520
+                    FontSize =9
+                    ForeColor =6584440
+                    Name ="lblSonYedek"
+                    Caption =""
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =400
+                    Top =2050
+                    Width =1800
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnEvet"
+                    Caption ="Evet, Çık"
+                    OnClick ="=CikisEvet()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2637462
+                    BackThemeColorIndex =-1
+                    BorderColor =1978488
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =3691186
+                    HoverThemeColorIndex =-1
+                    PressedColor =1978488
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =0
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =2300
+                    Top =2050
+                    Width =2800
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnYedek"
+                    Caption ="Yedek Alıp Kapat"
+                    OnClick ="=CikisYedekle()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2785131
+                    BackThemeColorIndex =-1
+                    BorderColor =1990736
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =3446400
+                    HoverThemeColorIndex =-1
+                    PressedColor =1990736
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =1
+                End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =5200
+                    Top =2050
+                    Width =1800
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnHayir"
+                    Caption ="Hayır"
+                    OnClick ="=CikisHayir()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =6058096
+                    BackThemeColorIndex =-1
+                    BorderColor =4741722
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =7506056
+                    HoverThemeColorIndex =-1
+                    PressedColor =4741722
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =2
+                End
+            End
+        End
+    End
+End

@@ -59,13 +59,17 @@ End Function
 Public Function GirisYukle()
     On Error GoTo Hata
     Dim rs As DAO.Recordset
+    ' Yedekten geri yükleme bekliyorsa önce onu yap (veri tablolarına dokunmadan)
+    BekleyenGeriYukleme
     ' Veri dosyası bağlantısı ve sürümü
     If Not VeriBaglantisiHazir() Then
         Mesaj "Veri dosyası olmadan program çalışamaz. Program kapatılacak.", vbCritical
+        CikisOnay = True
         DoCmd.Quit acQuitSaveNone
         Exit Function
     End If
     ShiftKapat
+    KapanisFormunuAc
     ' Bağlantı yeni kurulduysa firma adı gibi hesaplanan alanları yenile
     On Error Resume Next
     Forms("frm_Giris").Recalc
@@ -212,9 +216,10 @@ End Function
 Public Function OturumuKapat()
     If Not Soru("Oturum kapatılsın mı?") Then Exit Function
     ' Açık tüm formları kapat
-    Do While Forms.Count > 0
-        DoCmd.Close acForm, Forms(0).Name
-    Loop
+    Dim i As Long
+    For i = Forms.Count - 1 To 0 Step -1
+        If Forms(i).Name <> "frm_Kapanis" Then DoCmd.Close acForm, Forms(i).Name
+    Next
     OturumID = 0: OturumAd = "": OturumAdmin = False
     DoCmd.OpenForm GIRIS_FORMU
 End Function
@@ -394,6 +399,7 @@ Public Function AyarlarYukle()
     frm!cmbAktifSezon.RowSource = SezonListesi()
     frm!cmbAktifSezon = AktifSezon()
     frm!lblVeriYolu.Caption = "Veri dosyası: " & VeriYolu() & "   (sürüm " & VeriSurumu() & ")"
+    frm!lblSonYedek.Caption = SonYedekMetni()
     KutulariTemizle frm, Array("txtEskiSifre", "txtYeniSifre", "txtYeniSifre2")
     HesapTemizle
 End Function

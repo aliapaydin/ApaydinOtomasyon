@@ -48,7 +48,7 @@ def metin_genislik(s, boyut=10, kalin=False):
 
 class Form:
     def __init__(self, ad, baslik, genislik, yukseklik, onload=None, bant=None,
-                 popup=False, modal=False, kenarlik=None, onclose=None, minmax=True):
+                 popup=False, modal=False, kenarlik=None, onclose=None, minmax=True, kod=None, olaylar=None):
         self.ad = ad
         self.baslik = baslik
         self.W = genislik
@@ -59,6 +59,8 @@ class Form:
         self.modal = modal
         self.kenarlik = kenarlik
         self.minmax = minmax
+        self.kod = kod              # form modülü (yalnızca ASCII)
+        self.olaylar = olaylar or []  # ör. ['OnUnload', 'OnTimer'] -> [Event Procedure]
         self.kontroller = []
         self.tab = 0
         self.uyarilar = []
@@ -205,14 +207,17 @@ class Form:
               ('BorderThemeColorIndex', -1), ('ForeThemeColorIndex', -1)]
         self._ekle('ComboBox', o)
 
-    def liste(self, ad, l, t, w, h, kaynak, sutun, genislikler, ciftTik=None, tik=None, basliklar=True, boyut=9):
+    def liste(self, ad, l, t, w, h, kaynak, sutun, genislikler, ciftTik=None, tik=None, basliklar=True, boyut=9,
+              degerListesi=False):
         o = []
         if basliklar:
             o.append(('ColumnHeads', 'NotDefault'))
+        if degerListesi:
+            o.append(('RowSourceTypeInt', 1))
         o += [('OverlapFlags', 85), ('IMESentenceMode', 3), ('ColumnCount', sutun),
               ('Left', l), ('Top', t), ('Width', w), ('Height', h), ('FontSize', boyut),
               ('ForeColor', METIN), ('BorderColor', CIZGI), ('Name', ad),
-              ('RowSourceType', q('Table/Query')), ('RowSource', q(kaynak)),
+              ('RowSourceType', q('Value List' if degerListesi else 'Table/Query')), ('RowSource', q(kaynak)),
               ('ColumnWidths', q(genislikler))]
         if ciftTik:
             o.append(('OnDblClick', q(ciftTik)))
@@ -319,6 +324,8 @@ class Form:
             out.append('    OnLoad =%s\n' % q(self.onload))
         if self.onclose:
             out.append('    OnClose =%s\n' % q(self.onclose))
+        for olay in self.olaylar:
+            out.append('    %s ="[Event Procedure]"\n' % olay)
         out.append('    FilterOnLoad =0\n    ShowPageMargins =0\n    DisplayOnSharePointSite =1\n')
         out.append('    DatasheetAlternateBackColor =15921906\n    DatasheetGridlinesColor12 =0\n    FitToScreen =1\n')
         out.append('    DatasheetBackThemeColorIndex =1\n    BorderThemeColorIndex =3\n    ThemeFontIndex =1\n')
@@ -346,6 +353,11 @@ class Form:
             else:
                 out.append(self._blok(tur, ozl))
         out.append('            End\n        End\n    End\nEnd\n')
+        if self.kod:
+            out.append('CodeBehindForm\n')
+            out.append('Attribute VB_GlobalNameSpace = False\nAttribute VB_Creatable = True\n'
+                       'Attribute VB_PredeclaredId = True\nAttribute VB_Exposed = False\n')
+            out.append(self.kod.strip('\n') + '\n')
         return ''.join(out).replace('\n', '\r\n')
 
     def yaz(self, klasor):

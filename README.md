@@ -88,10 +88,18 @@ Her raporda sezon seçilebilir; tarih aralığı ve sezon rapor başlığında g
 - Şifreler tuzlu özet (hash) olarak saklanır.
 - Shift ile tasarım görünümüne geçiş kapalıdır (aşağıdaki *Geliştirici modu* bölümüne bakın).
 
+**Yedekleme**
+- **Ayarlar → Yedek Al**: takılı flaş bellekler ve diskler listelenir, istenirse **Klasör Seç** ile başka bir yer seçilir. Veri dosyası seçilen yerde `ApaydinOtomasyon_Yedek` klasörüne `ApaydinVeri_yyyy-aa-gg_ss-dd-nn.accdb` adıyla yazılır. Klasör yoksa oluşturulur; eski yedekler silinmez.
+- Yedek, program açıkken de güvenle alınır: dosya önce geçici klasöre kopyalanır, sıkıştırılıp doğrulanır, sonra hedefe yazılır.
+- **Ayarlar → Yedekten Geri Yükle** (yalnızca yönetici): takılı flaşlar, diskler, son yedek klasörü ve seçilen klasörler taranır. **En güncel yedek önerilir**, diğerleri ayrı listede görünür. Daha eski bir yedek seçilirse uyarı verilir.
+- Geri yüklemede mevcut veri silinmez; bu bilgisayardaki `Yedek` klasörüne taşınır. Program kendiliğinden yeniden başlar ve yedeği yükler.
+- **Çıkışta soru**: program kapatılırken (Çıkış düğmesi ya da pencerenin X'i) **Evet, Çık / Yedek Alıp Kapat / Hayır** sorulur. Yedek Alıp Kapat yedek ekranını açar, yedek alınınca program kapanır. Son yedeğin tarihi de bu ekranda görünür.
+
 **Ayarlar**
 - Firma adı, telefon, adres: tüm başlıklarda ve raporlarda görünür.
 - Hakyağı oranı, 1 kg yağ fiyatı, aktif sezon.
 - Kasa ve banka hesapları (hesap adı, tür, banka, IBAN).
+- Yedekleme: **Yedek Al**, **Yedekten Geri Yükle**, son yedeğin tarihi ve yeri.
 - Yönetici araçları: **Kaynakları Dışa Aktar**, **Kayıtları Yeniden Oluştur** (tüm otomatik cari / kasa / stok kayıtlarını baştan yazar), **Geliştirici Modu**.
 
 ## Klasör yapısı
@@ -103,7 +111,7 @@ ApaydinOtomasyon/
 │   └── ApaydinVeri.accdb      Veri dosyası (ilk açılışta oluşur, depoya girmez)
 ├── ornek/
 │   └── ApaydinVeri_ornek.accdb  Uydurma örnek veriler
-├── Yedek/                     Kurulum ve veri yedekleri (depoya girmez)
+├── Yedek/                     Kurulum, veri yükseltme ve geri yükleme öncesi kopyalar (depoya girmez)
 ├── Raporlar/                  PDF çıktıları (depoya girmez)
 ├── Gorseller/                 Logo, simge, profil görselleri
 ├── docs/ekran-goruntuleri/
@@ -140,6 +148,17 @@ ApaydinOtomasyon/
 > İlk girişten sonra **Ayarlar → Yönetici Şifresi**'nden şifreyi değiştirin, **Firma Bilgileri**'ne kendi firmanızı girin ve örnek kullanıcıyı silin.
 
 Örnek veri dosyasındaki tüm müşteri, parti ve hareketler **uydurmadır**.
+
+### Yedekten başka bilgisayara kurulum
+
+Bilgisayar bozulursa ya da program başka bir bilgisayara taşınacaksa:
+
+1. Programı indirip bir klasöre çıkarın.
+2. **Ya** flaştaki en güncel yedeği `Veri` klasörüne `ApaydinVeri.accdb` adıyla kopyalayıp programı açın,
+   **ya da** programı örnek veriyle açıp **Ayarlar → Yedekten Geri Yükle** ile flaştaki yedeği seçin.
+3. Tüm müşteriler, partiler, hareketler, kullanıcılar ve ayarlar geri gelir.
+
+Elle kopyalarken programın kapalı olduğundan emin olun (klasörde `ApaydinVeri.laccdb` dosyası olmamalı).
 
 ### Program güncellemesi ve veri
 
@@ -189,6 +208,7 @@ Bu yüzden modülleri VBA düzenleyicisinden değil, `kaynak/vba` altındaki `.b
 ## Yol haritası
 
 - [ ] Bulut yedekleme / çok kullanıcılı bulut veritabanı
+- [ ] Belirli aralıklarla otomatik yedek hatırlatması
 - [ ] Banka ekstresi içe aktarma
 - [ ] Toplu SMS / e-posta ile teslim bildirimi
 
