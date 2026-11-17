@@ -13,6 +13,11 @@ Private Declare PtrSafe Function GetClientRect Lib "user32" (ByVal hwnd As LongP
 Private Declare PtrSafe Function GetDC Lib "user32" (ByVal hwnd As LongPtr) As LongPtr
 Private Declare PtrSafe Function ReleaseDC Lib "user32" (ByVal hwnd As LongPtr, ByVal hdc As LongPtr) As Long
 Private Declare PtrSafe Function GetDeviceCaps Lib "gdi32" (ByVal hdc As LongPtr, ByVal nIndex As Long) As Long
+Private Declare PtrSafe Function IsIconic Lib "user32" (ByVal hwnd As LongPtr) As Long
+
+Private Const IZLEME_ARALIGI As Long = 700      ' ms: Access penceresi boyut denetimi
+Private gSade As Boolean                         ' paket program görünümü açık mı
+Private gSonGen As Long, gSonYuk As Long         ' son görülen çalışma alanı boyutu (piksel)
 
 ' =============================================================
 ' GİRİŞ, KULLANICILAR ve AYARLAR
@@ -77,6 +82,7 @@ Public Sub ArayuzAyarla()
     On Error Resume Next
     If TestModu Then Exit Sub
     sade = Not GelistirmeKopyasi()
+    gSade = sade
     DoCmd.ShowToolbar "Ribbon", IIf(sade, acToolbarNo, acToolbarYes)
     Application.SetOption "Show Status Bar", Not sade
     DbOzelligiAyarla "AllowShortcutMenus", Not sade
@@ -91,8 +97,34 @@ Public Sub ArayuzAyarla()
         ' Açılış sırasında şerit gizleme komutu her zaman tutmuyor: form göründükten sonra tekrarla
         Forms(GIRIS_FORMU).OnTimer = "=SeridiGizle()"
         Forms(GIRIS_FORMU).TimerInterval = 300
+        ' Pencere küçültülüp büyütüldüğünde açık ekranları ortala (gizli kapanış formunun zamanlayıcısı)
+        gSonGen = 0: gSonYuk = 0
+        If FormAcikMi("frm_Kapanis") Then Forms("frm_Kapanis").TimerInterval = IZLEME_ARALIGI
     End If
 End Sub
+
+Public Function PencereIzlemeAraligi() As Long
+    If gSade Then PencereIzlemeAraligi = IZLEME_ARALIGI
+End Function
+
+' Access penceresinin çalışma alanı boyutu değiştiyse açık ekranları yeniden ortalar
+Public Function PencereIzle()
+    Dim mdi As LongPtr, r As PencereAlani, i As Long, frm As Form
+    On Error Resume Next
+    If Not gSade Then Exit Function
+    If IsIconic(Application.hWndAccessApp) <> 0 Then Exit Function
+    mdi = FindWindowExW(Application.hWndAccessApp, 0, StrPtr("MDIClient"), 0)
+    If mdi = 0 Then Exit Function
+    GetClientRect mdi, r
+    If r.Sag - r.Sol <= 0 Or r.Alt - r.Ust <= 0 Then Exit Function
+    If r.Sag - r.Sol = gSonGen And r.Alt - r.Ust = gSonYuk Then Exit Function
+    gSonGen = r.Sag - r.Sol
+    gSonYuk = r.Alt - r.Ust
+    For i = Forms.Count - 1 To 0 Step -1
+        Set frm = Forms(i)
+        If frm.Visible And Not frm.PopUp And frm.Name <> "frm_Kapanis" Then FormuOrtala frm.Name
+    Next
+End Function
 
 Public Function SeridiGizle()
     On Error Resume Next
@@ -137,6 +169,7 @@ Public Function GirisYukle()
     Dim rs As DAO.Recordset
     ' Yedekten geri yükleme bekliyorsa önce onu yap (veri tablolarına dokunmadan)
     BekleyenGeriYukleme
+    BekleyenSikistirma
     ' Veri dosyası bağlantısı ve sürümü
     If Not VeriBaglantisiHazir() Then
         Mesaj "Veri dosyası olmadan program çalışamaz. Program kapatılacak.", vbCritical

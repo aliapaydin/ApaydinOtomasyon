@@ -15,7 +15,7 @@ Begin Form
     GridY =10
     Width =15000
     DatasheetFontHeight =11
-    ItemSuffix =70
+    ItemSuffix =71
     DatasheetGridlinesColor =15132391
     Caption ="Ayarlar"
     DatasheetFontName ="Calibri"
@@ -585,7 +585,7 @@ Begin Form
                     LayoutCachedTop =45
                     LayoutCachedWidth =720
                     LayoutCachedHeight =605
-                    TabIndex =29
+                    TabIndex =30
                 End
                 Begin Label
                     OverlapFlags =85
@@ -1517,6 +1517,36 @@ Begin Form
                     PressedForeThemeColorIndex =-1
                     TabIndex =25
                 End
+                Begin CommandButton
+                    OverlapFlags =85
+                    Left =11250
+                    Top =7550
+                    Width =3450
+                    Height =450
+                    FontSize =11
+                    FontWeight =700
+                    ForeColor =16777215
+                    Name ="btnCariYonetim"
+                    Caption ="Cari İşlem Yönetimi"
+                    OnClick ="=CariYonetimiAc()"
+                    FontName ="Segoe UI"
+                    ForeThemeColorIndex =-1
+                    Gradient =0
+                    BackColor =2637462
+                    BackThemeColorIndex =-1
+                    BorderColor =1978488
+                    BorderThemeColorIndex =-1
+                    ThemeFontIndex =-1
+                    HoverColor =3691186
+                    HoverThemeColorIndex =-1
+                    PressedColor =1978488
+                    PressedThemeColorIndex =-1
+                    HoverForeColor =16777215
+                    HoverForeThemeColorIndex =-1
+                    PressedForeColor =16777215
+                    PressedForeThemeColorIndex =-1
+                    TabIndex =26
+                End
                 Begin Label
                     OverlapFlags =85
                     Left =300
@@ -1605,7 +1635,7 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    TabIndex =26
+                    TabIndex =27
                 End
                 Begin CommandButton
                     OverlapFlags =85
@@ -1635,7 +1665,7 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    TabIndex =27
+                    TabIndex =28
                 End
                 Begin Label
                     OverlapFlags =85
@@ -1679,7 +1709,7 @@ Begin Form
                     HoverForeThemeColorIndex =-1
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
-                    TabIndex =28
+                    TabIndex =29
                 End
             End
         End

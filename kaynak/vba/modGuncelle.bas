@@ -395,7 +395,12 @@ Private Sub BetikYaz(ByVal yol As String)
     BSatir m, "    t.Close"
     BSatir m, "End Sub"
     BSatir m, ""
+    BSatir m, "' Programi acmadan once gecici guncelleme dosyalarini (bu betik dahil) temizle"
     BSatir m, "Sub Calistir(yol)"
+    BSatir m, "    On Error Resume Next"
+    BSatir m, "    fso.DeleteFile klasor & `\guncelleme.ayar`, True"
+    BSatir m, "    fso.DeleteFile WScript.ScriptFullName, True"
+    BSatir m, "    On Error GoTo 0"
     BSatir m, "    sh.Run Chr(34) & accessExe & Chr(34) & ` ` & Chr(34) & yol & Chr(34), 1, False"
     BSatir m, "End Sub"
     BSatir m, ""
@@ -425,6 +430,9 @@ End Sub
 Public Sub GuncellemeSonucuGoster()
     On Error Resume Next
     Dim yol As String, f As Object, s As String
+    ' Önceki sürümlerin güncelleyicisi betiği klasörde bırakıyordu
+    SilVarsa CurrentProject.Path & "\" & BETIK_ADI
+    If Not Fso().FileExists(CurrentProject.Path & "\" & SONUC_DOSYASI) Then SilVarsa CurrentProject.Path & "\" & AYAR_DOSYASI
     yol = CurrentProject.Path & "\" & SONUC_DOSYASI
     If Not Fso().FileExists(yol) Then Exit Sub
     Set f = Fso().OpenTextFile(yol, 1, False, -1)
