@@ -15,7 +15,7 @@ Begin Form
     GridY =10
     Width =15000
     DatasheetFontHeight =11
-    ItemSuffix =64
+    ItemSuffix =66
     DatasheetGridlinesColor =15132391
     Caption ="Ayarlar"
     DatasheetFontName ="Calibri"
@@ -1516,6 +1516,36 @@ Begin Form
                     PressedForeColor =16777215
                     PressedForeThemeColorIndex =-1
                     TabIndex =25
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =7450
+                    Width =7000
+                    Height =320
+                    FontSize =10
+                    FontWeight =700
+                    ForeColor =2597577
+                    Name ="lblB7"
+                    Caption ="KULLANIM DURUMU"
+                    FontName ="Segoe UI"
+                    Tag ="tema"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
+                End
+                Begin Label
+                    OverlapFlags =85
+                    Left =300
+                    Top =7850
+                    Width =7200
+                    Height =300
+                    FontSize =9
+                    ForeColor =6584440
+                    Name ="lblLisans"
+                    Caption =""
+                    FontName ="Segoe UI"
+                    ThemeFontIndex =-1
+                    ForeThemeColorIndex =-1
                 End
                 Begin Label
                     OverlapFlags =85

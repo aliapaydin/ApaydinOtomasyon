@@ -18,3 +18,6 @@ __pycache__/
 
 # Kişisel çalışma notları
 DEVAM_NOTLARI.md
+
+# Geliştirici anahtarı (lisans kontrolünü atlar) - asla depoya eklemeyin
+*.anahtar
