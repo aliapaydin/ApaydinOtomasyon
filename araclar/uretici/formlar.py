@@ -281,6 +281,8 @@ def ayarlar():
     f.dugme('btnKaynak', 'Kaynakları Dışa Aktar', X, 7000, 3350, tik='=KaynakAktarDugme()', stil='acik')
     f.dugme('btnYeniden', 'Kayıtları Yeniden Oluştur', X + 3450, 7000, 3450, tik='=KayitlariYenidenOlustur()', stil='gri')
     f.dugme('btnGelistirici', 'Geliştirici Modu (Shift)', X, 7550, 3350, tik='=GelistiriciModu()', stil='gri')
+    f.bolum('lblB7', 'KULLANIM DURUMU', 300, 7450, 7000)
+    f.etiket('lblLisans', '', 300, 7850, 7200, h=300, boyut=9, renk=GRI_METIN, kontrol=False)
     f.etiket('lblVeriYolu', '', 300, 8550, 11800, boyut=9, renk=GRI_METIN, kontrol=False)
     f.dugme('btnKapat', 'Kapat', 13200, 8450, 1500, tik='=AktifFormuKapat()', stil='gri')
     return f
@@ -431,8 +433,22 @@ def kapanis():
     return f
 
 
+def kilit():
+    W = 9400
+    f = Form('frm_Kilit', 'Program Kullanıma Kapalı', W, 5400, onload='=KilitFormYukle()',
+             bant='PROGRAM KULLANIMA KAPALI', popup=True, modal=True, kenarlik=3, minmax=False)
+    f.etiket('lblMesaj', '', 400, 950, 8600, h=1250, boyut=12, kalin=True, renk=KIRMIZI_METIN, kontrol=False)
+    f.etiket('lblIletisim', '', 400, 2300, 8600, h=650, boyut=11, kontrol=False)
+    f.etiket('lblKod', '', 400, 3050, 8600, h=320, boyut=10, kalin=True, kontrol=False)
+    f.etiket('lblDurum', '', 400, 3400, 8600, h=320, boyut=9, renk=GRI_METIN, kontrol=False)
+    f.dugme('btnTekrar', 'Tekrar Dene', 400, 4400, 2200, tik='=KilitTekrarDene()', stil='acik')
+    f.dugme('btnYedek', 'Yedek Al', 2700, 4400, 2000, tik='=KilitYedekAl()', stil='yesil')
+    f.dugme('btnCikis', 'Çıkış', 7200, 4400, 1800, tik='=KilitCikis()', stil='kirmizi')
+    return f
+
+
 if __name__ == '__main__':
     for fn in (mal_kabul, uretim, teslim, hizli_cari, ana_menu, ayarlar, kasa, cikis, yedek, geri_yukle,
-               kapanis):
+               kapanis, kilit):
         frm = fn()
         print(frm.yaz(HEDEF))

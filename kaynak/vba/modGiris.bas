@@ -68,6 +68,12 @@ Public Function GirisYukle()
         DoCmd.Quit acQuitSaveNone
         Exit Function
     End If
+    ' Kullanım (lisans) kontrolü: kapalıysa uyarı ekranı, yalnızca yedek alınabilir
+    If Not LisansKontrol() Then
+        CikisOnay = True
+        DoCmd.Quit acQuitSaveNone
+        Exit Function
+    End If
     ShiftKapat
     KapanisFormunuAc
     ' Bağlantı yeni kurulduysa firma adı gibi hesaplanan alanları yenile
@@ -400,6 +406,7 @@ Public Function AyarlarYukle()
     frm!cmbAktifSezon = AktifSezon()
     frm!lblVeriYolu.Caption = "Veri dosyası: " & VeriYolu() & "   (sürüm " & VeriSurumu() & ")"
     frm!lblSonYedek.Caption = SonYedekMetni()
+    frm!lblLisans.Caption = LisansBilgiMetni()
     KutulariTemizle frm, Array("txtEskiSifre", "txtYeniSifre", "txtYeniSifre2")
     HesapTemizle
 End Function
