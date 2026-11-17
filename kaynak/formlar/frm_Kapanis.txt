@@ -228,14 +228,25 @@ Option Compare Database
 Option Explicit
 
 ' Gizli form: Access penceresi X ile kapatilirken cikis sorusunu gosterir (bkz. modYedek)
+' Program gorunumunde ayni zamanlayici Access penceresinin boyutunu izler ve
+' pencere kucultulup buyutuldugunde acik ekranlari ortalar (bkz. modGiris.PencereIzle)
+Private CikisBekliyor As Boolean
+
 Private Sub Form_Unload(Cancel As Integer)
     If Not CikisOnaylandi() Then
         Cancel = True
+        CikisBekliyor = True
         Me.TimerInterval = 150
     End If
 End Sub
 
 Private Sub Form_Timer()
-    Me.TimerInterval = 0
-    CikisSor
+    If CikisBekliyor Then
+        CikisBekliyor = False
+        Me.TimerInterval = 0
+        CikisSor
+        Me.TimerInterval = PencereIzlemeAraligi()
+    Else
+        PencereIzle
+    End If
 End Sub

@@ -29,10 +29,11 @@
 | **Ayarlar** | **Kullanıma kapalı** |
 | ![Ayarlar](docs/ekran-goruntuleri/ayarlar.png) | ![Kilit](docs/ekran-goruntuleri/kilit.png) |
 
-## Sürüm 3.3 (deneme)
+## Sürüm 3.3 / 3.3.1 (deneme)
 
 - Program artık Access'in kendi penceresi gibi görünmüyor: **şerit (ribbon), durum çubuğu, gezinti bölmesi ve sağ tık menüleri gizli**, pencere tam ekran açılır, giriş ekranı ortalanır.
 - Geliştirici kopyasında (accdb + `kaynak\` + geçerli geliştirici anahtarı) Access arayüzü açık kalır.
+- 3.3.1: Program penceresi küçültülüp büyütüldüğünde açık ekranlar ortada kalır; güncelleme sonrası klasörde `Guncelle.vbs` kalmaz.
 - Rapor önizlemesinde Access araç çubuğu yok; yazdırma / PDF için programın kendi düğmeleri kullanılır.
 
 ## Sürüm 3.0'da neler değişti
