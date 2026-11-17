@@ -228,36 +228,38 @@ Hata:
     If elle Then Mesaj "Güncelleme denetlenemedi: " & Err.Description, vbExclamation
 End Function
 
+' GitHub indirmeleri başka bir sunucuya yönlenir; tarayıcı tabanlı XMLHTTP bu
+' yönlendirmeyi "Erişim engellendi" ile keser. Önce sunucu tabanlı istemciler denenir.
 Private Function DosyaIndir(ByVal adres As String, ByVal hedef As String) As Boolean
-    On Error GoTo Hata
-    Dim h As Object, bas As Single, st As Object
-    Set h = CreateObject("MSXML2.XMLHTTP.6.0")
-    h.Open "GET", adres, True
-    h.send
-    bas = Timer
+    Dim sinif As Variant
     SysCmd acSysCmdSetStatus, "Yeni sürüm indiriliyor..."
-    Do While h.readyState <> 4
-        DoEvents
-        Sleep 100
-        If Timer - bas > INDIRME_SURESI Or Timer < bas Then
-            h.abort
-            GoTo Bitir
+    For Each sinif In Array("MSXML2.ServerXMLHTTP.6.0", "WinHttp.WinHttpRequest.5.1", "MSXML2.XMLHTTP.6.0")
+        If IstemciyleIndir(CStr(sinif), adres, hedef) Then
+            DosyaIndir = True
+            Exit For
         End If
-    Loop
-    If h.Status = 200 Then
-        Set st = CreateObject("ADODB.Stream")
-        st.Type = 1
-        st.Open
-        st.Write h.responseBody
-        st.SaveToFile hedef, 2
-        st.Close
-        DosyaIndir = True
-    End If
-Bitir:
+    Next
     SysCmd acSysCmdClearStatus
+End Function
+
+Private Function IstemciyleIndir(ByVal sinif As String, ByVal adres As String, ByVal hedef As String) As Boolean
+    On Error GoTo Hata
+    Dim h As Object, st As Object
+    Set h = CreateObject(sinif)
+    If sinif = "MSXML2.ServerXMLHTTP.6.0" Then h.setTimeouts 15000, 15000, 30000, INDIRME_SURESI * 1000
+    If sinif = "WinHttp.WinHttpRequest.5.1" Then h.SetTimeouts 15000, 15000, 30000, INDIRME_SURESI * 1000
+    h.Open "GET", adres, False
+    h.send
+    If h.Status <> 200 Then Exit Function
+    Set st = CreateObject("ADODB.Stream")
+    st.Type = 1
+    st.Open
+    st.Write h.responseBody
+    st.SaveToFile hedef, 2
+    st.Close
+    IstemciyleIndir = True
     Exit Function
 Hata:
-    SysCmd acSysCmdClearStatus
 End Function
 
 ' Zip'i Windows'un kendi zip desteğiyle açar, beklenen dosya çıkana kadar bekler
