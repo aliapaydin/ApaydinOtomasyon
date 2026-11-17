@@ -5,7 +5,9 @@ Option Explicit
 ' KULLANIM (LİSANS) KONTROLÜ   (form: frm_Kilit)
 ' -------------------------------------------------------------
 ' Program her açılışta (ve oturum kapatılıp giriş ekranına
-' dönüldüğünde) GitHub deposundaki lisans.txt dosyasını okur:
+' dönüldüğünde) gizli aliapaydin/app_licenses deposundaki
+' apaydin_otomasyon/lisans.txt dosyasını, yalnızca o depoyu okuma
+' yetkisi olan bir erişim anahtarıyla (fine-grained token) okur:
 '
 '   HERKES = acik                 tüm kurulumlar için durum
 '   AO-7K3M9P = kapali | mesaj    tek kurulum için durum (HERKES'in yerine geçer)
@@ -19,16 +21,37 @@ Option Explicit
 '   - 7 gün boyunca hiç kontrol yapılamazsa giriş durdurulur.
 ' Program kapalıyken yalnızca "Tekrar Dene", "Yedek Al" ve "Çıkış"
 ' kullanılabilir; müşteri kendi verisinin yedeğini her zaman alabilir.
+'
+' Geliştirici anahtarı: program klasöründe geçerli bir
+' "gelistirici.anahtar" dosyası varsa lisans kontrolü hiç yapılmaz.
+' Kodda yalnızca anahtarın SHA-256 özeti durur; dosya olmadan
+' bu özetten anahtar üretilemez.
 ' =============================================================
 
-Private Const DEPO As String = "aliapaydin/ApaydinOtomasyon"
+Private Const DEPO As String = "aliapaydin/app_licenses"
+Private Const DOSYA As String = "apaydin_otomasyon/lisans.txt"
 Private Const DAL As String = "main"
+Private Const ANAHTAR_DOSYASI As String = "gelistirici.anahtar"
+' Okuma anahtarının karıştırılmış hali (araclar\jeton_gizle.py ile üretilir)
+Private Const JETON_KODU As String = "26191511110B313F151B3250423B2B2374252D20540F0678062B142303375737252F1734015E1E091F283933254D21040F35513B035E2222421F2731343202023713230F2E0B37291E5C0A19384C242F13202B20503A0415070B0C3509"
+Private Const ANAHTAR_OZETI As String = "4852496fcbe7e1a423bf967e8d9ae852182004a97ff3088cca46ed5bfb0d691e"
 Private Const CEVRIMDISI_GUN As Long = 7
 Private Const ZAMAN_ASIMI As Single = 6
 
 Private Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal ms As Long)
+Private Declare PtrSafe Function CryptAcquireContextW Lib "advapi32" (ByRef phProv As LongPtr, ByVal pszContainer As LongPtr, _
+    ByVal pszProvider As LongPtr, ByVal dwProvType As Long, ByVal dwFlags As Long) As Long
+Private Declare PtrSafe Function CryptCreateHash Lib "advapi32" (ByVal hProv As LongPtr, ByVal Algid As Long, _
+    ByVal hKey As LongPtr, ByVal dwFlags As Long, ByRef phHash As LongPtr) As Long
+Private Declare PtrSafe Function CryptHashData Lib "advapi32" (ByVal hHash As LongPtr, ByRef pbData As Byte, _
+    ByVal dwDataLen As Long, ByVal dwFlags As Long) As Long
+Private Declare PtrSafe Function CryptGetHashParam Lib "advapi32" (ByVal hHash As LongPtr, ByVal dwParam As Long, _
+    ByRef pbData As Byte, ByRef pdwDataLen As Long, ByVal dwFlags As Long) As Long
+Private Declare PtrSafe Function CryptDestroyHash Lib "advapi32" (ByVal hHash As LongPtr) As Long
+Private Declare PtrSafe Function CryptReleaseContext Lib "advapi32" (ByVal hProv As LongPtr, ByVal dwFlags As Long) As Long
 
 Private LisansAcildi As Boolean
+Private AnahtarDurumu As Long          ' 0 bakılmadı, 1 geçerli, 2 yok / geçersiz
 Private SonOkumaBasarili As Boolean
 
 ' ---------------------------------------------------------------
@@ -68,13 +91,74 @@ Private Function YeniLisansKodu() As String
     YeniLisansKodu = "AO-" & s
 End Function
 
+' ---------------------------------------------------------------
+' Geliştirici anahtarı
+' ---------------------------------------------------------------
+Private Function Sha256Hex(ByVal metin As String) As String
+    Dim hProv As LongPtr, hHash As LongPtr, b() As Byte, h(0 To 31) As Byte, n As Long, i As Long, s As String
+    b = StrConv(metin, vbFromUnicode)
+    If CryptAcquireContextW(hProv, 0, 0, 24, &HF0000000) = 0 Then Exit Function   ' PROV_RSA_AES, VERIFYCONTEXT
+    If CryptCreateHash(hProv, &H800C&, 0, 0, hHash) <> 0 Then                     ' CALG_SHA_256
+        If UBound(b) >= 0 Then CryptHashData hHash, b(0), UBound(b) + 1, 0
+        n = 32
+        If CryptGetHashParam(hHash, 2, h(0), n, 0) <> 0 Then                       ' HP_HASHVAL
+            For i = 0 To 31
+                s = s & Right$("0" & Hex$(h(i)), 2)
+            Next
+        End If
+        CryptDestroyHash hHash
+    End If
+    CryptReleaseContext hProv, 0
+    Sha256Hex = LCase$(s)
+End Function
+
+Public Function GelistiriciAnahtariVar() As Boolean
+    On Error GoTo Yok
+    Dim yol As String, f As Integer, satir As String, son As String
+    If AnahtarDurumu = 0 Then
+        AnahtarDurumu = 2
+        yol = CurrentProject.Path & "\" & ANAHTAR_DOSYASI
+        If Dir(yol) <> "" Then
+            f = FreeFile
+            Open yol For Input Access Read Shared As #f
+            Do While Not EOF(f)
+                Line Input #f, satir
+                If Trim$(satir) <> "" Then son = Trim$(satir)
+            Loop
+            Close #f
+            If Len(son) = 64 Then
+                If Sha256Hex("ApaydinOtomasyon-gelistirici:" & UCase$(son)) = ANAHTAR_OZETI Then AnahtarDurumu = 1
+            End If
+        End If
+    End If
+    GelistiriciAnahtariVar = (AnahtarDurumu = 1)
+    Exit Function
+Yok:
+    Close
+    AnahtarDurumu = 2
+End Function
+
+' ---------------------------------------------------------------
+' Okuma anahtarı (yalnızca app_licenses deposunu okuyabilir)
+' Kaynakta düz metin olarak durmaz; jeton_gizle.py ile üretilir.
+' ---------------------------------------------------------------
+Private Function OkumaAnahtari() As String
+    Dim kod As String, karistir As String, i As Long, s As String
+    kod = JETON_KODU
+    karistir = "ApaydinOtomasyon"
+    For i = 1 To Len(kod) \ 2
+        s = s & Chr$(CLng("&H" & Mid$(kod, i * 2 - 1, 2)) Xor Asc(Mid$(karistir, ((i - 1) Mod Len(karistir)) + 1, 1)))
+    Next
+    OkumaAnahtari = s
+End Function
+
 ' Lisans dosyasını indirir. Önce GitHub API (en fazla 1 dk önbellek), olmazsa
-' raw.githubusercontent.com (birkaç dk önbellek) denenir.
+' raw.githubusercontent.com denenir; ikisi de okuma anahtarıyla.
 Private Function UzakMetin(ByRef metin As String) As Boolean
-    If AdrestenOku("https://api.github.com/repos/" & DEPO & "/contents/lisans.txt?ref=" & DAL, _
+    If AdrestenOku("https://api.github.com/repos/" & DEPO & "/contents/" & DOSYA & "?ref=" & DAL, _
                    "application/vnd.github.raw", metin) Then
         UzakMetin = True
-    ElseIf AdrestenOku("https://raw.githubusercontent.com/" & DEPO & "/" & DAL & "/lisans.txt", "", metin) Then
+    ElseIf AdrestenOku("https://raw.githubusercontent.com/" & DEPO & "/" & DAL & "/" & DOSYA, "", metin) Then
         UzakMetin = True
     End If
 End Function
@@ -88,6 +172,7 @@ Private Function AdrestenOku(ByVal adres As String, ByVal kabul As String, ByRef
     h.setRequestHeader "Cache-Control", "no-cache"
     h.setRequestHeader "Pragma", "no-cache"
     If kabul <> "" Then h.setRequestHeader "Accept", kabul
+    If OkumaAnahtari() <> "" Then h.setRequestHeader "Authorization", "Bearer " & OkumaAnahtari()
     h.send
     bas = Timer
     Do While h.readyState <> 4
@@ -130,6 +215,7 @@ Private Function LisansCoz(ByVal metin As String, ByVal kod As String, ByRef dur
             If p > 1 Then
                 anahtar = UCase$(Trim$(Left$(s, p - 1)))
                 deger = Trim$(Mid$(s, p + 1))
+                If InStr(1, deger, "#") > 0 Then deger = Trim$(Left$(deger, InStr(1, deger, "#") - 1))   ' satır sonu notu
                 If anahtar = "HERKES" Then
                     genel = deger: genelVar = True
                 ElseIf anahtar = "MESAJ" Then
@@ -191,7 +277,7 @@ End Function
 ' Giriş ekranı açılırken çağrılır. False dönerse program kapanır.
 Public Function LisansKontrol() As Boolean
     On Error GoTo Hata
-    If TestModu Then
+    If TestModu Or GelistiriciAnahtariVar() Then
         LisansKontrol = True
         Exit Function
     End If
@@ -221,6 +307,10 @@ Private Function SonKontrolMetni() As String
 End Function
 
 Public Function LisansBilgiMetni() As String
+    If GelistiriciAnahtariVar() Then
+        LisansBilgiMetni = "Lisans kodu: " & LisansKodu() & "   •   Geliştirici anahtarı etkin: lisans kontrolü yapılmıyor."
+        Exit Function
+    End If
     LisansBilgiMetni = "Lisans kodu: " & LisansKodu() & "   •   Durum: " & _
                        IIf(LisansAcik(), "açık", "kapalı") & "   •   Son kontrol: " & SonKontrolMetni()
 End Function

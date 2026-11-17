@@ -96,10 +96,11 @@ Her raporda sezon seçilebilir; tarih aralığı ve sezon rapor başlığında g
 - **Çıkışta soru**: program kapatılırken (Çıkış düğmesi ya da pencerenin X'i) **Evet, Çık / Yedek Alıp Kapat / Hayır** sorulur. Yedek Alıp Kapat yedek ekranını açar, yedek alınınca program kapanır. Son yedeğin tarihi de bu ekranda görünür.
 
 **Kullanım kontrolü (lisans)**
-- Program her açılışta ve oturum kapatılıp giriş ekranına dönüldüğünde bu depodaki [`lisans.txt`](lisans.txt) dosyasını okur.
+- Program her açılışta ve oturum kapatılıp giriş ekranına dönüldüğünde gizli `aliapaydin/app_licenses` deposundaki `apaydin_otomasyon/lisans.txt` dosyasını, yalnızca o depoyu okuyabilen bir erişim anahtarıyla okur.
 - Her kurulumun ilk açılışta üretilen bir **lisans kodu** vardır (ör. `AO-7K3M9P`); Ayarlar → Kullanım Durumu'nda ve kilit ekranında görünür.
 - Dosyada `HERKES = kapali` yazılırsa tüm kurulumlar, `AO-7K3M9P = kapali` yazılırsa yalnızca o kurulum kapanır. Kapalı programda yalnızca uyarı, iletişim bilgisi, **Tekrar Dene**, **Yedek Al** ve **Çıkış** görünür; müşteri kendi verisinin yedeğini her zaman alabilir.
 - İnternet yoksa son bilinen durum geçerlidir (kapatılmış bir kurulum internet kesilince açılmaz). 7 gün boyunca hiç kontrol yapılamazsa giriş durdurulur.
+- **Geliştirici anahtarı:** program klasöründe geçerli bir `gelistirici.anahtar` dosyası varsa lisans kontrolü hiç yapılmaz (7 gün sınırı da yoktur). Kodda yalnızca anahtarın SHA-256 özeti durur; dosya olmadan anahtar üretilemez. `*.anahtar` dosyaları `.gitignore` ile depodan dışarıda tutulur.
 
 **Ayarlar**
 - Firma adı, telefon, adres: tüm başlıklarda ve raporlarda görünür.
@@ -157,18 +158,23 @@ ApaydinOtomasyon/
 
 ### Programı kapatma / açma (lisans.txt)
 
-GitHub'da `lisans.txt` dosyasını açıp kalem simgesiyle düzenleyin ve kaydedin (commit). Değişiklik genellikle 1 dakika içinde geçerli olur; program bir sonraki açılışta ya da kilit ekranındaki **Tekrar Dene** ile yeni durumu okur.
+Gizli `app_licenses` deposunda `apaydin_otomasyon/lisans.txt` dosyasını açıp kalem simgesiyle düzenleyin ve kaydedin. Değişiklik genellikle 1 dakika içinde geçerli olur; program bir sonraki açılışta ya da kilit ekranındaki **Tekrar Dene** ile yeni durumu okur.
 
 ```
-HERKES = acik                         # tüm kurulumlar açık
-AO-7K3M9P = kapali                    # yalnızca bu kurulum kapalı
+HERKES = acik                          # tüm kurulumlar açık
+AO-7K3M9P = kapali                     # yalnızca bu kurulum kapalı
 AO-4XR2PD = kapali | Ödeme bekleniyor  # bu kuruluma özel mesajla kapalı
 MESAJ = Programın kullanımı durdurulmuştur. Lütfen yazılımcı ile iletişime geçin.
-ILETISIM = Yazılımcı: Ali Apaydın   •   0553 605 35 00   •   apaydin.a@gmail.com
+ILETISIM = Yazılımcı: ...
 ```
 
-> Depo herkese açıksa `lisans.txt` de açıktır; içine firma adı yazmayın, yalnızca lisans kodlarını kullanın.
-> Bu kontrol caydırıcıdır, kırılamaz değildir: Access dosyası `.accdb` olduğu için bilgili biri kodu değiştirebilir. Daha sıkı koruma için program `.accde` olarak dağıtılabilir.
+`#` işaretinden sonrası not olarak okunmaz.
+
+**Okuma anahtarı:** Program dosyayı yalnızca `app_licenses` deposunu *okuma* yetkisi olan bir fine-grained token ile okur. Anahtar kaynakta karıştırılmış olarak durur (`kaynak/vba/modLisans.bas` → `JETON_KODU`); yeni anahtar için `python araclar/jeton_gizle.py github_pat_...` çıktısı buraya yazılıp program yeniden kurulur.
+
+> - Anahtarın **süresi dolarsa** ya da silinirse programlar dosyayı okuyamaz ve son başarılı kontrolden 7 gün sonra kilitlenir.
+> - `app_licenses` deposunu silmeyin, adını ya da dosyanın yerini değiştirmeyin.
+> - Bu kontrol caydırıcıdır, kırılamaz değildir: `.accdb` dosyasında bilgili biri kodu değiştirebilir. Daha sıkı koruma için program `.accde` olarak dağıtılabilir.
 
 ### Yedekten başka bilgisayara kurulum
 
