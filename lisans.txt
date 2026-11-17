@@ -16,6 +16,5 @@
 # ------------------------------------------------------------------
 
 HERKES = acik
-AO-HLUUHD = kapali | Test: bu kurulumun kullanımı durduruldu. Lütfen yazılımcı ile iletişime geçin.
 MESAJ = Programın kullanımı durdurulmuştur. Lütfen yazılımcı ile iletişime geçin.
 ILETISIM = Yazılımcı: Ali Apaydın   •   0553 605 35 00   •   apaydin.a@gmail.com
