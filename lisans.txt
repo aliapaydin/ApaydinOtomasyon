@@ -1,0 +1,20 @@
+# Apaydın Otomasyon - kullanım kontrolü
+# ------------------------------------------------------------------
+# Program her açılışta bu dosyayı okur. Değiştirip kaydettikten
+# birkaç dakika sonra (GitHub önbelleği) geçerli olur.
+#
+#   HERKES = acik | kapali        Tüm kurulumlar için durum.
+#   AO-XXXXXX = acik | kapali     Tek bir kurulum için durum; HERKES'in yerine geçer.
+#                                 Lisans kodu programda Ayarlar > Kullanım Durumu'nda
+#                                 ve kapalıyken açılan uyarı ekranında görünür.
+#                                 O kuruluma özel mesaj için:  AO-XXXXXX = kapali | Ödeme bekleniyor.
+#   MESAJ = ...                   Program kapalıyken gösterilecek mesaj.
+#   ILETISIM = ...                Mesajın altında gösterilecek iletişim bilgisi.
+#
+# Not: Bu depo herkese açıksa bu dosya da açıktır; buraya firma adı yazmayın,
+#      yalnızca lisans kodlarını kullanın.
+# ------------------------------------------------------------------
+
+HERKES = acik
+MESAJ = Programın kullanımı durdurulmuştur. Lütfen yazılımcı ile iletişime geçin.
+ILETISIM = Yazılımcı: Ali Apaydın   •   0553 605 35 00   •   apaydin.a@gmail.com
