@@ -1,6 +1,19 @@
 Option Compare Database
 Option Explicit
 
+Private Type PencereAlani
+    Sol As Long
+    Ust As Long
+    Sag As Long
+    Alt As Long
+End Type
+Private Declare PtrSafe Function FindWindowExW Lib "user32" (ByVal hParent As LongPtr, ByVal hChildAfter As LongPtr, _
+    ByVal lpszClass As LongPtr, ByVal lpszWindow As LongPtr) As LongPtr
+Private Declare PtrSafe Function GetClientRect Lib "user32" (ByVal hwnd As LongPtr, ByRef lpRect As PencereAlani) As Long
+Private Declare PtrSafe Function GetDC Lib "user32" (ByVal hwnd As LongPtr) As LongPtr
+Private Declare PtrSafe Function ReleaseDC Lib "user32" (ByVal hwnd As LongPtr, ByVal hdc As LongPtr) As Long
+Private Declare PtrSafe Function GetDeviceCaps Lib "gdi32" (ByVal hdc As LongPtr, ByVal nIndex As Long) As Long
+
 ' =============================================================
 ' GİRİŞ, KULLANICILAR ve AYARLAR
 ' -------------------------------------------------------------
@@ -56,6 +69,69 @@ Private Function G() As Form
     Set G = Forms(GIRIS_FORMU)
 End Function
 
+' Paket program görünümü: Access şeridi, durum çubuğu, gezinti bölmesi ve sağ tık
+' menüleri gizlenir, pencere ekranı kaplar. Kaynaktan kurulmuş geliştirme kopyasında
+' (accdb + kaynak klasörü + geliştirici anahtarı) Access arayüzü normal kalır.
+Public Sub ArayuzAyarla()
+    Dim sade As Boolean
+    On Error Resume Next
+    If TestModu Then Exit Sub
+    sade = Not GelistirmeKopyasi()
+    DoCmd.ShowToolbar "Ribbon", IIf(sade, acToolbarNo, acToolbarYes)
+    Application.SetOption "Show Status Bar", Not sade
+    DbOzelligiAyarla "AllowShortcutMenus", Not sade
+    DbOzelligiAyarla "StartUpShowStatusBar", Not sade
+    ' Kapalıyken DoCmd.ShowToolbar "Ribbon" çalışmıyor; bir sonraki açılıştan itibaren geçerli olur
+    DbOzelligiAyarla "AllowBuiltInToolbars", True
+    If sade Then
+        DoCmd.SelectObject acTable, , True
+        DoCmd.RunCommand acCmdWindowHide
+        DoCmd.RunCommand acCmdAppMaximize
+        DoCmd.SelectObject acForm, GIRIS_FORMU
+        ' Açılış sırasında şerit gizleme komutu her zaman tutmuyor: form göründükten sonra tekrarla
+        Forms(GIRIS_FORMU).OnTimer = "=SeridiGizle()"
+        Forms(GIRIS_FORMU).TimerInterval = 300
+    End If
+End Sub
+
+Public Function SeridiGizle()
+    On Error Resume Next
+    If Not GelistirmeKopyasi() Then DoCmd.ShowToolbar "Ribbon", acToolbarNo
+    If FormAcikMi(GIRIS_FORMU) Then
+        Forms(GIRIS_FORMU).TimerInterval = 0
+        FormuOrtala GIRIS_FORMU     ' pencere büyütülmeden önce açıldığı için yeniden ortala
+    End If
+End Function
+
+Private Sub FormuOrtala(ByVal ad As String)
+    Dim mdi As LongPtr, r As PencereAlani, dc As LongPtr, dpi As Long, tpp As Double, sol As Double, ust As Double
+    On Error Resume Next
+    mdi = FindWindowExW(Application.hWndAccessApp, 0, StrPtr("MDIClient"), 0)
+    If mdi = 0 Then Exit Sub
+    GetClientRect mdi, r
+    dc = GetDC(0)
+    dpi = GetDeviceCaps(dc, 88)   ' LOGPIXELSX
+    ReleaseDC 0, dc
+    If dpi <= 0 Then dpi = 96
+    tpp = 1440 / dpi
+    sol = ((r.Sag - r.Sol) * tpp - Forms(ad).WindowWidth) / 2
+    ust = ((r.Alt - r.Ust) * tpp - Forms(ad).WindowHeight) / 2
+    If sol < 0 Then sol = 0
+    If ust < 0 Then ust = 0
+    Forms(ad).Move sol, ust
+End Sub
+
+Private Sub DbOzelligiAyarla(ByVal ad As String, ByVal deger As Boolean)
+    Dim db As DAO.Database
+    On Error Resume Next
+    Set db = CurrentDb
+    db.Properties(ad) = deger
+    If Err.Number <> 0 Then
+        Err.Clear
+        db.Properties.Append db.CreateProperty(ad, dbBoolean, deger)
+    End If
+End Sub
+
 Public Function GirisYukle()
     On Error GoTo Hata
     Dim rs As DAO.Recordset
@@ -79,6 +155,7 @@ Public Function GirisYukle()
     If GuncellemeDenetle(False) Then Exit Function
     ShiftKapat
     KapanisFormunuAc
+    ArayuzAyarla
     On Error Resume Next
     Forms(GIRIS_FORMU)!lblAlt.Caption = "Sürüm " & URUN_SURUM & "   •   Geliştirici: " & GELISTIRICI
     On Error GoTo Hata
@@ -253,6 +330,7 @@ Public Function MenuYukle()
     frm!lblOturum.Caption = OturumBilgisi()
     frm!lblSezon.Caption = "Aktif sezon: " & AktifSezon()
     BaslikYenile
+    SeridiGizle
 End Function
 
 ' ---------------------------------------------------------------
