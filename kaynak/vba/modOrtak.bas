@@ -29,7 +29,7 @@ Public Const KAYNAK_TESLIM As String = "TESLIM"
 
 ' Ürün ve geliştirici bilgileri (Hakkında ekranında gösterilir, değiştirilemez)
 Public Const URUN_ADI As String = "Zeytinyağı Üretim Otomasyonu"
-Public Const URUN_SURUM As String = "3.1"
+Public Const URUN_SURUM As String = "3.2"
 Public Const GELISTIRICI As String = "Ali Apaydın"
 Public Const GELISTIRICI_EPOSTA As String = "apaydin.a@gmail.com"
 Public Const GELISTIRICI_TELEFON As String = "0553 605 35 00"
